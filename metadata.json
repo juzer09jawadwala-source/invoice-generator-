@@ -1,0 +1,6 @@
+{
+  "name": "Noir Labs Premium Invoice Generator",
+  "description": "A luxury web application to generate professional website development invoices, featuring real-time preview, calculations, and PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

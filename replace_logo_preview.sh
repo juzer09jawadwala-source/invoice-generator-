@@ -1,0 +1,3 @@
+sed -i 's/<div className="w-14 h-14 bg-\[#111111\] flex items-center justify-center rounded-xl mb-6 relative overflow-hidden shadow-sm border border-\[#111111\]\/10">/{invoice.company.logoUrl ? (\n            <img src={invoice.company.logoUrl} alt="Company Logo" className="max-w-[150px] max-h-[60px] object-contain mb-6" \/>\n          ) : (\n            <div className="w-14 h-14 bg-[#111111] flex items-center justify-center rounded-xl mb-6 relative overflow-hidden shadow-sm border border-[#111111]\/10">/g' src/components/InvoicePreview.tsx
+
+sed -i 's/NL<\/span>\n          <\/div>/NL<\/span>\n            <\/div>\n          )}/g' src/components/InvoicePreview.tsx

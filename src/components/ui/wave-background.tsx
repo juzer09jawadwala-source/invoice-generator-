@@ -5,13 +5,14 @@ import { createNoise2D } from 'simplex-noise';
 interface Point {
   x: number;
   y: number;
-  wave: { x: number; y: number };
-  cursor: {
-    x: number;
-    y: number;
-    vx: number;
-    vy: number;
-  };
+  originX: number;
+  originY: number;
+  waveX: number;
+  waveY: number;
+  cursorX: number;
+  cursorY: number;
+  vx: number;
+  vy: number;
 }
 
 export interface WavesProps {
@@ -23,294 +24,241 @@ export interface WavesProps {
 
 export function Waves({
   className = '',
-  strokeColor = 'rgba(168, 85, 247, 0.25)', // Subtle purple glow stroke
+  strokeColor = 'rgba(168, 85, 247, 0.35)',
   backgroundColor = 'transparent',
-  pointerSize = 0.4,
+  pointerSize = 0.5,
 }: WavesProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
-  const mouseRef = useRef({
-    x: -10,
-    y: 0,
-    lx: 0,
-    ly: 0,
-    sx: 0,
-    sy: 0,
-    v: 0,
-    vs: 0,
-    a: 0,
-    set: false,
-  });
-  const pathsRef = useRef<SVGPathElement[]>([]);
-  const linesRef = useRef<Point[][]>([]);
-  const noiseRef = useRef<((x: number, y: number) => number) | null>(null);
-  const rafRef = useRef<number | null>(null);
-  const boundingRef = useRef<DOMRect | null>(null);
+  const pointerRef = useRef<HTMLDivElement>(null);
 
-  // Initialization
   useEffect(() => {
-    if (!containerRef.current || !svgRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // Initialize noise generator
-    noiseRef.current = createNoise2D();
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
 
-    // Initialize size and lines
-    setSize();
-    setLines();
+    const noise2D = createNoise2D();
 
-    // Bind events
-    window.addEventListener('resize', onResize);
-    window.addEventListener('mousemove', onMouseMove);
-    const container = containerRef.current;
-    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    let animationFrameId: number;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    // Start animation
-    rafRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('resize', onResize);
-      window.removeEventListener('mousemove', onMouseMove);
-      container.removeEventListener('touchmove', onTouchMove);
+    // Mouse coordinates and kinematics
+    const mouse = {
+      x: width / 2,
+      y: height / 2,
+      targetX: width / 2,
+      targetY: height / 2,
+      vx: 0,
+      vy: 0,
+      speed: 0,
+      angle: 0,
     };
-  }, [strokeColor]);
 
-  // Set SVG size
-  const setSize = () => {
-    if (!containerRef.current || !svgRef.current) return;
+    let lines: Point[][] = [];
 
-    boundingRef.current = containerRef.current.getBoundingClientRect();
-    const { width, height } = boundingRef.current;
+    const initPoints = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
 
-    svgRef.current.style.width = `${width}px`;
-    svgRef.current.style.height = `${height}px`;
-  };
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.scale(dpr, dpr);
 
-  // Setup lines
-  const setLines = () => {
-    if (!svgRef.current || !boundingRef.current) return;
+      lines = [];
+      const xGap = 32; // Optimized spacing for smooth 60-120fps performance
+      const yGap = 28;
 
-    const { width, height } = boundingRef.current;
-    linesRef.current = [];
+      const totalLines = Math.ceil((width + 120) / xGap);
+      const totalPoints = Math.ceil((height + 60) / yGap);
 
-    // Clear existing paths
-    pathsRef.current.forEach((path) => {
-      path.remove();
-    });
-    pathsRef.current = [];
+      const xStart = (width - xGap * totalLines) / 2;
+      const yStart = (height - yGap * totalPoints) / 2;
 
-    const xGap = 12; // Adjusted spacing for smooth performance
-    const yGap = 12;
+      for (let i = 0; i < totalLines; i++) {
+        const points: Point[] = [];
+        const x = xStart + xGap * i;
 
-    const oWidth = width + 200;
-    const oHeight = height + 30;
+        for (let j = 0; j < totalPoints; j++) {
+          const y = yStart + yGap * j;
+          points.push({
+            x,
+            y,
+            originX: x,
+            originY: y,
+            waveX: 0,
+            waveY: 0,
+            cursorX: 0,
+            cursorY: 0,
+            vx: 0,
+            vy: 0,
+          });
+        }
+        lines.push(points);
+      }
+    };
 
-    const totalLines = Math.ceil(oWidth / xGap);
-    const totalPoints = Math.ceil(oHeight / yGap);
+    initPoints();
 
-    const xStart = (width - xGap * totalLines) / 2;
-    const yStart = (height - yGap * totalPoints) / 2;
+    // Mouse & Touch tracking
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+    };
 
-    // Create vertical lines
-    for (let i = 0; i < totalLines; i++) {
-      const points: Point[] = [];
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouse.targetX = e.touches[0].clientX;
+        mouse.targetY = e.touches[0].clientY;
+      }
+    };
 
-      for (let j = 0; j < totalPoints; j++) {
-        const point: Point = {
-          x: xStart + xGap * i,
-          y: yStart + yGap * j,
-          wave: { x: 0, y: 0 },
-          cursor: { x: 0, y: 0, vx: 0, vy: 0 },
-        };
+    const handleResize = () => {
+      initPoints();
+    };
 
-        points.push(point);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    let isVisible = true;
+    const handleVisibilityChange = () => {
+      isVisible = document.visibilityState !== 'hidden';
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    let lastTime = performance.now();
+
+    const render = (currentTime: number) => {
+      if (!isVisible) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
       }
 
-      // Create SVG path
-      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.classList.add('a__line');
-      path.classList.add('js-line');
-      path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', strokeColor);
-      path.setAttribute('stroke-width', '1');
+      const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
+      lastTime = currentTime;
 
-      svgRef.current.appendChild(path);
-      pathsRef.current.push(path);
+      // Smooth mouse interpolation
+      const prevX = mouse.x;
+      const prevY = mouse.y;
+      mouse.x += (mouse.targetX - mouse.x) * 0.12;
+      mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
-      // Add points
-      linesRef.current.push(points);
-    }
-  };
+      const dx = mouse.x - prevX;
+      const dy = mouse.y - prevY;
+      const dist = Math.hypot(dx, dy);
+      mouse.speed += (dist - mouse.speed) * 0.15;
+      mouse.speed = Math.min(mouse.speed, 80);
+      mouse.angle = Math.atan2(dy, dx);
 
-  const onResize = () => {
-    setSize();
-    setLines();
-  };
+      // Update pointer glow position
+      if (pointerRef.current) {
+        pointerRef.current.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0)`;
+      }
 
-  const onMouseMove = (e: MouseEvent) => {
-    updateMousePosition(e.pageX, e.pageY);
-  };
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
 
-  const onTouchMove = (e: TouchEvent) => {
-    if (e.touches.length > 0) {
-      const touch = e.touches[0];
-      updateMousePosition(touch.clientX, touch.clientY);
-    }
-  };
+      // Prepare styling
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth = 1.2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
 
-  const updateMousePosition = (x: number, y: number) => {
-    if (!boundingRef.current) return;
+      const timeFactor = currentTime * 0.001;
 
-    const mouse = mouseRef.current;
-    mouse.x = x - boundingRef.current.left;
-    mouse.y = y - boundingRef.current.top + window.scrollY;
+      // Update and draw lines
+      for (let i = 0; i < lines.length; i++) {
+        const points = lines[i];
+        if (points.length < 2) continue;
 
-    if (!mouse.set) {
-      mouse.sx = mouse.x;
-      mouse.sy = mouse.y;
-      mouse.lx = mouse.x;
-      mouse.ly = mouse.y;
-      mouse.set = true;
-    }
+        ctx.beginPath();
 
-    if (containerRef.current) {
-      containerRef.current.style.setProperty('--x', `${mouse.sx}px`);
-      containerRef.current.style.setProperty('--y', `${mouse.sy}px`);
-    }
-  };
+        for (let j = 0; j < points.length; j++) {
+          const p = points[j];
 
-  const movePoints = (time: number) => {
-    const lines = linesRef.current;
-    const mouse = mouseRef.current;
-    const noise = noiseRef.current;
+          // Wave motion with simplex noise
+          const n = noise2D(
+            p.originX * 0.002 + timeFactor * 0.4,
+            p.originY * 0.002 + timeFactor * 0.2
+          );
 
-    if (!noise) return;
+          p.waveX = Math.cos(n * Math.PI) * 10;
+          p.waveY = Math.sin(n * Math.PI) * 6;
 
-    lines.forEach((points) => {
-      points.forEach((p: Point) => {
-        const move = noise(
-          (p.x + time * 0.008) * 0.003,
-          (p.y + time * 0.003) * 0.002
-        ) * 8;
+          // Mouse disturbance
+          const mdx = p.originX - mouse.x;
+          const mdy = p.originY - mouse.y;
+          const mdist = Math.hypot(mdx, mdy);
+          const maxInfluence = 160;
 
-        p.wave.x = Math.cos(move) * 10;
-        p.wave.y = Math.sin(move) * 5;
+          if (mdist < maxInfluence) {
+            const factor = (1 - mdist / maxInfluence) * 0.8;
+            p.vx += Math.cos(mouse.angle) * factor * mouse.speed * 0.04;
+            p.vy += Math.sin(mouse.angle) * factor * mouse.speed * 0.04;
+          }
 
-        const dx = p.x - mouse.sx;
-        const dy = p.y - mouse.sy;
-        const d = Math.hypot(dx, dy);
-        const l = Math.max(160, mouse.vs);
+          // Spring physics
+          p.vx += (0 - p.cursorX) * 0.05;
+          p.vy += (0 - p.cursorY) * 0.05;
+          p.vx *= 0.90;
+          p.vy *= 0.90;
 
-        if (d < l) {
-          const s = 1 - d / l;
-          const f = Math.cos(d * 0.001) * s;
+          p.cursorX += p.vx;
+          p.cursorY += p.vy;
 
-          p.cursor.vx += Math.cos(mouse.a) * f * l * mouse.vs * 0.0003;
-          p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.0003;
+          p.x = p.originX + p.waveX + p.cursorX;
+          p.y = p.originY + p.waveY + p.cursorY;
+
+          if (j === 0) {
+            ctx.moveTo(p.x, p.y);
+          } else {
+            ctx.lineTo(p.x, p.y);
+          }
         }
 
-        p.cursor.vx += (0 - p.cursor.x) * 0.01;
-        p.cursor.vy += (0 - p.cursor.y) * 0.01;
-
-        p.cursor.vx *= 0.95;
-        p.cursor.vy *= 0.95;
-
-        p.cursor.x += p.cursor.vx;
-        p.cursor.y += p.cursor.vy;
-
-        p.cursor.x = Math.min(45, Math.max(-45, p.cursor.x));
-        p.cursor.y = Math.min(45, Math.max(-45, p.cursor.y));
-      });
-    });
-  };
-
-  const moved = (point: Point, withCursorForce = true) => {
-    return {
-      x: point.x + point.wave.x + (withCursorForce ? point.cursor.x : 0),
-      y: point.y + point.wave.y + (withCursorForce ? point.cursor.y : 0),
-    };
-  };
-
-  const drawLines = () => {
-    const lines = linesRef.current;
-    const paths = pathsRef.current;
-
-    lines.forEach((points, lIndex) => {
-      if (points.length < 2 || !paths[lIndex]) return;
-
-      const firstPoint = moved(points[0], false);
-      let d = `M ${firstPoint.x} ${firstPoint.y}`;
-
-      for (let i = 1; i < points.length; i++) {
-        const current = moved(points[i]);
-        d += `L ${current.x} ${current.y}`;
+        ctx.stroke();
       }
 
-      paths[lIndex].setAttribute('d', d);
-    });
-  };
+      animationFrameId = requestAnimationFrame(render);
+    };
 
-  const tick = (time: number) => {
-    const mouse = mouseRef.current;
+    animationFrameId = requestAnimationFrame(render);
 
-    mouse.sx += (mouse.x - mouse.sx) * 0.1;
-    mouse.sy += (mouse.y - mouse.sy) * 0.1;
-
-    const dx = mouse.x - mouse.lx;
-    const dy = mouse.y - mouse.ly;
-    const d = Math.hypot(dx, dy);
-
-    mouse.v = d;
-    mouse.vs += (d - mouse.vs) * 0.1;
-    mouse.vs = Math.min(100, mouse.vs);
-
-    mouse.lx = mouse.x;
-    mouse.ly = mouse.y;
-    mouse.a = Math.atan2(dy, dx);
-
-    if (containerRef.current) {
-      containerRef.current.style.setProperty('--x', `${mouse.sx}px`);
-      containerRef.current.style.setProperty('--y', `${mouse.sy}px`);
-    }
-
-    movePoints(time);
-    drawLines();
-
-    rafRef.current = requestAnimationFrame(tick);
-  };
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [strokeColor]);
 
   return (
     <div
       ref={containerRef}
-      className={`waves-component relative overflow-hidden pointer-events-none ${className}`}
-      style={
-        {
-          backgroundColor,
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          margin: 0,
-          padding: 0,
-          width: '100%',
-          height: '100%',
-          overflow: 'hidden',
-          '--x': '-0.5rem',
-          '--y': '50%',
-        } as React.CSSProperties
-      }
+      className={`fixed inset-0 pointer-events-none -z-10 overflow-hidden ${className}`}
+      style={{ backgroundColor }}
     >
-      <svg ref={svgRef} className="block w-full h-full js-svg" xmlns="http://www.w3.org/2000/svg" />
+      <canvas ref={canvasRef} className="block w-full h-full" />
       <div
-        className="pointer-dot"
+        ref={pointerRef}
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: `${pointerSize}rem`,
           height: `${pointerSize}rem`,
+          marginLeft: `-${pointerSize / 2}rem`,
+          marginTop: `-${pointerSize / 2}rem`,
           background: strokeColor,
           borderRadius: '50%',
-          transform: 'translate3d(calc(var(--x) - 50%), calc(var(--y) - 50%), 0)',
+          boxShadow: '0 0 20px rgba(168, 85, 247, 0.9), 0 0 40px rgba(45, 212, 191, 0.4)',
           willChange: 'transform',
         }}
       />

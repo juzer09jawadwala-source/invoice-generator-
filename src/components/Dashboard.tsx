@@ -82,7 +82,7 @@ export function Dashboard({
         <div className="flex items-center gap-3 flex-shrink-0">
           <button
             onClick={onCreateNew}
-            className="flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-gradient-to-r from-[#6D4AFF] via-[#8B5CF6] to-[#2DD4BF] text-white font-heading font-bold text-sm tracking-wide shadow-xl shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-105 active:scale-95 transition-all glow-btn cursor-pointer"
+            className="flex items-center gap-2.5 px-5 py-3 rounded-2xl glass-btn text-white font-heading font-bold text-sm tracking-wide cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>New Invoice</span>
@@ -211,7 +211,7 @@ export function Dashboard({
             </p>
             <button
               onClick={onCreateNew}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] text-white text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass-btn text-white text-xs font-semibold"
             >
               <Plus className="w-3.5 h-3.5" /> Create Invoice
             </button>

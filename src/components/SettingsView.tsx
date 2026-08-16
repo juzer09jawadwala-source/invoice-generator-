@@ -207,7 +207,7 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
         <div className="flex justify-end">
           <button
             type="submit"
-            className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-[#6D4AFF] via-[#8B5CF6] to-[#2DD4BF] text-white font-heading font-bold text-sm tracking-wide shadow-xl shadow-purple-600/30 hover:scale-105 active:scale-95 transition-all glow-btn cursor-pointer"
+            className="flex items-center gap-2 px-6 py-3 rounded-2xl glass-btn text-white font-heading font-bold text-sm tracking-wide cursor-pointer disabled:opacity-75"
           >
             <Save className="w-4 h-4" />
             <span>Save All Settings</span>

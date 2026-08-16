@@ -307,7 +307,7 @@ export function ClientsView({
 
           <button
             onClick={openAddModal}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] text-white text-xs font-semibold hover:shadow-lg hover:shadow-purple-600/30 transition-all cursor-pointer glow-btn"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass-btn text-white text-xs font-semibold cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>+ Add Client</span>
@@ -653,7 +653,7 @@ export function ClientsView({
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] text-white font-semibold shadow-md"
+                    className="px-4 py-2 rounded-xl glass-btn text-white font-semibold"
                   >
                     {editingClient ? 'Update Client' : 'Add Client'}
                   </button>

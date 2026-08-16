@@ -20,6 +20,7 @@ import { InvoicePreview } from './InvoicePreview';
 import { calculateInvoice } from '../lib/calc';
 import { formatCurrency } from '../lib/utils';
 import { useToast } from './Toast';
+import { Waves } from '@/components/ui/wave-background';
 
 interface EditorProps {
   invoice: Invoice;
@@ -135,7 +136,17 @@ export function Editor({
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0918] text-[#FFFFFF] flex flex-col font-sans">
+    <div className="min-h-screen bg-[#0B0918] text-[#FFFFFF] flex flex-col font-sans relative">
+      {/* Background Atmosphere Lights & Interactive Waves */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <Waves
+          strokeColor="rgba(168, 85, 247, 0.35)"
+          pointerSize={0.5}
+        />
+        <div className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full bg-[#6D4AFF]/20 blur-[130px]" />
+        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-[#8B5CF6]/15 blur-[120px]" />
+      </div>
+
       {/* Editor Top Bar */}
       <header className="sticky top-0 z-30 bg-[#0B0918]/85 backdrop-blur-xl border-b border-white/10 h-16 flex items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-3">
@@ -305,7 +316,7 @@ export function Editor({
                   type="button"
                   disabled={isGenerating}
                   onClick={handleGenerateInvoice}
-                  className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#6D4AFF] via-[#8B5CF6] to-[#2DD4BF] text-white font-heading font-bold text-sm tracking-wide shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 glow-btn disabled:opacity-75 cursor-pointer"
+                  className="w-full py-3.5 rounded-2xl glass-btn text-white font-heading font-bold text-sm tracking-wide transition-all flex items-center justify-center gap-2 disabled:opacity-75 cursor-pointer"
                 >
                   {isGenerating ? (
                     <>
@@ -410,7 +421,7 @@ export function Editor({
                   </button>
                   <button
                     onClick={handleDownloadPDF}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] text-white text-xs font-semibold"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-btn text-white text-xs font-semibold"
                   >
                     <Download className="w-3.5 h-3.5" /> Download PDF
                   </button>
@@ -519,7 +530,7 @@ export function Editor({
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] text-white font-semibold shadow-md"
+                    className="px-4 py-2 rounded-xl glass-btn text-white font-semibold"
                   >
                     Save & Select Client
                   </button>

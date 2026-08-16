@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-heading: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* `font-mono` is used in ~39 places (invoice numbers, rates, totals). Without
+     this it fell back to Consolas/Menlo, which clashes with Geist and Inter. */
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Base dark palette */
   --color-bg-base: #0B0918;
@@ -58,6 +61,17 @@
     overflow-x: hidden;
   }
 
+  /* Money must line up in columns. Proportional digits make ₹1,02,940 and
+     ₹28,320 ragged against each other, which reads as sloppy on an invoice.
+     Applies to every figure in tables, monospaced cells and numeric inputs. */
+  table,
+  .font-mono,
+  .tabular-nums,
+  input[type='number'] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum' 1;
+  }
+
   /* Custom sleek scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
@@ -77,20 +91,38 @@
 
 /* Glassmorphism and UI Utility Classes */
 .glass-panel {
-  background-color: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.05);
+  border-right: 1.5px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px !important;
+  box-shadow: 
+    inset 0 12px 24px -6px rgba(255, 255, 255, 0.3),  /* Top thick highlight bevel */
+    inset 0 -12px 24px -6px rgba(0, 0, 0, 0.5),       /* Bottom thick shadow bevel */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),        /* Inner lip line */
+    0 24px 48px -12px rgba(0, 0, 0, 0.7),             /* Massive floating shadow */
+    0 12px 24px -8px rgba(0, 0, 0, 0.5);              /* Core shadow */
+  transform: translateZ(0);
 }
 
 .glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .glass-panel-hover:hover {
-  background-color: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.14);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5), 0 0 20px -4px rgba(109, 74, 255, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 
+    inset 0 16px 32px -8px rgba(255, 255, 255, 0.4), 
+    inset 0 -16px 32px -8px rgba(0, 0, 0, 0.6), 
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 40px 60px -15px rgba(0, 0, 0, 0.9), 
+    0 20px 30px -10px rgba(0, 0, 0, 0.6);
 }
 
 .glow-btn {
@@ -99,6 +131,41 @@
 }
 .glow-btn:hover {
   box-shadow: 0 0 24px -2px rgba(168, 85, 247, 0.45);
+}
+
+.glass-btn {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(168, 85, 247, 0.2);
+  transform: translateY(-1px);
+}
+
+.glass-btn:hover::before {
+  left: 150%;
+}
+
+.glass-btn:active {
+  transform: translateY(1px);
 }
 
 .dark-input {

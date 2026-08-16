@@ -32,8 +32,6 @@ const NAV_ITEMS: { id: AppView; label: string; icon: React.ComponentType<{ class
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
-import { Waves } from '@/components/ui/wave-background';
-
 const CURRENCIES: { code: CurrencyCode; symbol: string; label: string }[] = [
   { code: 'INR', symbol: '₹', label: 'INR (₹)' },
   { code: 'USD', symbol: '$', label: 'USD ($)' },
@@ -54,31 +52,13 @@ export function AppShell({
 
   return (
     <div className="min-h-screen bg-[#0B0918] text-[#FFFFFF] font-sans selection:bg-[#A855F7]/30 selection:text-white relative">
-      {/* Background Atmosphere Lights & Interactive Waves */}
-      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
-        {/* Interactive Noise Waves Canvas */}
-        <div className="absolute inset-0 opacity-40">
-          <Waves
-            strokeColor="rgba(168, 85, 247, 0.18)"
-            backgroundColor="transparent"
-            pointerSize={0.4}
-          />
-        </div>
-
-        {/* Top-left Purple Atmospheric Glow */}
-        <div className="absolute -top-32 -left-32 w-[650px] h-[650px] rounded-full bg-[#6D4AFF]/20 blur-[130px]" />
-        {/* Center-right Subtle Indigo Glow */}
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-[#8B5CF6]/15 blur-[120px]" />
-        {/* Bottom-right Cyan/Teal Glow */}
-        <div className="absolute -bottom-32 -right-32 w-[600px] h-[600px] rounded-full bg-[#22D3EE]/15 blur-[140px]" />
-        {/* Subtle noise/grid dot texture */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 0)`,
-            backgroundSize: '24px 24px',
-          }}
-        />
+      {/* Background Image Container */}
+      <div 
+        className="fixed inset-0 pointer-events-none -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('/app-bg.jpg')` }}
+      >
+        {/* Semi-transparent dark overlay to ensure text readability */}
+        <div className="absolute inset-0 bg-[#0B0918]/50 backdrop-blur-[2px]" />
       </div>
 
       {/* Top Sticky Header */}
@@ -125,7 +105,7 @@ export function AppShell({
                   {isActive && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute inset-0 bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] rounded-xl shadow-md shadow-purple-600/30"
+                      className="absolute inset-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -237,7 +217,7 @@ export function AppShell({
                     }}
                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
                       isActive
-                        ? 'bg-gradient-to-r from-[#6D4AFF] to-[#8B5CF6] text-white shadow-lg'
+                        ? 'glass-btn text-white shadow-lg'
                         : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                   >

@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Base dark palette */
+  --color-bg-base: #0B0918;
+  --color-bg-raised: #100C22;
+  --color-bg-card: #151027;
+
+  --color-purple: #6D4AFF;
+  --color-purple-soft: #8B5CF6;
+  --color-purple-bright: #A855F7;
+
+  --color-teal: #2DD4BF;
+  --color-cyan: #22D3EE;
+
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E5E7EB;
+  --color-text-muted: #A1A1AA;
+
+  /* Semantic UI mapped tokens in safe hex / rgb */
+  --color-background: #0B0918;
+  --color-foreground: #FFFFFF;
+  --color-card: #151027;
+  --color-card-foreground: #FFFFFF;
+  --color-popover: #151027;
+  --color-popover-foreground: #FFFFFF;
+  --color-primary: #6D4AFF;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #1E1738;
+  --color-secondary-foreground: #FFFFFF;
+  --color-muted: #1A1433;
+  --color-muted-foreground: #A1A1AA;
+  --color-accent: #2A1F52;
+  --color-accent-foreground: #FFFFFF;
+  --color-destructive: #E11D48;
+  --color-destructive-foreground: #FFFFFF;
+  --color-border: #2A2447;
+  --color-input: #2A2447;
+  --color-ring: #A855F7;
+  --color-warning-foreground: #F59E0B;
+}
+
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    background-color: #0B0918;
+    color: #FFFFFF;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Custom sleek scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(11, 9, 24, 0.5);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 85, 247, 0.4);
+  }
+}
+
+/* Glassmorphism and UI Utility Classes */
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5), 0 0 20px -4px rgba(109, 74, 255, 0.15);
+}
+
+.glow-btn {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+.glow-btn:hover {
+  box-shadow: 0 0 24px -2px rgba(168, 85, 247, 0.45);
+}
+
+.dark-input {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+.dark-input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+}
+.dark-input::placeholder {
+  color: #71717A;
+}
+
+/* Print Specific Rules to prevent dark bleed on PDF */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #111111 !important;
+  }
+}

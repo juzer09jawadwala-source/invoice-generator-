@@ -1,0 +1,3 @@
+sed -i 's/<div className="w-12 h-12 bg-\[#111111\] flex items-center justify-center rounded-lg mb-6">/<div className="w-14 h-14 bg-[#111111] flex items-center justify-center rounded-xl mb-6 relative overflow-hidden shadow-sm border border-[#111111]\/10">/g' src/components/InvoicePreview.tsx
+
+sed -i 's/<div className="w-4 h-4 bg-\[#1F6F50\] rotate-45"><\/div>/<div className="absolute inset-0 bg-gradient-to-br from-[#1F6F50] to-transparent opacity-20"><\/div><span className="text-[#FAFAF8] font-heading font-bold text-2xl tracking-tighter relative z-10" style={{ textShadow: "0 2px 4px rgba(0,0,0,0.3)" }}>NL<\/span>/g' src/components/InvoicePreview.tsx

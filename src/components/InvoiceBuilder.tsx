@@ -64,24 +64,18 @@ export function InvoiceBuilder({
 
   // Line Item Handlers
   const handleAddItem = () => {
-    const defaultSvc: CatalogService = services[0] || {
-      id: 'svc-custom',
-      name: 'Custom Service',
-      category: 'Custom',
-      price: 5000,
-      taxPercent: 18,
-      description: '',
-    };
-
+    // A new row starts empty. Defaulting it to a real service would silently
+    // add that service's price to the invoice total the moment the user clicks
+    // "Add Item", which is how a phantom line ends up on a sent invoice.
     const newItem: LineItem = {
       id: crypto.randomUUID(),
-      serviceId: defaultSvc.id || null,
-      name: defaultSvc.name,
-      description: defaultSvc.description || '',
+      serviceId: null,
+      name: '',
+      description: '',
       quantity: 1,
-      rate: defaultSvc.price,
+      rate: 0,
       discountPercent: 0,
-      taxPercent: defaultSvc.taxPercent ?? 18,
+      taxPercent: invoice.gstPercent ?? 18,
     };
 
     onUpdate({ items: [...(invoice.items || []), newItem] });

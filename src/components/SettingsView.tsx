@@ -115,6 +115,17 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
               />
             </div>
 
+            <div className="space-y-1.5">
+              <label className="text-zinc-400 font-medium">UPI Payment ID / VPA</label>
+              <input
+                type="text"
+                placeholder="e.g. yourname@okaxisbank"
+                value={formCompany.upiId || ''}
+                onChange={(e) => setFormCompany({ ...formCompany, upiId: e.target.value })}
+                className="w-full px-3.5 py-2.5 rounded-xl dark-input font-mono text-[#2DD4BF]"
+              />
+            </div>
+
             <div className="space-y-1.5 sm:col-span-2">
               <label className="text-zinc-400 font-medium">Registered Address</label>
               <textarea

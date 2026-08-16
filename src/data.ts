@@ -123,6 +123,7 @@ export const createEmptyInvoice = (invoiceNumber: string): Invoice => ({
     email: 'juzer09jawadwala@gmail.com',
     website: 'www.noirlabs.com',
     gstNumber: '27AABCU9603R1ZM',
+    upiId: 'juzerjawadwala66@okaxisbank',
     address: 'Anjeerwadi, Thakkar Estate, Mazgaon, Mumbai 400010',
   },
   client: {
@@ -194,6 +195,7 @@ export const DEMO_INVOICES_SEED: Invoice[] = [
       email: 'juzer09jawadwala@gmail.com',
       website: 'www.noirlabs.com',
       gstNumber: '27AABCU9603R1ZM',
+      upiId: 'juzerjawadwala66@okaxisbank',
       address: 'Anjeerwadi, Thakkar Estate, Mazgaon, Mumbai 400010',
     },
     client: {

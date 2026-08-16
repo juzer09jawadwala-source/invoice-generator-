@@ -326,20 +326,35 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: '20px' }}>
           <div style={{ textAlign: 'center' }}>
             <QRCodeCanvas
-              value={invoice.company.website ? `https://${invoice.company.website}` : `mailto:${invoice.company.email}`}
-              size={64}
+              value={
+                invoice.company.upiId
+                  ? `upi://pay?pa=${encodeURIComponent(invoice.company.upiId)}&pn=${encodeURIComponent(
+                      invoice.company.name || 'Noir Labs'
+                    )}&am=${totals.balanceDue}&cu=INR&tn=${encodeURIComponent('Invoice ' + invoice.invoiceNumber)}`
+                  : invoice.company.website
+                  ? `https://${invoice.company.website}`
+                  : `mailto:${invoice.company.email}`
+              }
+              size={68}
               bgColor="#ffffff"
               fgColor="#111111"
-              level="L"
+              level="M"
               includeMargin={false}
             />
-            <div style={{ fontSize: '9px', color: '#9CA3AF', marginTop: '4px', fontWeight: 500 }}>Scan to Verify</div>
+            <div style={{ fontSize: '9px', color: '#4B5563', marginTop: '4px', fontWeight: 600 }}>
+              {invoice.company.upiId ? 'Scan to Pay via UPI' : 'Scan to Verify'}
+            </div>
+            {invoice.company.upiId && (
+              <div style={{ fontSize: '8px', color: '#6B7280', fontFamily: 'monospace' }}>
+                {invoice.company.upiId}
+              </div>
+            )}
           </div>
 
           <div style={{ textAlign: 'right' }}>
             <div style={{ width: '120px', borderBottom: '1px solid #D1D5DB', marginBottom: '6px' }} />
             <div style={{ fontSize: '12px', fontWeight: 600, color: '#111111' }}>Authorized Signatory</div>
-            <div style={{ fontSize: '10px', color: '#9CA3AF' }}>Noir Labs Inc.</div>
+            <div style={{ fontSize: '10px', color: '#9CA3AF' }}>{invoice.company.name || 'Noir Labs'}</div>
           </div>
         </div>
       </div>

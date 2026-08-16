@@ -67,6 +67,7 @@ export interface CompanyDetails {
   website: string;
   gstNumber: string;
   address: string;
+  upiId?: string;
   logoUrl?: string;
 }
 

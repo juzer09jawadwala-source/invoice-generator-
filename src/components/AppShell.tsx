@@ -32,6 +32,8 @@ const NAV_ITEMS: { id: AppView; label: string; icon: React.ComponentType<{ class
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
+import { Waves } from '@/components/ui/wave-background';
+
 const CURRENCIES: { code: CurrencyCode; symbol: string; label: string }[] = [
   { code: 'INR', symbol: '₹', label: 'INR (₹)' },
   { code: 'USD', symbol: '$', label: 'USD ($)' },
@@ -52,8 +54,17 @@ export function AppShell({
 
   return (
     <div className="min-h-screen bg-[#0B0918] text-[#FFFFFF] font-sans selection:bg-[#A855F7]/30 selection:text-white relative">
-      {/* Background Atmosphere Lights */}
+      {/* Background Atmosphere Lights & Interactive Waves */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        {/* Interactive Noise Waves Canvas */}
+        <div className="absolute inset-0 opacity-40">
+          <Waves
+            strokeColor="rgba(168, 85, 247, 0.18)"
+            backgroundColor="transparent"
+            pointerSize={0.4}
+          />
+        </div>
+
         {/* Top-left Purple Atmospheric Glow */}
         <div className="absolute -top-32 -left-32 w-[650px] h-[650px] rounded-full bg-[#6D4AFF]/20 blur-[130px]" />
         {/* Center-right Subtle Indigo Glow */}

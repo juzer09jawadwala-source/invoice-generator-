@@ -365,8 +365,16 @@ export function Editor({
         </div>
       </div>
 
-      {/* Hidden Document DOM Container for PDF Export & Print */}
-      <div className="hidden">
+      {/* Off-screen document container for PDF export & print.
+          This must NOT use `hidden` / `display: none`: html2canvas rasterises the
+          live node, and a display:none element measures 0x0, so the exported PDF
+          comes out blank with no error thrown. Keep it rendered at full size and
+          simply move it outside the viewport. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none"
+        style={{ position: 'fixed', top: 0, left: '-10000px', zIndex: -1 }}
+      >
         <InvoicePreview ref={componentRef} invoice={invoice} />
       </div>
 

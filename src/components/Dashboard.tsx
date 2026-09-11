@@ -97,15 +97,15 @@ export function Dashboard({
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25, delay: 0.05 }}
-          className="glass-panel glass-panel-hover p-5 rounded-2xl border border-white/10 relative overflow-hidden"
+          className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Total Revenue</span>
-            <div className="w-8 h-8 rounded-xl bg-teal-500/15 text-[#2DD4BF] flex items-center justify-center">
-              <TrendingUp className="w-4 h-4" />
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Total Revenue</span>
+            <div className="w-7 h-7 rounded-lg bg-teal-500/15 text-[#2DD4BF] flex items-center justify-center">
+              <TrendingUp className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-heading font-bold text-white mb-2">
+          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
             {formatCurrency(totalRevenue, currency)}
           </div>
           <div className="flex items-center gap-1.5 text-xs text-[#2DD4BF]">
@@ -120,15 +120,15 @@ export function Dashboard({
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25, delay: 0.1 }}
-          className="glass-panel glass-panel-hover p-5 rounded-2xl border border-white/10 relative overflow-hidden"
+          className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Pending</span>
-            <div className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-300 flex items-center justify-center">
-              <Clock className="w-4 h-4" />
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Pending</span>
+            <div className="w-7 h-7 rounded-lg bg-amber-500/15 text-amber-300 flex items-center justify-center">
+              <Clock className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-heading font-bold text-white mb-2">
+          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
             {formatCurrency(pendingRevenue, currency)}
           </div>
           <div className="flex items-center gap-1.5 text-xs text-amber-300">
@@ -142,15 +142,15 @@ export function Dashboard({
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25, delay: 0.15 }}
-          className="glass-panel glass-panel-hover p-5 rounded-2xl border border-white/10 relative overflow-hidden"
+          className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Paid Invoices</span>
-            <div className="w-8 h-8 rounded-xl bg-purple-500/15 text-[#A855F7] flex items-center justify-center">
-              <CheckCircle2 className="w-4 h-4" />
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Paid Invoices</span>
+            <div className="w-7 h-7 rounded-lg bg-purple-500/15 text-[#A855F7] flex items-center justify-center">
+              <CheckCircle2 className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-heading font-bold text-white mb-2">
+          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
             {paidCount} <span className="text-sm font-normal text-zinc-500">/ {totalCount}</span>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-[#A855F7]">
@@ -166,15 +166,15 @@ export function Dashboard({
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.25, delay: 0.2 }}
-          className="glass-panel glass-panel-hover p-5 rounded-2xl border border-white/10 relative overflow-hidden"
+          className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400">Total Invoices</span>
-            <div className="w-8 h-8 rounded-xl bg-cyan-500/15 text-[#22D3EE] flex items-center justify-center">
-              <FileText className="w-4 h-4" />
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Total Invoices</span>
+            <div className="w-7 h-7 rounded-lg bg-cyan-500/15 text-[#22D3EE] flex items-center justify-center">
+              <FileText className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-heading font-bold text-white mb-2">
+          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
             {totalCount}
           </div>
           <div className="flex items-center gap-1.5 text-xs text-[#22D3EE]">
@@ -185,8 +185,8 @@ export function Dashboard({
       </div>
 
       {/* Recent Invoices Card */}
-      <div className="glass-panel rounded-3xl border border-white/10 p-6 shadow-2xl">
-        <div className="flex items-center justify-between mb-6">
+      <div className="glass-panel rounded-2xl p-5 shadow-2xl">
+        <div className="flex items-center justify-between mb-5">
           <div>
             <h2 className="font-heading font-bold text-lg text-white">Recent Invoices</h2>
             <p className="text-xs text-zinc-400">Latest issued client invoices and payment status</p>

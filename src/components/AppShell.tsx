@@ -51,7 +51,7 @@ export function AppShell({
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0B0918] text-[#FFFFFF] font-sans selection:bg-[#A855F7]/30 selection:text-white relative">
+    <div className="min-h-screen text-[#FFFFFF] font-sans selection:bg-[#A855F7]/30 selection:text-white relative">
       {/* Background Image Container */}
       <div 
         className="fixed inset-0 pointer-events-none -z-10 bg-cover bg-center bg-no-repeat"

@@ -12,9 +12,13 @@ import {
   Percent,
   CheckCircle2,
   Sparkles,
+  ShieldCheck,
+  LogOut,
 } from 'lucide-react';
 import { AppSettings, CurrencyCode, CompanyDetails } from '../types';
 import { useToast } from './Toast';
+import { useAuth } from '@/context/AuthContext';
+import { GoogleSignInButton } from './GoogleSignInButton';
 
 interface SettingsViewProps {
   settings: AppSettings;
@@ -23,6 +27,7 @@ interface SettingsViewProps {
 
 export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) {
   const { showToast } = useToast();
+  const { user, logout, isAuthenticated } = useAuth();
   const [formCompany, setFormCompany] = useState<CompanyDetails>(settings.company);
   const [formCurrency, setFormCurrency] = useState<CurrencyCode>(settings.defaultCurrency);
   const [formTaxRate, setFormTaxRate] = useState<number>(settings.defaultTaxRate);
@@ -47,6 +52,76 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
         <p className="text-xs sm:text-sm text-[#D8CBB7] mt-1">
           Configure your studio identity, tax credentials, default currency, and invoice terms
         </p>
+      </div>
+
+      {/* Google Account & Identity Card */}
+      <div className="glass-panel p-4 sm:p-6 rounded-3xl border border-[#F4E7C8]/15 space-y-4 shadow-2xl">
+        <div className="flex items-center justify-between pb-3 border-b border-[#F4E7C8]/10">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#E85D3F] to-[#F3C352] p-0.5 flex items-center justify-center">
+              <div className="w-full h-full bg-[#111111] rounded-[10px] flex items-center justify-center">
+                <ShieldCheck className="w-4 h-4 text-[#F3C352]" />
+              </div>
+            </div>
+            <div>
+              <h2 className="font-heading font-bold text-base text-[#F4E7C8]">Google Account & Security</h2>
+              <p className="text-xs text-[#D8CBB7]">Authentication state and Google Identity profile</p>
+            </div>
+          </div>
+          {isAuthenticated && (
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Connected
+            </span>
+          )}
+        </div>
+
+        {isAuthenticated && user ? (
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white/[0.03] border border-[#F4E7C8]/15">
+            <div className="flex items-center gap-3.5">
+              {user.picture ? (
+                <img
+                  src={user.picture}
+                  alt={user.name}
+                  className="w-12 h-12 rounded-xl object-cover border-2 border-[#E85D3F]/50 shadow-md"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-xl bg-[#22120E] border border-[#E85D3F]/40 flex items-center justify-center text-sm font-bold text-[#F3C352]">
+                  {user.name.slice(0, 2).toUpperCase()}
+                </div>
+              )}
+              <div>
+                <div className="text-sm font-bold text-white flex items-center gap-2">
+                  <span>{user.name}</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+                <div className="text-xs text-[#D8CBB7] font-mono">{user.email}</div>
+                <div className="text-[10px] text-[#D8CBB7]/60 mt-0.5">Google ID: {user.sub.slice(0, 8)}••••••••</div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={logout}
+              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/25 text-xs font-semibold transition-colors cursor-pointer self-start sm:self-auto"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Disconnect Google</span>
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white/[0.03] border border-[#F4E7C8]/15">
+            <div className="space-y-1">
+              <div className="text-sm font-bold text-white">Sign in to link your Google account</div>
+              <p className="text-xs text-[#D8CBB7]">
+                Enables verified identity, avatar display, and session synchronization across devices.
+              </p>
+            </div>
+            <div className="self-start sm:self-auto">
+              <GoogleSignInButton />
+            </div>
+          </div>
+        )}
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">

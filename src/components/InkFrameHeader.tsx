@@ -14,8 +14,11 @@ import {
   Users,
   Briefcase,
   Settings,
+  LogOut,
 } from "lucide-react";
 import { CurrencyCode } from "@/types";
+import { useAuth } from "@/context/AuthContext";
+import { GoogleSignInButton } from "./GoogleSignInButton";
 
 export type AppView = "dashboard" | "invoices" | "clients" | "services" | "settings";
 
@@ -75,9 +78,13 @@ export function InkFrameHeader({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const { user, logout, isAuthenticated } = useAuth();
 
   const currencyRef = useRef<HTMLDivElement>(null);
   const notificationsRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
 
   // Close dropdowns on click outside
   useEffect(() => {
@@ -87,6 +94,9 @@ export function InkFrameHeader({
       }
       if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node)) {
         setNotificationsOpen(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setProfileMenuOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -451,25 +461,100 @@ export function InkFrameHeader({
                 </AnimatePresence>
               </div>
 
-              {/* 3. Studio Profile (Framed Architectural Lockup) */}
-              <button
-                onClick={() => onNavigate("settings")}
-                className="hidden sm:flex items-center gap-2 p-1 pl-1.5 pr-2.5 rounded-sm bg-white/[0.03] border border-[#F4E7C8]/20 hover:border-[#E85D3F]/60 hover:bg-white/[0.06] transition-all duration-200 cursor-pointer group shadow-sm active:scale-95"
-                title="Studio Profile & Settings"
-                aria-label="Studio Profile & Settings"
-              >
-                <div className="relative">
-                  <div className="w-6 h-6 rounded-sm bg-[#1E0F0C] border border-[#E85D3F]/50 flex items-center justify-center text-[10px] font-mono font-black text-[#F3C352]">
-                    NL
-                  </div>
-                  <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 ring-1 ring-[#111111]" />
+              {/* 3. Real Google User Profile or Sign-In Button */}
+              {isAuthenticated && user ? (
+                <div className="relative hidden sm:block" ref={profileRef}>
+                  <button
+                    onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+                    className="flex items-center gap-2 p-1 pl-1.5 pr-2.5 rounded-sm bg-white/[0.03] border border-[#F4E7C8]/20 hover:border-[#E85D3F]/60 hover:bg-white/[0.06] transition-all duration-200 cursor-pointer group shadow-sm active:scale-95"
+                    title={`Signed in as ${user.name}`}
+                    aria-label="User Profile & Settings"
+                  >
+                    <div className="relative">
+                      {user.picture ? (
+                        <img
+                          src={user.picture}
+                          alt={user.name}
+                          className="w-6 h-6 rounded-sm object-cover border border-[#E85D3F]/50"
+                        />
+                      ) : (
+                        <div className="w-6 h-6 rounded-sm bg-[#1E0F0C] border border-[#E85D3F]/50 flex items-center justify-center text-[10px] font-mono font-black text-[#F3C352]">
+                          {user.name.slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
+                      <span className="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 ring-1 ring-[#111111]" />
+                    </div>
+                    <div className="text-left hidden lg:block max-w-[110px]">
+                      <div className="text-xs font-bold text-[#F4E7C8] group-hover:text-white transition-colors leading-tight truncate">
+                        {user.name}
+                      </div>
+                    </div>
+                    <ChevronDown
+                      className={`w-3 h-3 text-[#D8CBB7] transition-transform duration-200 ${
+                        profileMenuOpen ? "rotate-180 text-[#E85D3F]" : ""
+                      }`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {profileMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6, scale: 0.96 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-0 mt-2 w-64 rounded-sm shadow-2xl p-3 z-50 bg-[#140C0A]/98 backdrop-blur-2xl border border-[#F4E7C8]/25 space-y-3"
+                      >
+                        <div className="flex items-center gap-2.5 pb-2.5 border-b border-[#F4E7C8]/10">
+                          {user.picture ? (
+                            <img
+                              src={user.picture}
+                              alt={user.name}
+                              className="w-9 h-9 rounded-sm object-cover border border-[#E85D3F]/50"
+                            />
+                          ) : (
+                            <div className="w-9 h-9 rounded-sm bg-[#1E0F0C] border border-[#E85D3F]/50 flex items-center justify-center text-xs font-bold text-[#F3C352]">
+                              {user.name.slice(0, 2).toUpperCase()}
+                            </div>
+                          )}
+                          <div className="overflow-hidden">
+                            <div className="text-xs font-bold text-white truncate">{user.name}</div>
+                            <div className="text-[10px] text-[#D8CBB7]/70 truncate">{user.email}</div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-1">
+                          <button
+                            onClick={() => {
+                              onNavigate("settings");
+                              setProfileMenuOpen(false);
+                            }}
+                            className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm text-xs text-[#D8CBB7] hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
+                          >
+                            <Settings className="w-3.5 h-3.5 text-[#F3C352]" />
+                            <span>Studio Settings</span>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              logout();
+                              setProfileMenuOpen(false);
+                            }}
+                            className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-sm text-xs text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors cursor-pointer"
+                          >
+                            <LogOut className="w-3.5 h-3.5" />
+                            <span>Sign Out</span>
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-                <div className="text-left hidden lg:block">
-                  <div className="text-xs font-bold text-[#F4E7C8] group-hover:text-white transition-colors leading-tight">
-                    Noir Labs
-                  </div>
+              ) : (
+                <div className="hidden sm:flex items-center">
+                  <GoogleSignInButton />
                 </div>
-              </button>
+              )}
 
               {/* 4. Mobile Menu Toggle Button */}
               <button
@@ -497,30 +582,56 @@ export function InkFrameHeader({
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="md:hidden border-t border-[#F4E7C8]/15 bg-[#100908]/98 backdrop-blur-3xl px-4 py-4 space-y-4 shadow-2xl"
           >
-            {/* User Profile in Drawer */}
-            <div
-              onClick={() => {
-                onNavigate("settings");
-                setMobileMenuOpen(false);
-              }}
-              className="flex items-center justify-between p-3 rounded-sm bg-white/[0.04] border border-[#F4E7C8]/20 cursor-pointer hover:bg-white/[0.08] transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <div className="w-8 h-8 rounded-sm bg-[#1E0F0C] border border-[#E85D3F]/50 flex items-center justify-center text-xs font-mono font-bold text-[#F4E7C8]">
-                    NL
+            {/* User Profile / Google Sign-In in Drawer */}
+            {isAuthenticated && user ? (
+              <div className="p-3 rounded-sm bg-white/[0.04] border border-[#F4E7C8]/20 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      {user.picture ? (
+                        <img
+                          src={user.picture}
+                          alt={user.name}
+                          className="w-8 h-8 rounded-sm object-cover border border-[#E85D3F]/50"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 rounded-sm bg-[#1E0F0C] border border-[#E85D3F]/50 flex items-center justify-center text-xs font-mono font-bold text-[#F4E7C8]">
+                          {user.name.slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
+                      <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-[#111111]" />
+                    </div>
+                    <div className="overflow-hidden">
+                      <div className="text-xs font-bold text-white truncate">{user.name}</div>
+                      <div className="text-[11px] text-[#D8CBB7]/70 font-mono truncate">{user.email}</div>
+                    </div>
                   </div>
-                  <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-[#111111]" />
+                  <span className="text-[9px] uppercase font-mono font-bold text-emerald-400 px-2 py-0.5 rounded-sm bg-emerald-500/10 border border-emerald-500/30 flex-shrink-0">
+                    Google Connected
+                  </span>
                 </div>
-                <div>
-                  <div className="text-xs font-bold text-white">Noir Labs Studio</div>
-                  <div className="text-[11px] text-[#D8CBB7]/70 font-mono">juzer09jawadwala@gmail.com</div>
+                <div className="pt-2 flex items-center justify-end">
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                    }}
+                    className="flex items-center gap-1.5 text-xs text-red-400 hover:text-red-300 font-medium cursor-pointer"
+                  >
+                    <LogOut className="w-3.5 h-3.5" />
+                    <span>Sign Out</span>
+                  </button>
                 </div>
               </div>
-              <span className="text-[9px] uppercase font-mono font-bold text-[#F3C352] px-2 py-0.5 rounded-sm bg-[#E85D3F]/20 border border-[#E85D3F]/40">
-                PRO Plan
-              </span>
-            </div>
+            ) : (
+              <div className="p-3 rounded-sm bg-white/[0.04] border border-[#F4E7C8]/20 space-y-2">
+                <div className="text-xs font-bold text-white">Sign In with Google</div>
+                <p className="text-[11px] text-[#D8CBB7]/70">Connect your Google account to access your studio profile.</p>
+                <div className="pt-1">
+                  <GoogleSignInButton onSuccessCallback={() => setMobileMenuOpen(false)} />
+                </div>
+              </div>
+            )}
 
             {/* Navigation Links */}
             <div className="space-y-1">

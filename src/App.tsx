@@ -13,6 +13,9 @@ import { SettingsView } from './components/SettingsView';
 import { Editor } from './components/Editor';
 import { ToastProvider, useToast } from './components/Toast';
 import { CurrencyCode, Invoice } from './types';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthProvider } from './context/AuthContext';
+import { GOOGLE_CLIENT_ID } from './config/auth';
 
 function MainAppContent() {
   const [currentView, setCurrentView] = useState<AppView>('dashboard');
@@ -212,8 +215,12 @@ function MainAppContent() {
 
 export default function App() {
   return (
-    <ToastProvider>
-      <MainAppContent />
-    </ToastProvider>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <AuthProvider>
+        <ToastProvider>
+          <MainAppContent />
+        </ToastProvider>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }

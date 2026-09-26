@@ -13,6 +13,22 @@ export function useClients() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          const hasSiraj = parsed.some((c: Client) =>
+            c.name?.toLowerCase().includes('siraj') ||
+            c.companyName?.toLowerCase().includes('siraj')
+          );
+          if (!hasSiraj) {
+            const sirajClient = INITIAL_CLIENTS.find((c) =>
+              c.name?.toLowerCase().includes('siraj') ||
+              c.companyName?.toLowerCase().includes('siraj')
+            );
+            if (sirajClient) {
+              const merged = [sirajClient, ...parsed];
+              setClients(merged);
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+              return;
+            }
+          }
           setClients(parsed);
           return;
         }

@@ -93,12 +93,25 @@ export function Editor({
       onSave({ ...invoice, status: 'pending' });
       setIsGenerating(false);
       showToast('Invoice generated successfully', 'success');
+      onClose();
     }, 600);
   };
 
   const handleSaveDraft = () => {
     onSave();
     showToast('Invoice draft saved', 'info');
+  };
+
+  const handleBack = () => {
+    // If the invoice has any entered data, auto-save so user progress is never lost
+    if (
+      invoice.client?.name?.trim() ||
+      invoice.client?.companyName?.trim() ||
+      (invoice.items && invoice.items.length > 0)
+    ) {
+      onSave(invoice);
+    }
+    onClose();
   };
 
   const handleCreateClientSubmit = (e: React.FormEvent) => {
@@ -144,9 +157,10 @@ export function Editor({
       <header className="sticky top-0 z-30 bg-[#111111]/90 backdrop-blur-xl border-b border-[#F4E7C8]/15 h-16 flex items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-3">
           <button
-            onClick={onClose}
+            onClick={handleBack}
             className="p-2 rounded-xl text-[#D8CBB7] hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
             title="Back to Dashboard"
+            aria-label="Back to Dashboard"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>

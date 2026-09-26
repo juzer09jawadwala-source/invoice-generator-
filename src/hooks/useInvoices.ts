@@ -17,6 +17,21 @@ export function useInvoices() {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
           const migrated = parsed.map((inv: any) => migrateInvoice(inv));
+          // Check if Siraj Commentator invoice is present; if not, merge it
+          const hasSiraj = migrated.some((inv: Invoice) =>
+            inv.client?.name?.toLowerCase().includes('siraj') ||
+            inv.client?.companyName?.toLowerCase().includes('siraj')
+          );
+          if (!hasSiraj) {
+            const sirajSeed = DEMO_INVOICES_SEED.find((inv) =>
+              inv.client?.name?.toLowerCase().includes('siraj') ||
+              inv.client?.companyName?.toLowerCase().includes('siraj')
+            );
+            if (sirajSeed) {
+              migrated.unshift(sirajSeed);
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
+            }
+          }
           setInvoices(migrated);
         } else {
           // Empty array saved, seed demo

@@ -272,12 +272,24 @@ export function InvoiceBuilder({
         </div>
 
         {/* Detailed Client Contact Fields */}
-        <div className="mt-4 pt-4 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="mt-4 pt-4 border-t border-white/[0.06] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div>
-            <label className="block text-[10px] text-zinc-400 mb-1">Contact Name</label>
+            <label className="block text-[10px] text-zinc-400 mb-1">Company / Organization</label>
             <input
               type="text"
-              placeholder="Primary Contact"
+              placeholder="e.g. Siraj Commentator & Media"
+              value={invoice.client.companyName || ''}
+              onChange={(e) =>
+                onUpdate({ client: { ...invoice.client, companyName: e.target.value } })
+              }
+              className="w-full px-3 py-1.5 rounded-lg dark-input text-xs font-semibold"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] text-zinc-400 mb-1">Contact Person Name</label>
+            <input
+              type="text"
+              placeholder="e.g. Siraj Commentator"
               value={invoice.client.name}
               onChange={(e) =>
                 onUpdate({ client: { ...invoice.client, name: e.target.value } })

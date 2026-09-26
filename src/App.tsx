@@ -12,7 +12,7 @@ import { ServicesView } from './components/ServicesView';
 import { SettingsView } from './components/SettingsView';
 import { Editor } from './components/Editor';
 import { ToastProvider, useToast } from './components/Toast';
-import { CurrencyCode } from './types';
+import { CurrencyCode, Invoice } from './types';
 
 function MainAppContent() {
   const [currentView, setCurrentView] = useState<AppView>('dashboard');
@@ -81,6 +81,46 @@ function MainAppContent() {
     }
   };
 
+  const handleSaveInvoice = (invoiceToSave?: Invoice) => {
+    const inv = invoiceToSave || currentInvoice;
+    if (!inv) return;
+
+    // Automatically synchronize client to global clients directory
+    const clientName = inv.client?.name?.trim();
+    const companyName = inv.client?.companyName?.trim();
+
+    if (clientName || companyName) {
+      const existingClient = clients.find(
+        (c) =>
+          (inv.clientId && c.id === inv.clientId) ||
+          (companyName && c.companyName?.trim().toLowerCase() === companyName.toLowerCase()) ||
+          (clientName && c.name?.trim().toLowerCase() === clientName.toLowerCase())
+      );
+
+      if (existingClient) {
+        updateClient(existingClient.id, {
+          name: clientName || existingClient.name,
+          companyName: companyName || existingClient.companyName,
+          email: inv.client.email?.trim() || existingClient.email,
+          phone: inv.client.phone?.trim() || existingClient.phone,
+          address: inv.client.address?.trim() || existingClient.address,
+        });
+        inv.clientId = existingClient.id;
+      } else {
+        const newClient = addClient({
+          name: clientName || companyName || 'Client',
+          companyName: companyName || clientName || 'Client Organization',
+          email: inv.client.email?.trim() || '',
+          phone: inv.client.phone?.trim() || '',
+          address: inv.client.address?.trim() || '',
+        });
+        inv.clientId = newClient.id;
+      }
+    }
+
+    saveCurrent(inv);
+  };
+
   // If currently editing an invoice, show full-screen Editor
   if (currentInvoice) {
     return (
@@ -89,7 +129,7 @@ function MainAppContent() {
         clients={clients}
         services={services}
         onUpdate={updateCurrent}
-        onSave={saveCurrent}
+        onSave={handleSaveInvoice}
         onClose={() => setCurrentInvoice(null)}
         onAddClient={addClient}
       />

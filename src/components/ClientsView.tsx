@@ -149,7 +149,8 @@ export function ClientsView({
         enableSorting: false,
       },
       {
-        accessorKey: 'companyName',
+        id: 'companyName',
+        accessorFn: (row) => `${row.companyName || ''} ${row.name || ''}`,
         header: 'Company / Name',
         size: 200,
         cell: ({ row }) => (
@@ -273,6 +274,18 @@ export function ClientsView({
     setRowSelection({});
     showToast(`Deleted ${selectedRows.length} clients`, 'info');
   };
+
+  const filteredClients = useMemo(() => {
+    if (!globalFilter.trim()) return clients;
+    const q = globalFilter.toLowerCase();
+    return clients.filter(
+      (c) =>
+        c.name?.toLowerCase().includes(q) ||
+        c.companyName?.toLowerCase().includes(q) ||
+        c.email?.toLowerCase().includes(q) ||
+        c.phone?.toLowerCase().includes(q)
+    );
+  }, [clients, globalFilter]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
@@ -478,10 +491,16 @@ export function ClientsView({
             </div>
           </div>
         </Card>
+      ) : filteredClients.length === 0 ? (
+        <div className="py-16 text-center space-y-3 glass-panel rounded-3xl border border-white/10">
+          <Users className="w-8 h-8 text-zinc-500 mx-auto" />
+          <p className="font-medium text-foreground text-sm">No clients found</p>
+          <p className="text-xs text-muted-foreground">Add your first client or adjust your search.</p>
+        </div>
       ) : (
         /* Grid View */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {clients.map((client) => {
+          {filteredClients.map((client) => {
             const clientInvoices = invoices.filter(
               (inv) => inv.clientId === client.id || inv.client.companyName === client.companyName
             );

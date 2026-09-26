@@ -1,5 +1,5 @@
 {
-  "name": "react-example",
+  "name": "noirlabs-invoice",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
+    "@radix-ui/react-tooltip": "^1.2.16",
     "@tailwindcss/vite": "^4.1.14",
     "@tanstack/react-table": "^8.21.3",
     "@vitejs/plugin-react": "^5.0.4",

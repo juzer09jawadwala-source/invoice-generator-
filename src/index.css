@@ -4,66 +4,78 @@
 @theme {
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-heading: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  /* `font-mono` is used in ~39 places (invoice numbers, rates, totals). Without
-     this it fell back to Consolas/Menlo, which clashes with Geist and Inter. */
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-script: "Caveat", "Dancing Script", cursive;
 
-  /* Base dark palette */
-  --color-bg-base: #0B0918;
-  --color-bg-raised: #100C22;
-  --color-bg-card: #151027;
+  /* Pinterest Warm Editorial Palette */
+  --color-terracotta: #9F321F;
+  --color-terracotta-dark: #742317;
+  --color-terracotta-light: #B84427;
+  --color-coral: #E85D3F;
+  --color-cream: #F4E7C8;
+  --color-cream-muted: #D8CBB7;
+  --color-gold: #F3C352;
+  --color-dark-obsidian: #111111;
 
-  --color-purple: #6D4AFF;
-  --color-purple-soft: #8B5CF6;
-  --color-purple-bright: #A855F7;
+  /* Base dark / warm editorial palette */
+  --color-bg-base: #742317;
+  --color-bg-raised: #1A0D0A;
+  --color-bg-card: #150E0C;
 
-  --color-teal: #2DD4BF;
-  --color-cyan: #22D3EE;
+  --color-purple: #E85D3F;
+  --color-purple-soft: #F3C352;
+  --color-purple-bright: #E85D3F;
 
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #E5E7EB;
-  --color-text-muted: #A1A1AA;
+  --color-teal: #F3C352;
+  --color-cyan: #F4E7C8;
 
-  /* Semantic UI mapped tokens in safe hex / rgb */
-  --color-background: #0B0918;
-  --color-foreground: #FFFFFF;
-  --color-card: #151027;
-  --color-card-foreground: #FFFFFF;
-  --color-popover: #151027;
-  --color-popover-foreground: #FFFFFF;
-  --color-primary: #6D4AFF;
+  --color-text-primary: #F4E7C8;
+  --color-text-secondary: #D8CBB7;
+  --color-text-muted: #BFAEA0;
+
+  /* Semantic UI mapped tokens */
+  --color-background: #742317;
+  --color-foreground: #F4E7C8;
+  --color-card: #140C0A;
+  --color-card-foreground: #F4E7C8;
+  --color-popover: #1A0D0A;
+  --color-popover-foreground: #F4E7C8;
+  --color-primary: #E85D3F;
   --color-primary-foreground: #FFFFFF;
-  --color-secondary: #1E1738;
-  --color-secondary-foreground: #FFFFFF;
-  --color-muted: #1A1433;
-  --color-muted-foreground: #A1A1AA;
-  --color-accent: #2A1F52;
+  --color-secondary: #25120E;
+  --color-secondary-foreground: #F4E7C8;
+  --color-muted: #241410;
+  --color-muted-foreground: #D8CBB7;
+  --color-accent: #E85D3F;
   --color-accent-foreground: #FFFFFF;
-  --color-destructive: #E11D48;
+  --color-destructive: #DC2626;
   --color-destructive-foreground: #FFFFFF;
-  --color-border: #2A2447;
-  --color-input: #2A2447;
-  --color-ring: #A855F7;
-  --color-warning-foreground: #F59E0B;
+  --color-border: rgba(244, 231, 200, 0.14);
+  --color-input: rgba(244, 231, 200, 0.12);
+  --color-ring: #E85D3F;
+  --color-warning-foreground: #F3C352;
 }
 
 @layer base {
   * {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(244, 231, 200, 0.12);
   }
 
   body {
-    background-color: #0B0918;
-    color: #FFFFFF;
+    background-color: #742317;
+    color: #F4E7C8;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  /* Money must line up in columns. Proportional digits make ₹1,02,940 and
-     ₹28,320 ragged against each other, which reads as sloppy on an invoice.
-     Applies to every figure in tables, monospaced cells and numeric inputs. */
+  ::selection {
+    background-color: rgba(232, 93, 63, 0.45);
+    color: #FFFFFF;
+  }
+
+  /* Money must line up in columns. Proportional digits make numbers ragged against each other */
   table,
   .font-mono,
   .tabular-nums,
@@ -72,39 +84,38 @@
     font-feature-settings: 'tnum' 1;
   }
 
-  /* Custom sleek scrollbar */
+  /* Custom sleek warm scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: rgba(11, 9, 24, 0.5);
+    background: rgba(116, 35, 23, 0.5);
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(244, 231, 200, 0.2);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(168, 85, 247, 0.4);
+    background: rgba(232, 93, 63, 0.6);
   }
 }
 
-/* Glassmorphism and UI Utility Classes */
+/* Glassmorphism and UI Utility Classes (Editorial Warm Dark Aesthetic) */
 .glass-panel {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
-  backdrop-filter: blur(16px) saturate(1.2);
-  -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px !important;
+  background: linear-gradient(135deg, rgba(20, 10, 8, 0.82) 0%, rgba(28, 14, 11, 0.65) 100%);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  border-top: 1px solid rgba(244, 231, 200, 0.22);
+  border-left: 1px solid rgba(244, 231, 200, 0.12);
+  border-bottom: 1px solid rgba(244, 231, 200, 0.05);
+  border-right: 1px solid rgba(244, 231, 200, 0.05);
+  border-radius: 24px !important;
   box-shadow: 
-    inset 0 4px 12px -2px rgba(255, 255, 255, 0.25),  
+    inset 0 2px 8px -1px rgba(244, 231, 200, 0.12),  
     inset 0 -4px 12px -2px rgba(0, 0, 0, 0.4),       
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05),        
-    0 12px 24px -6px rgba(0, 0, 0, 0.6),             
-    0 6px 12px -4px rgba(0, 0, 0, 0.4);              
+    0 16px 36px -10px rgba(35, 7, 5, 0.65),             
+    0 6px 16px -4px rgba(0, 0, 0, 0.35);              
   transform: translateZ(0);
 }
 
@@ -113,16 +124,15 @@
 }
 
 .glass-panel-hover:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-  transform: translateY(-4px);
+  background: linear-gradient(135deg, rgba(28, 14, 11, 0.9) 0%, rgba(35, 18, 14, 0.75) 100%);
+  border-top: 1px solid rgba(244, 231, 200, 0.35);
+  border-left: 1px solid rgba(244, 231, 200, 0.2);
+  transform: translateY(-3px);
   box-shadow: 
-    inset 0 6px 16px -2px rgba(255, 255, 255, 0.3), 
+    inset 0 3px 12px -1px rgba(244, 231, 200, 0.18), 
     inset 0 -6px 16px -2px rgba(0, 0, 0, 0.5), 
-    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 24px 36px -8px rgba(0, 0, 0, 0.8), 
-    0 12px 18px -6px rgba(0, 0, 0, 0.5);
+    0 24px 44px -12px rgba(35, 7, 5, 0.75), 
+    0 12px 22px -6px rgba(0, 0, 0, 0.45);
 }
 
 .glow-btn {
@@ -130,16 +140,17 @@
   transition: all 0.2s ease-in-out;
 }
 .glow-btn:hover {
-  box-shadow: 0 0 24px -2px rgba(168, 85, 247, 0.45);
+  box-shadow: 0 0 24px -2px rgba(232, 93, 63, 0.5);
 }
 
 .glass-btn {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(244, 231, 200, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(244, 231, 200, 0.15);
+  color: #F4E7C8;
+  box-shadow: inset 0 1px 1px rgba(244, 231, 200, 0.15), 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
 }
@@ -148,16 +159,17 @@
   content: '';
   position: absolute;
   top: 0; left: -100%; width: 50%; height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(244,231,200,0) 0%, rgba(244,231,200,0.12) 50%, rgba(244,231,200,0) 100%);
   transform: skewX(-20deg);
   transition: all 0.5s ease;
 }
 
 .glass-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2), 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(168, 85, 247, 0.2);
+  background: rgba(244, 231, 200, 0.14);
+  border-color: rgba(244, 231, 200, 0.28);
+  box-shadow: inset 0 1px 2px rgba(244, 231, 200, 0.2), 0 8px 20px rgba(0, 0, 0, 0.35), 0 0 15px rgba(232, 93, 63, 0.25);
   transform: translateY(-1px);
+  color: #FFFFFF;
 }
 
 .glass-btn:hover::before {
@@ -165,23 +177,25 @@
 }
 
 .glass-btn:active {
-  transform: translateY(1px);
+  transform: translateY(0);
 }
 
 .dark-input {
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #FFFFFF;
+  background-color: rgba(17, 17, 17, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 231, 200, 0.14);
+  color: #F4E7C8;
   transition: all 0.2s ease;
 }
 .dark-input:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.06);
-  border-color: rgba(168, 85, 247, 0.6);
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+  background-color: rgba(17, 17, 17, 0.85);
+  border-color: #E85D3F;
+  box-shadow: 0 0 0 3px rgba(232, 93, 63, 0.22);
 }
 .dark-input::placeholder {
-  color: #71717A;
+  color: #BFAEA0;
 }
 
 /* Print Specific Rules to prevent dark bleed on PDF */
@@ -191,3 +205,16 @@
     color: #111111 !important;
   }
 }
+
+/* Accessibility: Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

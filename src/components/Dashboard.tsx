@@ -17,6 +17,7 @@ import { Invoice, CurrencyCode } from '../types';
 import { calculateInvoice } from '../lib/calc';
 import { formatCurrency } from '../lib/utils';
 import { AppView } from './AppShell';
+import Testimonial1 from '@/components/ui/testimonial-1';
 
 interface DashboardProps {
   invoices: Invoice[];
@@ -59,22 +60,22 @@ export function Dashboard({
     .slice(0, 5);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-10">
       {/* Hero Header Section */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-medium text-[#2DD4BF] mb-2 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Next-Generation Studio Invoicing</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.08] border border-[#F4E7C8]/15 text-xs font-semibold text-[#F4E7C8] mb-2 backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-[#E85D3F]" />
+            <span className="tracking-wide uppercase text-[10px]">Next-Generation Studio Invoicing</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight text-white leading-tight">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-[#F4E7C8] leading-tight break-words">
             Create professional{' '}
-            <span className="bg-gradient-to-r from-[#A855F7] via-[#8B5CF6] to-[#2DD4BF] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#E85D3F] via-[#F3C352] to-[#F4E7C8] bg-clip-text text-transparent">
               invoices
             </span>{' '}
             in seconds.
           </h1>
-          <p className="text-zinc-400 text-sm sm:text-base font-normal max-w-xl">
+          <p className="text-[#D8CBB7] text-xs sm:text-sm sm:text-base font-normal max-w-xl">
             Create, manage and send high-converting studio invoices with live math, multi-currency support, and instant PDF generation.
           </p>
         </div>
@@ -82,7 +83,7 @@ export function Dashboard({
         <div className="flex items-center gap-3 flex-shrink-0">
           <button
             onClick={onCreateNew}
-            className="flex items-center gap-2.5 px-5 py-3 rounded-2xl glass-btn text-white font-heading font-bold text-sm tracking-wide cursor-pointer"
+            className="flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-[#E85D3F] hover:bg-[#B84427] text-white font-heading font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-[#E85D3F]/25 hover:shadow-xl transition-all cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>New Invoice</span>
@@ -100,18 +101,18 @@ export function Dashboard({
           className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Total Revenue</span>
-            <div className="w-7 h-7 rounded-lg bg-teal-500/15 text-[#2DD4BF] flex items-center justify-center">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D8CBB7]">Total Revenue</span>
+            <div className="w-7 h-7 rounded-lg bg-[#E85D3F]/20 text-[#E85D3F] flex items-center justify-center">
               <TrendingUp className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
+          <div className="text-xl sm:text-2xl font-heading font-black text-[#F4E7C8] mb-1.5">
             {formatCurrency(totalRevenue, currency)}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-[#2DD4BF]">
+          <div className="flex items-center gap-1.5 text-xs text-[#F3C352]">
             <ArrowUpRight className="w-3.5 h-3.5" />
             <span className="font-semibold">+18.4%</span>
-            <span className="text-zinc-500 font-normal">from last cycle</span>
+            <span className="text-[#D8CBB7]/70 font-normal">from last cycle</span>
           </div>
         </motion.div>
 
@@ -123,17 +124,17 @@ export function Dashboard({
           className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Pending</span>
-            <div className="w-7 h-7 rounded-lg bg-amber-500/15 text-amber-300 flex items-center justify-center">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D8CBB7]">Pending</span>
+            <div className="w-7 h-7 rounded-lg bg-[#F3C352]/20 text-[#F3C352] flex items-center justify-center">
               <Clock className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
+          <div className="text-xl sm:text-2xl font-heading font-black text-[#F4E7C8] mb-1.5">
             {formatCurrency(pendingRevenue, currency)}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-amber-300">
-            <span className="font-semibold">{invoices.filter((i) => i.status === 'pending').length}</span>
-            <span className="text-zinc-500 font-normal">awaiting settlement</span>
+          <div className="flex items-center gap-1.5 text-xs text-[#F3C352]">
+            <span className="font-bold">{invoices.filter((i) => i.status === 'pending').length}</span>
+            <span className="text-[#D8CBB7]/70 font-normal">awaiting settlement</span>
           </div>
         </motion.div>
 
@@ -145,19 +146,19 @@ export function Dashboard({
           className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Paid Invoices</span>
-            <div className="w-7 h-7 rounded-lg bg-purple-500/15 text-[#A855F7] flex items-center justify-center">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D8CBB7]">Paid Invoices</span>
+            <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center">
               <CheckCircle2 className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
-            {paidCount} <span className="text-sm font-normal text-zinc-500">/ {totalCount}</span>
+          <div className="text-xl sm:text-2xl font-heading font-black text-[#F4E7C8] mb-1.5">
+            {paidCount} <span className="text-sm font-normal text-[#D8CBB7]/70">/ {totalCount}</span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-[#A855F7]">
-            <span className="font-semibold">
+          <div className="flex items-center gap-1.5 text-xs text-emerald-300">
+            <span className="font-bold">
               {totalCount > 0 ? ((paidCount / totalCount) * 100).toFixed(0) : 0}%
             </span>
-            <span className="text-zinc-500 font-normal">conversion rate</span>
+            <span className="text-[#D8CBB7]/70 font-normal">conversion rate</span>
           </div>
         </motion.div>
 
@@ -169,31 +170,31 @@ export function Dashboard({
           className="glass-panel glass-panel-hover p-4 rounded-2xl relative overflow-hidden"
         >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-zinc-400">Total Invoices</span>
-            <div className="w-7 h-7 rounded-lg bg-cyan-500/15 text-[#22D3EE] flex items-center justify-center">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#D8CBB7]">Total Invoices</span>
+            <div className="w-7 h-7 rounded-lg bg-white/10 text-[#F4E7C8] flex items-center justify-center">
               <FileText className="w-3.5 h-3.5" />
             </div>
           </div>
-          <div className="text-xl sm:text-2xl font-heading font-bold text-white mb-1.5">
+          <div className="text-xl sm:text-2xl font-heading font-black text-[#F4E7C8] mb-1.5">
             {totalCount}
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-[#22D3EE]">
-            <span className="font-semibold">All Time</span>
-            <span className="text-zinc-500 font-normal">in local database</span>
+          <div className="flex items-center gap-1.5 text-xs text-[#D8CBB7]">
+            <span className="font-bold text-[#F4E7C8]">All Time</span>
+            <span className="text-[#D8CBB7]/70 font-normal">in local database</span>
           </div>
         </motion.div>
       </div>
 
       {/* Recent Invoices Card */}
-      <div className="glass-panel rounded-2xl p-5 shadow-2xl">
+      <div className="glass-panel rounded-2xl p-5 shadow-2xl border border-[#F4E7C8]/15">
         <div className="flex items-center justify-between mb-5">
           <div>
-            <h2 className="font-heading font-bold text-lg text-white">Recent Invoices</h2>
-            <p className="text-xs text-zinc-400">Latest issued client invoices and payment status</p>
+            <h2 className="font-heading font-extrabold text-lg text-[#F4E7C8]">Recent Invoices</h2>
+            <p className="text-xs text-[#D8CBB7]">Latest issued client invoices and payment status</p>
           </div>
           <button
             onClick={() => onNavigate('invoices')}
-            className="text-xs font-semibold text-[#2DD4BF] hover:underline flex items-center gap-1"
+            className="text-xs font-bold text-[#E85D3F] hover:text-[#F3C352] transition-colors flex items-center gap-1"
           >
             <span>View All ({invoices.length})</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -202,25 +203,25 @@ export function Dashboard({
 
         {recentInvoices.length === 0 ? (
           <div className="py-12 text-center space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-white/10 text-zinc-400 flex items-center justify-center mx-auto">
+            <div className="w-12 h-12 rounded-2xl bg-white/[0.04] border border-[#F4E7C8]/15 text-[#D8CBB7] flex items-center justify-center mx-auto">
               <FileText className="w-6 h-6" />
             </div>
-            <h3 className="text-sm font-semibold text-white">No invoices yet</h3>
-            <p className="text-xs text-zinc-400 max-w-sm mx-auto">
+            <h3 className="text-sm font-bold text-[#F4E7C8]">No invoices yet</h3>
+            <p className="text-xs text-[#D8CBB7] max-w-sm mx-auto">
               Create your first client invoice with custom services and live preview.
             </p>
             <button
               onClick={onCreateNew}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass-btn text-white text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-bold shadow-lg"
             >
               <Plus className="w-3.5 h-3.5" /> Create Invoice
             </button>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
+          <div className="overflow-x-auto -mx-2 sm:mx-0">
+            <table className="w-full text-left min-w-[620px]">
               <thead>
-                <tr className="border-b border-white/10 text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+                <tr className="border-b border-[#F4E7C8]/15 text-[11px] font-bold text-[#D8CBB7] uppercase tracking-wider">
                   <th className="pb-3 px-3">Invoice No.</th>
                   <th className="pb-3 px-3">Client</th>
                   <th className="pb-3 px-3">Date</th>
@@ -229,7 +230,7 @@ export function Dashboard({
                   <th className="pb-3 px-3 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/[0.06]">
+              <tbody className="divide-y divide-[#F4E7C8]/10">
                 {recentInvoices.map((inv) => {
                   const totals = calculateInvoice(inv);
                   const invCurrency = inv.currency || currency;
@@ -237,27 +238,28 @@ export function Dashboard({
                   return (
                     <tr
                       key={inv.id}
-                      className="group hover:bg-white/[0.02] transition-colors text-xs"
+                      className="group hover:bg-white/[0.03] transition-colors text-xs"
                     >
-                      <td className="py-4 px-3 font-mono font-semibold text-white">
+                      <td className="py-4 px-3 font-mono font-bold text-[#F4E7C8]">
                         <button
                           onClick={() => onLoad(inv.id)}
-                          className="hover:text-[#2DD4BF] transition-colors"
+                          className="hover:text-[#E85D3F] transition-colors"
+                          aria-label={`Open invoice ${inv.invoiceNumber}`}
                         >
                           {inv.invoiceNumber}
                         </button>
                       </td>
                       <td className="py-4 px-3">
-                        <div className="font-semibold text-white">
+                        <div className="font-bold text-[#F4E7C8]">
                           {inv.client.companyName || inv.client.name || 'Unnamed Client'}
                         </div>
                         {inv.client.projectName && (
-                          <div className="text-[11px] text-zinc-500 truncate max-w-[200px]">
+                          <div className="text-[11px] text-[#D8CBB7] truncate max-w-[200px]">
                             {inv.client.projectName}
                           </div>
                         )}
                       </td>
-                      <td className="py-4 px-3 text-zinc-400">
+                      <td className="py-4 px-3 text-[#D8CBB7]">
                         {inv.invoiceDate
                           ? new Date(inv.invoiceDate).toLocaleDateString('en-GB', {
                               day: 'numeric',
@@ -270,40 +272,43 @@ export function Dashboard({
                         <span
                           className={`inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg border ${
                             inv.status === 'paid'
-                              ? 'bg-teal-500/15 text-[#2DD4BF] border-teal-500/30'
+                              ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
                               : inv.status === 'pending'
-                              ? 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+                              ? 'bg-[#F3C352]/15 text-[#F3C352] border-[#F3C352]/30'
                               : inv.status === 'overdue'
-                              ? 'bg-rose-500/15 text-rose-400 border-rose-500/30'
-                              : 'bg-zinc-800 text-zinc-300 border-zinc-700'
+                              ? 'bg-red-500/15 text-red-300 border-red-500/30'
+                              : 'bg-white/5 text-[#D8CBB7] border-white/10'
                           }`}
                         >
                           {inv.status || 'pending'}
                         </span>
                       </td>
-                      <td className="py-4 px-3 text-right font-mono font-bold text-white">
+                      <td className="py-4 px-3 text-right font-mono font-bold text-[#F4E7C8]">
                         {formatCurrency(totals.grandTotal, invCurrency)}
                       </td>
                       <td className="py-4 px-3 text-right">
                         <div className="flex items-center justify-end gap-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
                           <button
                             onClick={() => onLoad(inv.id)}
-                            className="p-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors"
+                            className="p-1.5 rounded-lg bg-white/[0.04] border border-[#F4E7C8]/15 hover:bg-white/10 text-[#D8CBB7] hover:text-[#F4E7C8] transition-colors"
                             title="Edit Invoice"
+                            aria-label={`Edit invoice ${inv.invoiceNumber}`}
                           >
                             <Edit2 className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => onDuplicate(inv.id)}
-                            className="p-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors"
+                            className="p-1.5 rounded-lg bg-white/[0.04] border border-[#F4E7C8]/15 hover:bg-white/10 text-[#D8CBB7] hover:text-[#F4E7C8] transition-colors"
                             title="Duplicate"
+                            aria-label={`Duplicate invoice ${inv.invoiceNumber}`}
                           >
                             <Copy className="w-3.5 h-3.5" />
                           </button>
                           <button
                             onClick={() => onDelete(inv.id)}
-                            className="p-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-rose-500/20 text-zinc-400 hover:text-rose-400 transition-colors"
+                            className="p-1.5 rounded-lg bg-white/[0.04] border border-[#F4E7C8]/15 hover:bg-red-500/20 text-[#D8CBB7] hover:text-red-400 transition-colors"
                             title="Delete"
+                            aria-label={`Delete invoice ${inv.invoiceNumber}`}
                           >
                             <Trash2 className="w-3.5 h-3.5" />
                           </button>
@@ -317,6 +322,9 @@ export function Dashboard({
           </div>
         )}
       </div>
+
+      {/* Community Testimonial & Value Metric Section */}
+      <Testimonial1 />
     </div>
   );
 }

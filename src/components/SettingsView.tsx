@@ -40,31 +40,31 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-white">Studio Settings</h1>
-        <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+        <h1 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#F4E7C8]">Studio Settings</h1>
+        <p className="text-xs sm:text-sm text-[#D8CBB7] mt-1">
           Configure your studio identity, tax credentials, default currency, and invoice terms
         </p>
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
         {/* 1. Company Profile Card */}
-        <div className="glass-panel p-6 rounded-3xl border border-white/10 space-y-5 shadow-2xl">
-          <div className="flex items-center gap-3 pb-3 border-b border-white/10">
-            <div className="w-8 h-8 rounded-xl bg-purple-500/20 text-[#A855F7] flex items-center justify-center">
+        <div className="glass-panel p-4 sm:p-6 rounded-3xl border border-[#F4E7C8]/15 space-y-5 shadow-2xl">
+          <div className="flex items-center gap-3 pb-3 border-b border-[#F4E7C8]/10">
+            <div className="w-8 h-8 rounded-xl bg-[#E85D3F]/20 text-[#E85D3F] flex items-center justify-center">
               <Building2 className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-heading font-bold text-base text-white">Company & Studio Identity</h2>
-              <p className="text-xs text-zinc-400">Information displayed on all generated invoices</p>
+              <h2 className="font-heading font-bold text-base text-[#F4E7C8]">Company & Studio Identity</h2>
+              <p className="text-xs text-[#D8CBB7]">Information displayed on all generated invoices</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="space-y-1.5 sm:col-span-2">
-              <label className="text-zinc-400 font-medium">Studio / Company Name</label>
+              <label className="text-[#D8CBB7] font-medium">Studio / Company Name</label>
               <input
                 type="text"
                 required
@@ -75,7 +75,7 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-zinc-400 font-medium">Email Address</label>
+              <label className="text-[#D8CBB7] font-medium">Email Address</label>
               <input
                 type="email"
                 required
@@ -86,7 +86,7 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-zinc-400 font-medium">Phone Number</label>
+              <label className="text-[#D8CBB7] font-medium">Phone Number</label>
               <input
                 type="text"
                 value={formCompany.phone}
@@ -96,7 +96,7 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-zinc-400 font-medium">Website URL</label>
+              <label className="text-[#D8CBB7] font-medium">Website URL</label>
               <input
                 type="text"
                 value={formCompany.website}
@@ -106,7 +106,7 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-zinc-400 font-medium">GSTIN / Tax ID Number</label>
+              <label className="text-[#D8CBB7] font-medium">GSTIN / Tax ID Number</label>
               <input
                 type="text"
                 value={formCompany.gstNumber}
@@ -116,18 +116,18 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-zinc-400 font-medium">UPI Payment ID / VPA</label>
+              <label className="text-[#D8CBB7] font-medium">UPI Payment ID / VPA</label>
               <input
                 type="text"
                 placeholder="e.g. yourname@okaxisbank"
                 value={formCompany.upiId || ''}
                 onChange={(e) => setFormCompany({ ...formCompany, upiId: e.target.value })}
-                className="w-full px-3.5 py-2.5 rounded-xl dark-input font-mono text-[#2DD4BF]"
+                className="w-full px-3.5 py-2.5 rounded-xl dark-input font-mono text-[#F3C352]"
               />
             </div>
 
             <div className="space-y-1.5 sm:col-span-2">
-              <label className="text-zinc-400 font-medium">Registered Address</label>
+              <label className="text-[#D8CBB7] font-medium">Registered Address</label>
               <textarea
                 rows={2}
                 value={formCompany.address}
@@ -137,7 +137,7 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
             </div>
 
             <div className="space-y-1.5 sm:col-span-2">
-              <label className="text-zinc-400 font-medium">Logo Image URL (optional)</label>
+              <label className="text-[#D8CBB7] font-medium">Logo Image URL (optional)</label>
               <input
                 type="text"
                 placeholder="https://example.com/logo.png"
@@ -150,30 +150,30 @@ export function SettingsView({ settings, onUpdateSettings }: SettingsViewProps) 
         </div>
 
         {/* 2. Defaults & Terms Card */}
-        <div className="glass-panel p-6 rounded-3xl border border-white/10 space-y-5 shadow-2xl">
-          <div className="flex items-center gap-3 pb-3 border-b border-white/10">
-            <div className="w-8 h-8 rounded-xl bg-teal-500/20 text-[#2DD4BF] flex items-center justify-center">
+        <div className="glass-panel p-4 sm:p-6 rounded-3xl border border-[#F4E7C8]/15 space-y-5 shadow-2xl">
+          <div className="flex items-center gap-3 pb-3 border-b border-[#F4E7C8]/10">
+            <div className="w-8 h-8 rounded-xl bg-[#F3C352]/20 text-[#F3C352] flex items-center justify-center">
               <Sparkles className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="font-heading font-bold text-base text-white">Invoice Defaults & Terms</h2>
-              <p className="text-xs text-zinc-400">Default settings prefilled on every new invoice</p>
+              <h2 className="font-heading font-bold text-base text-[#F4E7C8]">Invoice Defaults & Terms</h2>
+              <p className="text-xs text-[#D8CBB7]">Default settings prefilled on every new invoice</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
             <div className="space-y-1.5">
-              <label className="text-zinc-400 font-medium">Default Currency</label>
+              <label className="text-[#D8CBB7] font-medium">Default Currency</label>
               <select
                 value={formCurrency}
                 onChange={(e) => setFormCurrency(e.target.value as CurrencyCode)}
                 className="w-full px-3.5 py-2.5 rounded-xl dark-input"
               >
-                <option value="INR" className="bg-[#151027]">INR (₹ - Indian Rupee)</option>
-                <option value="USD" className="bg-[#151027]">USD ($ - US Dollar)</option>
-                <option value="EUR" className="bg-[#151027]">EUR (€ - Euro)</option>
-                <option value="GBP" className="bg-[#151027]">GBP (£ - British Pound)</option>
-                <option value="AED" className="bg-[#151027]">AED (AED - UAE Dirham)</option>
+                <option value="INR" className="bg-[#150E0C]">INR (₹ - Indian Rupee)</option>
+                <option value="USD" className="bg-[#150E0C]">USD ($ - US Dollar)</option>
+                <option value="EUR" className="bg-[#150E0C]">EUR (€ - Euro)</option>
+                <option value="GBP" className="bg-[#150E0C]">GBP (£ - British Pound)</option>
+                <option value="AED" className="bg-[#150E0C]">AED (AED - UAE Dirham)</option>
               </select>
             </div>
 

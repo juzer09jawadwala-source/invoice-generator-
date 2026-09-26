@@ -200,11 +200,11 @@ export function InvoiceBuilder({
                 onChange={(e) => handleClientSelect(e.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl dark-input text-xs font-medium appearance-none cursor-pointer pr-9"
               >
-                <option value="" className="bg-[#151027] text-zinc-300">
+                <option value="" className="bg-[#150E0C] text-zinc-300">
                   Select Existing Client...
                 </option>
                 {clients.map((c) => (
-                  <option key={c.id} value={c.id} className="bg-[#151027] text-white">
+                  <option key={c.id} value={c.id} className="bg-[#150E0C] text-white">
                     {c.companyName ? `${c.companyName} (${c.name})` : c.name}
                   </option>
                 ))}
@@ -369,11 +369,11 @@ export function InvoiceBuilder({
                             onChange={(e) => handleServiceDropdownSelect(item.id, e.target.value)}
                             className="w-full px-2.5 py-1.5 rounded-lg dark-input text-xs font-medium appearance-none pr-6 truncate"
                           >
-                            <option value="custom" className="bg-[#151027] text-amber-300 font-semibold">
+                            <option value="custom" className="bg-[#150E0C] text-amber-300 font-semibold">
                               + Custom Service / Other
                             </option>
                             {services.map((s) => (
-                              <option key={s.id} value={s.id} className="bg-[#151027] text-white">
+                              <option key={s.id} value={s.id} className="bg-[#150E0C] text-white">
                                 {s.name} ({formatCurrency(s.price, invoice.currency)})
                               </option>
                             ))}
@@ -538,11 +538,11 @@ export function InvoiceBuilder({
                       onChange={(e) => handleServiceDropdownSelect(item.id, e.target.value)}
                       className="w-full px-3 py-2 rounded-lg dark-input text-xs"
                     >
-                      <option value="custom" className="bg-[#151027] text-amber-300">
+                      <option value="custom" className="bg-[#150E0C] text-amber-300">
                         Custom Service
                       </option>
                       {services.map((s) => (
-                        <option key={s.id} value={s.id} className="bg-[#151027]">
+                        <option key={s.id} value={s.id} className="bg-[#150E0C]">
                           {s.name} ({formatCurrency(s.price, invoice.currency)})
                         </option>
                       ))}
@@ -742,7 +742,7 @@ export function InvoiceBuilder({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="glass-panel bg-[#151027] border border-white/15 rounded-3xl max-w-2xl w-full p-6 shadow-2xl max-h-[85vh] flex flex-col"
+              className="glass-panel bg-[#150E0C] border border-white/15 rounded-3xl max-w-2xl w-full p-6 shadow-2xl max-h-[85vh] flex flex-col"
             >
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                 <div>

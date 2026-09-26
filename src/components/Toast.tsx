@@ -53,11 +53,11 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="pointer-events-auto flex items-center justify-between gap-3 p-3.5 rounded-xl glass-panel shadow-2xl border border-white/15 bg-[#151027]/90 backdrop-blur-xl text-white text-sm"
+              className="pointer-events-auto flex items-center justify-between gap-3 p-3.5 rounded-xl shadow-2xl border border-[#F4E7C8]/20 bg-[#150E0C]/95 backdrop-blur-xl text-[#F4E7C8] text-sm"
             >
               <div className="flex items-center gap-2.5">
                 {toast.type === 'success' && (
-                  <div className="w-6 h-6 rounded-full bg-teal-500/20 text-[#2DD4BF] flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                 )}
@@ -67,15 +67,15 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                   </div>
                 )}
                 {toast.type === 'info' && (
-                  <div className="w-6 h-6 rounded-full bg-purple-500/20 text-[#A855F7] flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-[#E85D3F]/20 text-[#E85D3F] flex items-center justify-center flex-shrink-0">
                     <Info className="w-4 h-4" />
                   </div>
                 )}
-                <span className="font-medium text-slate-100 text-xs sm:text-sm">{toast.message}</span>
+                <span className="font-semibold text-[#F4E7C8] text-xs sm:text-sm">{toast.message}</span>
               </div>
               <button
                 onClick={() => removeToast(toast.id)}
-                className="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="text-[#D8CBB7] hover:text-[#F4E7C8] p-1 rounded-lg hover:bg-white/10 transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
               </button>

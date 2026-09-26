@@ -37,6 +37,7 @@ import { Select } from '@/components/ui/select';
 import { PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/components/Toast';
+import { Vortex } from '@/components/ui/vortex';
 
 interface ClientsViewProps {
   clients: Client[];
@@ -288,7 +289,17 @@ export function ClientsView({
   }, [clients, globalFilter]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <Vortex
+      backgroundColor="transparent"
+      rangeY={140}
+      particleCount={350}
+      baseHue={24}
+      baseSpeed={0.15}
+      rangeSpeed={1.2}
+      containerClassName="relative min-h-[calc(100vh-5rem)] w-full overflow-hidden"
+      className="relative z-10"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -687,6 +698,7 @@ export function ClientsView({
           </div>
         )}
       </AnimatePresence>
-    </div>
+      </div>
+    </Vortex>
   );
 }

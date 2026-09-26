@@ -280,13 +280,14 @@ export function ServicesView({
             <span>Reset Defaults</span>
           </button>
 
-          <button
+          <Button
             onClick={openAddModal}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass-btn text-white text-xs font-semibold cursor-pointer"
+            size="default"
+            className="font-semibold"
           >
             <Plus className="w-4 h-4" />
             <span>+ Add Service</span>
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -557,12 +558,13 @@ export function ServicesView({
                   >
                     Cancel
                   </button>
-                  <button
+                  <Button
                     type="submit"
-                    className="px-4 py-2 rounded-xl glass-btn text-white font-semibold"
+                    size="default"
+                    className="font-semibold"
                   >
                     {editingService ? 'Save Changes' : 'Add to Catalog'}
-                  </button>
+                  </Button>
                 </div>
               </form>
             </motion.div>

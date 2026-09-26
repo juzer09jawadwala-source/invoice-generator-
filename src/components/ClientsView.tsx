@@ -332,13 +332,14 @@ export function ClientsView({
             </button>
           </div>
 
-          <button
+          <Button
             onClick={openAddModal}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl glass-btn text-white text-xs font-semibold cursor-pointer"
+            size="default"
+            className="font-semibold"
           >
             <Plus className="w-4 h-4" />
             <span>+ Add Client</span>
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -686,12 +687,13 @@ export function ClientsView({
                   >
                     Cancel
                   </button>
-                  <button
+                  <Button
                     type="submit"
-                    className="px-4 py-2 rounded-xl glass-btn text-white font-semibold"
+                    size="default"
+                    className="font-semibold"
                   >
                     {editingClient ? 'Update Client' : 'Add Client'}
-                  </button>
+                  </Button>
                 </div>
               </form>
             </motion.div>

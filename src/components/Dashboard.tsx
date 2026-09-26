@@ -18,6 +18,7 @@ import { calculateInvoice } from '../lib/calc';
 import { formatCurrency } from '../lib/utils';
 import { AppView } from './AppShell';
 import Testimonial1 from '@/components/ui/testimonial-1';
+import { Button } from '@/components/ui/button';
 
 interface DashboardProps {
   invoices: Invoice[];
@@ -81,13 +82,14 @@ export function Dashboard({
         </div>
 
         <div className="flex items-center gap-3 flex-shrink-0">
-          <button
+          <Button
             onClick={onCreateNew}
-            className="flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-[#E85D3F] hover:bg-[#B84427] text-white font-heading font-bold text-xs sm:text-sm tracking-wide shadow-lg shadow-[#E85D3F]/25 hover:shadow-xl transition-all cursor-pointer"
+            size="lg"
+            className="font-heading font-bold"
           >
             <Plus className="w-4 h-4" />
             <span>New Invoice</span>
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -210,12 +212,13 @@ export function Dashboard({
             <p className="text-xs text-[#D8CBB7] max-w-sm mx-auto">
               Create your first client invoice with custom services and live preview.
             </p>
-            <button
+            <Button
               onClick={onCreateNew}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-bold shadow-lg"
+              size="default"
+              className="mt-2"
             >
               <Plus className="w-3.5 h-3.5" /> Create Invoice
-            </button>
+            </Button>
           </div>
         ) : (
           <div className="overflow-x-auto -mx-2 sm:mx-0">

@@ -381,13 +381,14 @@ export function InvoicesList({
             </p>
           </div>
 
-          <button
+          <Button
             onClick={onCreateNew}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-bold shadow-lg shadow-[#E85D3F]/25 transition-all self-start sm:self-auto cursor-pointer"
+            size="default"
+            className="self-start sm:self-auto font-bold"
           >
             <Plus className="w-4 h-4" />
             <span>Create Invoice</span>
-          </button>
+          </Button>
         </div>
 
         {/* Toolbar & Filter Bar */}

@@ -21,6 +21,7 @@ import { calculateInvoice } from '../lib/calc';
 import { formatCurrency } from '../lib/utils';
 import { useToast } from './Toast';
 import { EditorialBackground } from './EditorialBackground';
+import { Button } from '@/components/ui/button';
 
 interface EditorProps {
   invoice: Invoice;
@@ -189,41 +190,48 @@ export function Editor({
 
         {/* Action Buttons in Header */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="sm"
             onClick={handleSaveDraft}
-            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/[0.05] border border-[#F4E7C8]/15 hover:bg-white/[0.1] text-xs font-semibold text-[#F4E7C8] transition-colors cursor-pointer"
+            className="hidden sm:inline-flex"
           >
             <Save className="w-3.5 h-3.5" />
             <span>Save Draft</span>
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="sm"
             onClick={() => setShowPreviewModal(true)}
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/[0.05] border border-[#F4E7C8]/15 hover:bg-white/[0.1] text-xs font-semibold text-[#F4E7C8] transition-colors cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5 text-[#F3C352]" />
             <span className="hidden md:inline">Live Preview</span>
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="outline"
+            size="sm"
             onClick={() => handlePrint()}
-            className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/[0.05] border border-[#F4E7C8]/15 hover:bg-white/[0.1] text-xs font-semibold text-[#F4E7C8] transition-colors cursor-pointer"
+            className="hidden lg:inline-flex"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Print</span>
-          </button>
+          </Button>
 
-          <button
+          <Button
             type="button"
+            variant="default"
+            size="sm"
             onClick={handleDownloadPDF}
-            className="flex items-center gap-2 px-4 py-1.5 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-xs font-bold text-white shadow-lg shadow-[#E85D3F]/25 transition-all cursor-pointer"
+            className="font-bold"
           >
             <Download className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Export PDF</span>
-          </button>
+          </Button>
         </div>
       </header>
 

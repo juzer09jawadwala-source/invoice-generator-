@@ -50,9 +50,6 @@ export function StackedSection({ children, index, isLast = false }: StackedSecti
   // Scale down subtly for a premium depth effect, originating from top center
   // to avoid gaps at the top while pinned.
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
-  
-  // Fade in a black overlay to create depth/shadow under the incoming section.
-  const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.65]);
 
   return (
     <motion.section
@@ -75,14 +72,6 @@ export function StackedSection({ children, index, isLast = false }: StackedSecti
         } overflow-hidden`}
       >
         {children}
-
-        {/* Darkening overlay for depth effect */}
-        {!isLast && (
-          <motion.div 
-            className="absolute inset-0 bg-black pointer-events-none z-50"
-            style={{ opacity: overlayOpacity }}
-          />
-        )}
       </motion.div>
     </motion.section>
   );

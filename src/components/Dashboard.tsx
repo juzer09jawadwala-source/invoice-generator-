@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { ArchivalDossierRack } from './ArchivalDossierRack';
 import { InteractiveScrapbook } from './InteractiveScrapbook';
 import { FeatureShowcase } from './FeatureShowcase';
+import { StackedSection } from './StackedSection';
 
 interface DashboardProps {
   invoices: Invoice[];
@@ -64,9 +65,10 @@ export function Dashboard({
     .slice(0, 5);
 
   return (
-    <div className="flex flex-col gap-8 sm:gap-12 pb-12 overflow-x-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 w-full space-y-6 sm:space-y-10">
-      {/* Hero Header Section */}
+    <div className="flex flex-col relative">
+      <StackedSection index={0}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10 pb-12 w-full space-y-6 sm:space-y-10">
+        {/* Hero Header Section */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
         <div className="space-y-2 max-w-2xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.08] border border-[#F4E7C8]/15 text-xs font-semibold text-[#F4E7C8] mb-2 backdrop-blur-md">
@@ -191,30 +193,38 @@ export function Dashboard({
         </motion.div>
       </div>
       </div>
+      </StackedSection>
 
       {/* Section 2: Interactive Archival Dossiers & System Vault (in.jpg) - FULL WIDTH */}
-      <div className="w-full bg-black border-y border-[#F4E7C8]/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative pb-12">
+      <StackedSection index={1}>
+        <div className="w-full bg-black border-y border-[#F4E7C8]/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative pb-12">
         <ArchivalDossierRack
           invoices={invoices}
           currency={currency}
           onCreateNew={onCreateNew}
           onNavigate={onNavigate}
         />
-      </div>
+        </div>
+      </StackedSection>
 
       {/* Section 3: Interactive Multimedia Portfolio Scrapbook (fl.jpg) - FULL WIDTH */}
-      <div className="w-full bg-black">
-        <InteractiveScrapbook />
-      </div>
+      <StackedSection index={2}>
+        <div className="w-full bg-black">
+          <InteractiveScrapbook />
+        </div>
+      </StackedSection>
 
       {/* Section 4: 4 New Feature Image Showcases - FULL WIDTH */}
-      <div className="w-full">
-        <FeatureShowcase />
-      </div>
+      <StackedSection index={3}>
+        <div className="w-full">
+          <FeatureShowcase />
+        </div>
+      </StackedSection>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-6 sm:space-y-10">
+      <StackedSection index={4}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full space-y-6 sm:space-y-10">
 
-      {/* Recent Invoices Card */}
+        {/* Recent Invoices Card */}
       <div className="glass-panel rounded-2xl p-5 shadow-2xl border border-[#F4E7C8]/15">
         <div className="flex items-center justify-between mb-5">
           <div>
@@ -353,11 +363,14 @@ export function Dashboard({
         )}
       </div>
       </div>
+      </StackedSection>
 
       {/* Community Testimonial & Value Metric Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10">
-        <Testimonial1 />
-      </div>
+      <StackedSection index={5} isLast={true}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+          <Testimonial1 />
+        </div>
+      </StackedSection>
     </div>
   );
 }

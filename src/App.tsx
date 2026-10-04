@@ -76,10 +76,31 @@ function MainAppContent() {
     setCurrentInvoice(newInv);
   };
 
-  const handleCurrencyChange = (newCurrency: CurrencyCode) => {
+  const handleCurrencyChange = async (newCurrency: CurrencyCode) => {
+    const oldCurrency = currency;
     setCurrency(newCurrency);
     updateSettings({ defaultCurrency: newCurrency });
-    if (currentInvoice) {
+    
+    if (currentInvoice && currentInvoice.items.length > 0 && oldCurrency !== newCurrency) {
+      try {
+        const res = await fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${oldCurrency.toLowerCase()}.json`);
+        const data = await res.json();
+        const rate = data[oldCurrency.toLowerCase()][newCurrency.toLowerCase()];
+        
+        if (rate) {
+          const updatedItems = currentInvoice.items.map(item => ({
+            ...item,
+            rate: Number((item.rate * rate).toFixed(2))
+          }));
+          updateCurrent({ currency: newCurrency, items: updatedItems });
+        } else {
+          updateCurrent({ currency: newCurrency });
+        }
+      } catch (error) {
+        console.error("Failed to fetch exchange rates", error);
+        updateCurrent({ currency: newCurrency });
+      }
+    } else if (currentInvoice) {
       updateCurrent({ currency: newCurrency });
     }
   };

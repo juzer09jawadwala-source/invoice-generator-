@@ -43,19 +43,38 @@ export function Dashboard({
   onDuplicate,
   onNavigate,
 }: DashboardProps) {
+  const [rates, setRates] = React.useState<Record<string, number> | null>(null);
+
+  React.useEffect(() => {
+    fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currency.toLowerCase()}.json`)
+      .then(res => res.json())
+      .then(data => setRates(data[currency.toLowerCase()]))
+      .catch(err => console.error("Failed to load dashboard rates", err));
+  }, [currency]);
+
   // Dynamically compute stats from real invoice records
   const invoiceTotalsList = invoices.map((inv) => ({
     inv,
     totals: calculateInvoice(inv),
   }));
 
+  const getConvertedAmount = (amount: number, invCurrency: string) => {
+    const from = (invCurrency || currency).toLowerCase();
+    const to = currency.toLowerCase();
+    if (from === to) return amount;
+    if (rates && rates[from]) {
+      return amount / rates[from];
+    }
+    return amount;
+  };
+
   const totalRevenue = invoiceTotalsList
     .filter(({ inv }) => inv.status === 'paid')
-    .reduce((sum, { totals }) => sum + totals.grandTotal, 0);
+    .reduce((sum, { inv, totals }) => sum + getConvertedAmount(totals.grandTotal, inv.currency || currency), 0);
 
   const pendingRevenue = invoiceTotalsList
     .filter(({ inv }) => inv.status === 'pending')
-    .reduce((sum, { totals }) => sum + totals.grandTotal, 0);
+    .reduce((sum, { inv, totals }) => sum + getConvertedAmount(totals.grandTotal, inv.currency || currency), 0);
 
   const paidCount = invoices.filter((inv) => inv.status === 'paid').length;
   const totalCount = invoices.length;

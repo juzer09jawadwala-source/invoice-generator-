@@ -53,6 +53,12 @@ function MainAppContent() {
     updateSettings,
   } = useSettings();
 
+  React.useEffect(() => {
+    if (settings.defaultCurrency) {
+      setCurrency(settings.defaultCurrency);
+    }
+  }, [settings.defaultCurrency]);
+
   const handleCreateNewInvoice = (clientId?: string | null) => {
     const newInv = createNew(clientId);
     // Apply studio settings defaults

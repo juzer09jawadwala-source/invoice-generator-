@@ -59,7 +59,7 @@ export function Dashboard({
   }));
 
   const getConvertedAmount = (amount: number, invCurrency: string) => {
-    const from = (invCurrency || currency).toLowerCase();
+    const from = (invCurrency || 'INR').toLowerCase();
     const to = currency.toLowerCase();
     if (from === to) return amount;
     if (rates && rates[from]) {
@@ -70,11 +70,11 @@ export function Dashboard({
 
   const totalRevenue = invoiceTotalsList
     .filter(({ inv }) => inv.status === 'paid')
-    .reduce((sum, { inv, totals }) => sum + getConvertedAmount(totals.grandTotal, inv.currency || currency), 0);
+    .reduce((sum, { inv, totals }) => sum + getConvertedAmount(totals.grandTotal, inv.currency || 'INR'), 0);
 
   const pendingRevenue = invoiceTotalsList
     .filter(({ inv }) => inv.status === 'pending')
-    .reduce((sum, { inv, totals }) => sum + getConvertedAmount(totals.grandTotal, inv.currency || currency), 0);
+    .reduce((sum, { inv, totals }) => sum + getConvertedAmount(totals.grandTotal, inv.currency || 'INR'), 0);
 
   const paidCount = invoices.filter((inv) => inv.status === 'paid').length;
   const totalCount = invoices.length;

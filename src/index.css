@@ -234,3 +234,14 @@
   }
 }
 
+
+@theme {
+  --animate-cell-ripple: cell-ripple var(--duration) ease-out var(--delay);
+}
+
+@keyframes cell-ripple {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(0.85); }
+  100% { opacity: 0.4; transform: scale(1); }
+}
+

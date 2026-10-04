@@ -19,6 +19,7 @@ import { formatCurrency } from '../lib/utils';
 import { AppView } from './AppShell';
 import Testimonial1 from '@/components/ui/testimonial-1';
 import { Button } from '@/components/ui/button';
+import { ArchivalDossierRack } from './ArchivalDossierRack';
 
 interface DashboardProps {
   invoices: Invoice[];
@@ -186,6 +187,14 @@ export function Dashboard({
           </div>
         </motion.div>
       </div>
+
+      {/* Section 2: Interactive Archival Dossiers & System Vault (in.jpg) */}
+      <ArchivalDossierRack
+        invoices={invoices}
+        currency={currency}
+        onCreateNew={onCreateNew}
+        onNavigate={onNavigate}
+      />
 
       {/* Recent Invoices Card */}
       <div className="glass-panel rounded-2xl p-5 shadow-2xl border border-[#F4E7C8]/15">

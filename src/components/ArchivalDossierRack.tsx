@@ -615,11 +615,11 @@ export function ArchivalDossierRack({
 
           {/* Main Visual Frame with Overlay Interactive Columns - Full Width Edge to Edge */}
           <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2752/1200] overflow-hidden bg-black select-none">
-            {/* Base Image */}
+            {/* Base Image with Floating 3D and Transparency */}
             <img
               src="/in.jpg"
               alt="Noir Archival Folders Dossier"
-              className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[0.98] transition-all duration-300"
+              className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[0.98] transition-all duration-300 mix-blend-screen animate-float drop-shadow-2xl"
             />
 
             {/* Subtle Vignette & Grain */}

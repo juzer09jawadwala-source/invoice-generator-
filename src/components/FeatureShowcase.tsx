@@ -60,7 +60,7 @@ export function FeatureShowcase() {
   const [selectedImage, setSelectedImage] = useState<FeatureSection | null>(null);
 
   return (
-    <div className="w-full bg-[#050505] flex flex-col items-center">
+    <div className="w-full bg-black flex flex-col items-center">
       
       {/* Introduction Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full text-center">
@@ -82,7 +82,7 @@ export function FeatureShowcase() {
             <section 
               key={feature.id}
               className={`w-full py-16 sm:py-24 border-t border-white/5 relative overflow-hidden ${
-                isEven ? 'bg-[#0B0B0C]' : 'bg-[#080809]'
+                isEven ? 'bg-black' : 'bg-black'
               }`}
             >
               {/* Background ambient glow based on accent color */}
@@ -143,10 +143,10 @@ export function FeatureShowcase() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
-                    className="flex-1 w-full max-w-2xl lg:max-w-none z-10"
+                    className="flex-1 w-full max-w-2xl lg:max-w-none z-10 animate-float drop-shadow-2xl"
                   >
                     <div 
-                      className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-2xl border border-white/10"
+                      className="group relative w-full aspect-[4/3] cursor-pointer"
                       onClick={() => setSelectedImage(feature)}
                     >
                       {/* Interactive Hover Glow */}
@@ -155,7 +155,7 @@ export function FeatureShowcase() {
                       <img 
                         src={feature.imageSrc} 
                         alt={feature.title}
-                        className="w-full h-full object-cover filter brightness-[0.85] contrast-125 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                        className="w-full h-full object-cover rounded-2xl mix-blend-screen filter brightness-[0.85] contrast-125 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
                       />
                       
                       {/* Click overlay hint */}
@@ -191,7 +191,7 @@ export function FeatureShowcase() {
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-6xl max-h-[90vh] flex flex-col bg-[#050505] rounded-2xl sm:rounded-3xl border border-white/10 shadow-[0_0_150px_rgba(0,0,0,0.5)] overflow-hidden z-10"
+              className="relative w-full max-w-6xl max-h-[90vh] flex flex-col bg-black rounded-2xl sm:rounded-3xl border border-white/10 shadow-[0_0_150px_rgba(0,0,0,0.5)] overflow-hidden z-10"
             >
               <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/5 bg-white/[0.02]">
                 <div className="flex items-center gap-3">
@@ -206,11 +206,11 @@ export function FeatureShowcase() {
                 </button>
               </div>
 
-              <div className="relative flex-1 overflow-hidden bg-black/50 p-4 sm:p-8 flex items-center justify-center">
+              <div className="relative flex-1 bg-black p-4 sm:p-8 flex items-center justify-center">
                 <img 
                   src={selectedImage.imageSrc} 
                   alt={selectedImage.title}
-                  className="max-w-full max-h-full object-contain rounded-xl shadow-2xl border border-white/10"
+                  className="max-w-full max-h-full object-contain rounded-xl drop-shadow-[0_20px_50px_rgba(255,255,255,0.05)] mix-blend-screen"
                 />
               </div>
             </motion.div>

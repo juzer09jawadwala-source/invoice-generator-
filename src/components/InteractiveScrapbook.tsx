@@ -189,7 +189,7 @@ export function InteractiveScrapbook() {
   const [selectedElement, setSelectedElement] = useState<ScrapbookElement | null>(null);
 
   return (
-    <div className="relative w-full bg-[#0B0B0C] shadow-2xl py-12 overflow-hidden border-t border-[#F4E7C8]/10">
+    <div className="relative w-full bg-black shadow-2xl py-12 overflow-hidden border-t border-[#F4E7C8]/10">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center sm:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-[#F4E7C8]/15 text-xs font-semibold text-[#F4E7C8] mb-3">
@@ -206,13 +206,13 @@ export function InteractiveScrapbook() {
 
       {/* Main Interactive Canvas Wrapper */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
-        <div className="relative w-full aspect-[1200/1680] max-h-[85vh] sm:max-h-[1200px] mx-auto rounded-xl sm:rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 group select-none">
+        <div className="relative w-full aspect-[1200/1680] max-h-[85vh] sm:max-h-[1200px] mx-auto group select-none animate-float drop-shadow-[0_20px_50px_rgba(255,255,255,0.05)]">
           
-          {/* Base Image */}
+          {/* Base Image with Floating 3D and Transparency */}
           <img 
             src="/fl.jpg" 
             alt="Multimedia Portfolio Scrapbook" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover mix-blend-screen rounded-xl sm:rounded-3xl"
           />
 
           {/* Interactive Hotspots Overlay */}
@@ -281,7 +281,7 @@ export function InteractiveScrapbook() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-[#0B0B0C] border shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden z-10"
+              className="relative w-full max-w-lg bg-black border shadow-[0_0_100px_rgba(0,0,0,0.5)] rounded-3xl overflow-hidden z-10"
               style={{ borderColor: `${selectedElement.accentColor}40` }}
             >
               {/* Modal Header */}

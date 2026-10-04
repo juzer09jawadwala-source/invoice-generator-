@@ -193,7 +193,7 @@ export function Dashboard({
       </div>
 
       {/* Section 2: Interactive Archival Dossiers & System Vault (in.jpg) - FULL WIDTH */}
-      <div className="w-full bg-[#0B0B0C] border-y border-[#F4E7C8]/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative pb-12">
+      <div className="w-full bg-black border-y border-[#F4E7C8]/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative pb-12">
         <ArchivalDossierRack
           invoices={invoices}
           currency={currency}
@@ -203,7 +203,7 @@ export function Dashboard({
       </div>
 
       {/* Section 3: Interactive Multimedia Portfolio Scrapbook (fl.jpg) - FULL WIDTH */}
-      <div className="w-full bg-[#0B0B0C]">
+      <div className="w-full bg-black">
         <InteractiveScrapbook />
       </div>
 

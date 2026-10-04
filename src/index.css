@@ -18,9 +18,9 @@
   --color-dark-obsidian: #111111;
 
   /* Base dark / warm editorial palette */
-  --color-bg-base: #742317;
-  --color-bg-raised: #1A0D0A;
-  --color-bg-card: #150E0C;
+  --color-bg-base: #000000;
+  --color-bg-raised: #050505;
+  --color-bg-card: #000000;
 
   --color-purple: #E85D3F;
   --color-purple-soft: #F3C352;
@@ -62,12 +62,28 @@
   }
 
   body {
-    background-color: #742317;
+    background-color: #000000;
     color: #F4E7C8;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 
   ::selection {

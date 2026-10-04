@@ -23,10 +23,10 @@ export function AppShell({
 }: AppShellProps) {
   return (
     <div className="min-h-screen text-[#F4E7C8] font-sans selection:bg-[#E85D3F]/40 selection:text-white relative flex flex-col justify-between">
-      {/* Editorial Terracotta & Geometric Atmosphere Background */}
+      {/* Editorial Atmosphere Background */}
       <EditorialBackground />
 
-      {/* Rebuilt Header inspired by Reference Image 1 with Sumi-e Ink Smoke & Inner Architectural Frame */}
+      {/* Apple Global Navigation Header */}
       <InkFrameHeader
         currentView={currentView}
         onNavigate={onNavigate}
@@ -34,10 +34,10 @@ export function AppShell({
         onCurrencyChange={onCurrencyChange}
       />
 
-      {/* Main Content Area */}
-      <main className="relative z-10 flex-grow">{children}</main>
+      {/* Main Content Area - padded to clear 44px fixed Apple header */}
+      <main className="relative z-10 flex-grow pt-[44px]">{children}</main>
 
-      {/* Kresna Footer for all pages */}
+      {/* Footer for all pages */}
       <KresnaFooter />
     </div>
   );

@@ -301,7 +301,7 @@ export function InkFrameHeader({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{ duration: 0.14 }}
-                    className="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl p-1.5 z-50 bg-[#1c1c1e]/90 backdrop-blur-2xl border border-white/[0.12] text-white"
+                    className="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl p-1.5 z-50 bg-black/90 backdrop-blur-2xl border border-white/[0.12] text-white"
                   >
                     <div className="px-2.5 py-1 text-[10px] font-semibold text-white/40 uppercase tracking-wider">
                       Currency
@@ -343,7 +343,7 @@ export function InkFrameHeader({
                 aria-label="Notifications"
               >
                 <Bell className="w-3.5 h-3.5" />
-                <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-[#0071e3]" />
+                <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-off-white" />
               </button>
 
               <AnimatePresence>
@@ -353,7 +353,7 @@ export function InkFrameHeader({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{ duration: 0.14 }}
-                    className="absolute right-0 mt-2 w-72 rounded-2xl shadow-2xl p-3 z-50 bg-[#1c1c1e]/90 backdrop-blur-2xl border border-white/[0.12] text-white"
+                    className="absolute right-0 mt-2 w-72 rounded-2xl shadow-2xl p-3 z-50 bg-black/90 backdrop-blur-2xl border border-white/[0.12] text-white"
                   >
                     <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.08]">
                       <span className="text-[12px] font-semibold text-white/90">Notifications</span>
@@ -408,7 +408,7 @@ export function InkFrameHeader({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 4, scale: 0.98 }}
                       transition={{ duration: 0.14 }}
-                      className="absolute right-0 mt-2 w-56 rounded-2xl shadow-2xl p-2.5 z-50 bg-[#1c1c1e]/90 backdrop-blur-2xl border border-white/[0.12] text-white"
+                      className="absolute right-0 mt-2 w-56 rounded-2xl shadow-2xl p-2.5 z-50 bg-black/90 backdrop-blur-2xl border border-white/[0.12] text-white"
                     >
                       <div className="px-2 py-1.5 mb-1.5 border-b border-white/[0.08]">
                         <p className="text-[12px] font-semibold text-white truncate">{user.name}</p>
@@ -431,7 +431,7 @@ export function InkFrameHeader({
                           logout();
                           setProfileMenuOpen(false);
                         }}
-                        className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[12px] text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-colors cursor-pointer mt-0.5"
+                        className="w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[12px] text-light-gray hover:bg-graphite/10 hover:text-off-white transition-colors cursor-pointer mt-0.5"
                       >
                         <LogOut className="w-3.5 h-3.5" />
                         <span>Sign Out</span>
@@ -525,7 +525,7 @@ export function InkFrameHeader({
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/80 backdrop-blur-2xl flex flex-col items-center pt-24 px-4"
           >
-            <div className="w-full max-w-[640px] bg-[#1c1c1e] rounded-2xl border border-white/[0.12] p-4 shadow-2xl">
+            <div className="w-full max-w-[640px] bg-black rounded-2xl border border-white/[0.12] p-4 shadow-2xl">
               <div className="flex items-center gap-3 pb-3 border-b border-white/[0.08]">
                 <Search className="w-4 h-4 text-white/40" />
                 <input
@@ -559,7 +559,7 @@ export function InkFrameHeader({
                       }}
                       className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/[0.06] text-white/80 hover:text-white text-[13px] text-left transition-colors cursor-pointer"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#0071e3]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-off-white" />
                       <span>{item.label}</span>
                     </button>
                   ))}
@@ -637,7 +637,7 @@ export function InkFrameHeader({
                       logout();
                       setMobileMenuOpen(false);
                     }}
-                    className="text-xs text-red-400 font-medium cursor-pointer"
+                    className="text-xs text-light-gray font-medium cursor-pointer"
                   >
                     Sign Out
                   </button>

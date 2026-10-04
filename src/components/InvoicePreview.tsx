@@ -16,12 +16,12 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
     <div
       ref={ref}
       style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--color-off-white)',
         backgroundImage: 'url(/invoice-bg.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        color: '#111111',
+        color: 'var(--color-black)',
         width: '210mm',
         minHeight: '297mm',
         margin: '0 auto',
@@ -46,13 +46,13 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
                 style={{
                   width: '52px',
                   height: '52px',
-                  backgroundColor: '#111111',
+                  backgroundColor: 'var(--color-black)',
                   borderRadius: '12px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: '16px',
-                  color: '#FFFFFF',
+                  color: 'var(--color-off-white)',
                   fontWeight: 700,
                   fontSize: '20px',
                   letterSpacing: '-0.03em',
@@ -61,21 +61,21 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
                 NL
               </div>
             )}
-            <h1 style={{ fontSize: '22px', fontWeight: 700, color: '#111111', margin: '0 0 4px 0', letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--color-black)', margin: '0 0 4px 0', letterSpacing: '-0.02em' }}>
               {invoice.company.name || 'Noir Labs'}
             </h1>
-            <p style={{ fontSize: '13px', color: '#6B7280', margin: '0 0 10px 0' }}>
+            <p style={{ fontSize: '13px', color: 'var(--color-gray)', margin: '0 0 10px 0' }}>
               Digital Design & Engineering Studio
             </p>
 
-            <div style={{ fontSize: '12px', color: '#6B7280', lineHeight: '1.5' }}>
+            <div style={{ fontSize: '12px', color: 'var(--color-gray)', lineHeight: '1.5' }}>
               {invoice.company.address && <div>{invoice.company.address}</div>}
               <div>
                 {invoice.company.email} {invoice.company.phone && `• ${invoice.company.phone}`}
               </div>
               {invoice.company.website && <div>{invoice.company.website}</div>}
               {invoice.company.gstNumber && (
-                <div style={{ marginTop: '4px', fontWeight: 500, color: '#4B5563' }}>
+                <div style={{ marginTop: '4px', fontWeight: 500, color: 'var(--color-graphite)' }}>
                   GSTIN: {invoice.company.gstNumber}
                 </div>
               )}
@@ -83,28 +83,28 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
           </div>
 
           <div style={{ textAlign: 'right' }}>
-            <h2 style={{ fontSize: '32px', fontWeight: 800, color: '#111111', margin: '0 0 16px 0', letterSpacing: '-0.02em' }}>
+            <h2 style={{ fontSize: '32px', fontWeight: 800, color: 'var(--color-black)', margin: '0 0 16px 0', letterSpacing: '-0.02em' }}>
               INVOICE
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'auto auto', gap: '4px 16px', fontSize: '13px', textAlign: 'right' }}>
-              <span style={{ color: '#6B7280' }}>Invoice No:</span>
-              <span style={{ fontWeight: 600, color: '#111111' }}>{invoice.invoiceNumber}</span>
+              <span style={{ color: 'var(--color-gray)' }}>Invoice No:</span>
+              <span style={{ fontWeight: 600, color: 'var(--color-black)' }}>{invoice.invoiceNumber}</span>
 
-              <span style={{ color: '#6B7280' }}>Issue Date:</span>
-              <span style={{ fontWeight: 500, color: '#111111' }}>
+              <span style={{ color: 'var(--color-gray)' }}>Issue Date:</span>
+              <span style={{ fontWeight: 500, color: 'var(--color-black)' }}>
                 {invoice.invoiceDate
                   ? new Date(invoice.invoiceDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
                   : '-'}
               </span>
 
-              <span style={{ color: '#6B7280' }}>Due Date:</span>
-              <span style={{ fontWeight: 500, color: '#111111' }}>
+              <span style={{ color: 'var(--color-gray)' }}>Due Date:</span>
+              <span style={{ fontWeight: 500, color: 'var(--color-black)' }}>
                 {invoice.dueDate
                   ? new Date(invoice.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
                   : '-'}
               </span>
 
-              <span style={{ color: '#6B7280' }}>Status:</span>
+              <span style={{ color: 'var(--color-gray)' }}>Status:</span>
               <span
                 style={{
                   fontWeight: 600,
@@ -112,12 +112,12 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
                   fontSize: '11px',
                   color:
                     invoice.status === 'paid'
-                      ? '#0D9488'
+                      ? 'var(--color-black)'
                       : invoice.status === 'pending'
-                      ? '#D97706'
+                      ? 'var(--color-gray)'
                       : invoice.status === 'overdue'
-                      ? '#E11D48'
-                      : '#6B7280',
+                      ? 'var(--color-graphite)'
+                      : 'var(--color-gray)',
                 }}
               >
                 {invoice.status || 'pending'}
@@ -133,24 +133,24 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
             justifyContent: 'space-between',
             alignItems: 'flex-start',
             padding: '16px 0',
-            borderTop: '1px solid #E5E7EB',
-            borderBottom: '1px solid #E5E7EB',
+            borderTop: '1px solid var(--color-light-gray)',
+            borderBottom: '1px solid var(--color-light-gray)',
             marginBottom: '28px',
           }}
         >
           <div>
-            <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9CA3AF', fontWeight: 600, marginBottom: '6px' }}>
+            <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600, marginBottom: '6px' }}>
               Billed To
             </div>
-            <div style={{ fontSize: '15px', fontWeight: 700, color: '#111111' }}>
+            <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--color-black)' }}>
               {invoice.client.companyName || invoice.client.name || 'Client Name'}
             </div>
             {invoice.client.name && invoice.client.companyName && (
-              <div style={{ fontSize: '13px', color: '#4B5563', marginTop: '2px' }}>
+              <div style={{ fontSize: '13px', color: 'var(--color-graphite)', marginTop: '2px' }}>
                 Attn: {invoice.client.name}
               </div>
             )}
-            <div style={{ fontSize: '12px', color: '#6B7280', marginTop: '4px', maxWidth: '280px', lineHeight: '1.4' }}>
+            <div style={{ fontSize: '12px', color: 'var(--color-gray)', marginTop: '4px', maxWidth: '280px', lineHeight: '1.4' }}>
               {invoice.client.address && <div>{invoice.client.address}</div>}
               {(invoice.client.email || invoice.client.phone) && (
                 <div style={{ marginTop: '2px' }}>
@@ -162,10 +162,10 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
 
           {invoice.client.projectName && (
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9CA3AF', fontWeight: 600, marginBottom: '6px' }}>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600, marginBottom: '6px' }}>
                 Project Reference
               </div>
-              <div style={{ fontSize: '14px', fontWeight: 600, color: '#111111' }}>
+              <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-black)' }}>
                 {invoice.client.projectName}
               </div>
             </div>
@@ -175,12 +175,12 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         {/* Items Table */}
         <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '28px', fontSize: '13px' }}>
           <thead>
-            <tr style={{ borderBottom: '2px solid #111111', textAlign: 'left' }}>
-              <th style={{ padding: '8px 0', fontWeight: 600, color: '#111111', width: '45%' }}>Service & Description</th>
-              <th style={{ padding: '8px 8px', fontWeight: 600, color: '#111111', textAlign: 'center', width: '10%' }}>Qty</th>
-              <th style={{ padding: '8px 8px', fontWeight: 600, color: '#111111', textAlign: 'right', width: '15%' }}>Rate</th>
-              <th style={{ padding: '8px 8px', fontWeight: 600, color: '#111111', textAlign: 'center', width: '10%' }}>Tax</th>
-              <th style={{ padding: '8px 0', fontWeight: 600, color: '#111111', textAlign: 'right', width: '20%' }}>Amount</th>
+            <tr style={{ borderBottom: '2px solid var(--color-black)', textAlign: 'left' }}>
+              <th style={{ padding: '8px 0', fontWeight: 600, color: 'var(--color-black)', width: '45%' }}>Service & Description</th>
+              <th style={{ padding: '8px 8px', fontWeight: 600, color: 'var(--color-black)', textAlign: 'center', width: '10%' }}>Qty</th>
+              <th style={{ padding: '8px 8px', fontWeight: 600, color: 'var(--color-black)', textAlign: 'right', width: '15%' }}>Rate</th>
+              <th style={{ padding: '8px 8px', fontWeight: 600, color: 'var(--color-black)', textAlign: 'center', width: '10%' }}>Tax</th>
+              <th style={{ padding: '8px 0', fontWeight: 600, color: 'var(--color-black)', textAlign: 'right', width: '20%' }}>Amount</th>
             </tr>
           </thead>
           <tbody>
@@ -189,25 +189,25 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
               const lineTotal = lineCalc ? lineCalc.total : item.quantity * item.rate * (1 + (item.taxPercent || 18) / 100);
 
               return (
-                <tr key={item.id || idx} style={{ borderBottom: '1px solid #E5E7EB' }}>
+                <tr key={item.id || idx} style={{ borderBottom: '1px solid var(--color-light-gray)' }}>
                   <td style={{ padding: '12px 0', verticalAlign: 'top' }}>
-                    <div style={{ fontWeight: 600, color: '#111111' }}>{item.name}</div>
+                    <div style={{ fontWeight: 600, color: 'var(--color-black)' }}>{item.name}</div>
                     {item.description && (
-                      <div style={{ fontSize: '12px', color: '#6B7280', marginTop: '2px', lineHeight: '1.4' }}>
+                      <div style={{ fontSize: '12px', color: 'var(--color-gray)', marginTop: '2px', lineHeight: '1.4' }}>
                         {item.description}
                       </div>
                     )}
                   </td>
-                  <td style={{ padding: '12px 8px', textAlign: 'center', color: '#4B5563', verticalAlign: 'top' }}>
+                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'var(--color-graphite)', verticalAlign: 'top' }}>
                     {item.quantity}
                   </td>
-                  <td style={{ padding: '12px 8px', textAlign: 'right', color: '#4B5563', verticalAlign: 'top' }}>
+                  <td style={{ padding: '12px 8px', textAlign: 'right', color: 'var(--color-graphite)', verticalAlign: 'top' }}>
                     {formatCurrency(item.rate, currency)}
                   </td>
-                  <td style={{ padding: '12px 8px', textAlign: 'center', color: '#6B7280', verticalAlign: 'top', fontSize: '12px' }}>
+                  <td style={{ padding: '12px 8px', textAlign: 'center', color: 'var(--color-gray)', verticalAlign: 'top', fontSize: '12px' }}>
                     {item.taxPercent || 0}%
                   </td>
-                  <td style={{ padding: '12px 0', textAlign: 'right', fontWeight: 600, color: '#111111', verticalAlign: 'top' }}>
+                  <td style={{ padding: '12px 0', textAlign: 'right', fontWeight: 600, color: 'var(--color-black)', verticalAlign: 'top' }}>
                     {formatCurrency(lineTotal, currency)}
                   </td>
                 </tr>
@@ -219,21 +219,21 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         {/* Totals Summary */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '32px' }}>
           <div style={{ width: '260px', fontSize: '13px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: '#6B7280' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: 'var(--color-gray)' }}>
               <span>Subtotal</span>
-              <span style={{ fontWeight: 500, color: '#111111' }}>{formatCurrency(totals.subtotal, currency)}</span>
+              <span style={{ fontWeight: 500, color: 'var(--color-black)' }}>{formatCurrency(totals.subtotal, currency)}</span>
             </div>
 
             {totals.itemDiscounts > 0 && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: '#DC2626' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: 'var(--color-graphite)' }}>
                 <span>Discount</span>
                 <span style={{ fontWeight: 500 }}>-{formatCurrency(totals.itemDiscounts, currency)}</span>
               </div>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: '#6B7280' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: 'var(--color-gray)' }}>
               <span>GST ({totals.effectiveTaxRate.toFixed(0)}%)</span>
-              <span style={{ fontWeight: 500, color: '#111111' }}>{formatCurrency(totals.taxTotal, currency)}</span>
+              <span style={{ fontWeight: 500, color: 'var(--color-black)' }}>{formatCurrency(totals.taxTotal, currency)}</span>
             </div>
 
             <div
@@ -242,11 +242,11 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
                 justifyContent: 'space-between',
                 padding: '10px 0',
                 marginTop: '6px',
-                borderTop: '1px solid #E5E7EB',
-                borderBottom: '2px solid #111111',
+                borderTop: '1px solid var(--color-light-gray)',
+                borderBottom: '2px solid var(--color-black)',
                 fontSize: '16px',
                 fontWeight: 700,
-                color: '#111111',
+                color: 'var(--color-black)',
               }}
             >
               <span>Grand Total</span>
@@ -254,9 +254,9 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
             </div>
 
             {totals.advancePaid > 0 && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: '#6B7280' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: 'var(--color-gray)' }}>
                 <span>Advance Paid</span>
-                <span style={{ fontWeight: 500, color: '#111111' }}>-{formatCurrency(totals.advancePaid, currency)}</span>
+                <span style={{ fontWeight: 500, color: 'var(--color-black)' }}>-{formatCurrency(totals.advancePaid, currency)}</span>
               </div>
             )}
 
@@ -269,7 +269,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
                   marginTop: '4px',
                   fontSize: '18px',
                   fontWeight: 800,
-                  color: '#0D9488',
+                  color: 'var(--color-black)',
                 }}
               >
                 <span>Balance Due</span>
@@ -283,16 +283,16 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginBottom: '28px' }}>
           {invoice.paymentSchedule && invoice.paymentSchedule.length > 0 && (
             <div>
-              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9CA3AF', fontWeight: 600, marginBottom: '8px' }}>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600, marginBottom: '8px' }}>
                 Payment Schedule
               </div>
-              <div style={{ fontSize: '12px', color: '#4B5563' }}>
+              <div style={{ fontSize: '12px', color: 'var(--color-graphite)' }}>
                 {invoice.paymentSchedule.map((pm) => (
                   <div key={pm.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0' }}>
                     <span>
                       {pm.percentage}% {pm.description}
                     </span>
-                    <span style={{ fontWeight: 600, color: '#111111' }}>
+                    <span style={{ fontWeight: 600, color: 'var(--color-black)' }}>
                       {formatCurrency(totals.grandTotal * (pm.percentage / 100), currency)}
                     </span>
                   </div>
@@ -303,10 +303,10 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
 
           {invoice.notes && (
             <div>
-              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9CA3AF', fontWeight: 600, marginBottom: '8px' }}>
+              <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600, marginBottom: '8px' }}>
                 Notes
               </div>
-              <p style={{ fontSize: '12px', color: '#6B7280', margin: 0, lineHeight: '1.5', whiteSpace: 'pre-wrap' }}>
+              <p style={{ fontSize: '12px', color: 'var(--color-gray)', margin: 0, lineHeight: '1.5', whiteSpace: 'pre-wrap' }}>
                 {invoice.notes}
               </p>
             </div>
@@ -315,12 +315,12 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
       </div>
 
       {/* Footer / Terms & Conditions & Signatory */}
-      <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'auto' }}>
+      <div style={{ borderTop: '1px solid var(--color-light-gray)', paddingTop: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'auto' }}>
         <div style={{ maxWidth: '65%' }}>
-          <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9CA3AF', fontWeight: 600, marginBottom: '6px' }}>
+          <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600, marginBottom: '6px' }}>
             Terms & Conditions
           </div>
-          <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '11px', color: '#6B7280', lineHeight: '1.4' }}>
+          <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '11px', color: 'var(--color-gray)', lineHeight: '1.4' }}>
             {(invoice.terms || []).map((term, i) => (
               <li key={i}>{term}</li>
             ))}
@@ -340,25 +340,25 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
                   : `mailto:${invoice.company.email}`
               }
               size={68}
-              bgColor="#ffffff"
-              fgColor="#111111"
+              bgColor="var(--color-off-white)"
+              fgColor="var(--color-black)"
               level="M"
               includeMargin={false}
             />
-            <div style={{ fontSize: '9px', color: '#4B5563', marginTop: '4px', fontWeight: 600 }}>
+            <div style={{ fontSize: '9px', color: 'var(--color-graphite)', marginTop: '4px', fontWeight: 600 }}>
               {invoice.company.upiId ? 'Scan to Pay via UPI' : 'Scan to Verify'}
             </div>
             {invoice.company.upiId && (
-              <div style={{ fontSize: '8px', color: '#6B7280', fontFamily: 'monospace' }}>
+              <div style={{ fontSize: '8px', color: 'var(--color-gray)', fontFamily: 'monospace' }}>
                 {invoice.company.upiId}
               </div>
             )}
           </div>
 
           <div style={{ textAlign: 'right' }}>
-            <div style={{ width: '120px', borderBottom: '1px solid #D1D5DB', marginBottom: '6px' }} />
-            <div style={{ fontSize: '12px', fontWeight: 600, color: '#111111' }}>Authorized Signatory</div>
-            <div style={{ fontSize: '10px', color: '#9CA3AF' }}>{invoice.company.name || 'Noir Labs'}</div>
+            <div style={{ width: '120px', borderBottom: '1px solid var(--color-light-gray)', marginBottom: '6px' }} />
+            <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-black)' }}>Authorized Signatory</div>
+            <div style={{ fontSize: '10px', color: 'var(--color-soft-gray)' }}>{invoice.company.name || 'Noir Labs'}</div>
           </div>
         </div>
       </div>

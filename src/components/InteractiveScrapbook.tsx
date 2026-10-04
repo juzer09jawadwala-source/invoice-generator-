@@ -19,19 +19,19 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
     subtitle: 'Miles T. - Multimedia Artist',
     icon: <User className="w-5 h-5" />,
     bounds: { top: 6, left: 5, width: 45, height: 21 },
-    accentColor: '#3B82F6',
+    accentColor: 'var(--color-light-gray)',
     content: (
       <div className="space-y-4">
-        <p className="text-[#D8CBB7]">
+        <p className="text-light-gray">
           <strong>Role:</strong> Graphic Designer, Video Editor, VFX Artist
         </p>
-        <p className="text-[#D8CBB7]">
+        <p className="text-light-gray">
           <strong>Location:</strong> Laguna, Philippines
         </p>
         <div className="p-4 bg-white/5 rounded-xl border border-white/10 space-y-2">
-          <p className="text-sm font-mono text-[#F4E7C8]">+63 931 000 0000</p>
-          <p className="text-sm font-mono text-[#F4E7C8]">miles2026_1@gmail.com</p>
-          <p className="text-sm font-mono text-[#3B82F6]">xdxdxd.myportfolio.com</p>
+          <p className="text-sm font-mono text-off-white">+63 931 000 0000</p>
+          <p className="text-sm font-mono text-off-white">miles2026_1@gmail.com</p>
+          <p className="text-sm font-mono text-light-gray">xdxdxd.myportfolio.com</p>
         </div>
       </div>
     ),
@@ -42,13 +42,13 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
     subtitle: 'Scan to View Works',
     icon: <QrCode className="w-5 h-5" />,
     bounds: { top: 5, left: 58, width: 33, height: 16 },
-    accentColor: '#10B981',
+    accentColor: 'var(--color-light-gray)',
     content: (
       <div className="space-y-4 text-center">
         <div className="inline-block p-4 bg-white rounded-2xl">
           <QrCode className="w-32 h-32 text-black" />
         </div>
-        <p className="text-[#D8CBB7]">
+        <p className="text-light-gray">
           Direct link to my complete digital portfolio, featuring high-res motion graphics, VFX breakdowns, and 2D animations.
         </p>
       </div>
@@ -60,13 +60,13 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
     subtitle: 'Freelance Multimedia Artist',
     icon: <Sparkles className="w-5 h-5" />,
     bounds: { top: 26, left: 15, width: 32, height: 20 },
-    accentColor: '#F59E0B',
+    accentColor: 'var(--color-light-gray)',
     content: (
       <div className="space-y-4">
-        <p className="text-[#D8CBB7] leading-relaxed">
+        <p className="text-light-gray leading-relaxed">
           I am a <strong className="text-white">Freelance Multimedia Artist</strong> who has been working since 2019. Alongside freelance work, I have contributed as a <strong className="text-white">VFX Artist on 14 Feature Films</strong> produced under <strong className="text-white">Viva Films</strong>.
         </p>
-        <p className="text-[#D8CBB7] leading-relaxed">
+        <p className="text-light-gray leading-relaxed">
           My practice extends across <strong className="text-white">Motion Graphics, 2D Animation, and Photo Manipulation</strong> crafting impactful visuals that bring ideas and stories to life.
         </p>
       </div>
@@ -90,12 +90,12 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
         ].map((job, idx) => (
           <div key={idx} className="flex justify-between items-start border-b border-white/10 pb-4 last:border-0">
             <div>
-              <h4 className={`font-bold ${job.highlight ? 'text-[#EF4444]' : 'text-[#F4E7C8]'}`}>
+              <h4 className={`font-bold ${job.highlight ? 'text-[#EF4444]' : 'text-off-white'}`}>
                 {job.role}
               </h4>
-              <p className="text-xs text-[#D8CBB7]/70 italic mt-1">{job.type}</p>
+              <p className="text-xs text-light-gray/70 italic mt-1">{job.type}</p>
             </div>
-            <span className="font-mono text-sm text-[#D8CBB7]">{job.date}</span>
+            <span className="font-mono text-sm text-light-gray">{job.date}</span>
           </div>
         ))}
       </div>
@@ -111,29 +111,29 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
     content: (
       <div className="space-y-6">
         <div>
-          <h4 className="text-lg font-bold text-[#F4E7C8] border-b border-white/10 pb-2 mb-3">Education</h4>
+          <h4 className="text-lg font-bold text-off-white border-b border-white/10 pb-2 mb-3">Education</h4>
           <div className="space-y-4">
             <div>
               <div className="flex justify-between">
                 <span className="font-bold text-white">Senior Highschool</span>
-                <span className="font-mono text-sm text-[#D8CBB7]">2016 - 2018</span>
+                <span className="font-mono text-sm text-light-gray">2016 - 2018</span>
               </div>
-              <p className="text-sm text-[#D8CBB7]/80">ICT - Animation (Mapua Malayan Colleges Laguna)</p>
+              <p className="text-sm text-light-gray/80">ICT - Animation (Mapua Malayan Colleges Laguna)</p>
             </div>
             <div>
               <div className="flex justify-between">
                 <span className="font-bold text-white">Highschool</span>
-                <span className="font-mono text-sm text-[#D8CBB7]">2013 - 2016</span>
+                <span className="font-mono text-sm text-light-gray">2013 - 2016</span>
               </div>
-              <p className="text-sm text-[#D8CBB7]/80">Cabuyao National Highschool</p>
+              <p className="text-sm text-light-gray/80">Cabuyao National Highschool</p>
             </div>
           </div>
         </div>
         <div>
-          <h4 className="text-lg font-bold text-[#F4E7C8] border-b border-white/10 pb-2 mb-3">Abilities</h4>
+          <h4 className="text-lg font-bold text-off-white border-b border-white/10 pb-2 mb-3">Abilities</h4>
           <div className="flex flex-wrap gap-2">
             {['Motion Graphics', 'Video Editing', 'Photo Manipulation', 'Graphic Designing', 'Digital Painting', 'Vector Illustration'].map((ability) => (
-              <span key={ability} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-[#D8CBB7]">
+              <span key={ability} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-light-gray">
                 {ability}
               </span>
             ))}
@@ -152,8 +152,8 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
     content: (
       <div className="grid grid-cols-2 gap-4">
         {[
-          { name: 'After Effects', color: 'bg-purple-900/50 border-purple-500/50 text-purple-200' },
-          { name: 'Photoshop', color: 'bg-blue-900/50 border-blue-500/50 text-blue-200' },
+          { name: 'After Effects', color: 'bg-deep-graphite/50 border-graphite/50 text-light-gray' },
+          { name: 'Photoshop', color: 'bg-blue-900/50 border-graphite/50 text-blue-200' },
           { name: 'Premiere Pro', color: 'bg-indigo-900/50 border-indigo-500/50 text-indigo-200' },
           { name: 'Illustrator', color: 'bg-orange-900/50 border-orange-500/50 text-orange-200' },
         ].map((app) => (
@@ -176,7 +176,7 @@ const SCRAPBOOK_ELEMENTS: ScrapbookElement[] = [
         {['Adaptability', 'Communication', 'Collaboration', 'Problem-solving'].map((skill, idx) => (
           <div key={skill} className="flex items-center gap-4">
             <span className="text-2xl font-black text-white/20">0{idx + 1}</span>
-            <span className="text-xl font-bold text-[#F4E7C8]">{skill}</span>
+            <span className="text-xl font-bold text-off-white">{skill}</span>
           </div>
         ))}
       </div>
@@ -189,17 +189,17 @@ export function InteractiveScrapbook() {
   const [selectedElement, setSelectedElement] = useState<ScrapbookElement | null>(null);
 
   return (
-    <div className="relative w-full bg-black shadow-2xl py-12 overflow-hidden border-t border-[#F4E7C8]/10">
+    <div className="relative w-full bg-black shadow-2xl py-12 overflow-hidden border-t border-off-white/10">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center sm:text-left">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-[#F4E7C8]/15 text-xs font-semibold text-[#F4E7C8] mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-[#3B82F6]" />
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-off-white/15 text-xs font-semibold text-off-white mb-3">
+          <Sparkles className="w-3.5 h-3.5 text-light-gray" />
           <span className="tracking-widest uppercase font-mono">SEC_03 // MULTIMEDIA DOSSIER</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-[#F4E7C8]">
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-off-white">
           Interactive Creative Portfolio
         </h2>
-        <p className="text-[#D8CBB7] mt-3 max-w-2xl font-light text-sm sm:text-base mx-auto sm:mx-0">
+        <p className="text-light-gray mt-3 max-w-2xl font-light text-sm sm:text-base mx-auto sm:mx-0">
           Hover and click on the scrapbook elements below to unseal details regarding experience, education, software stack, and creative abilities.
         </p>
       </div>
@@ -257,7 +257,7 @@ export function InteractiveScrapbook() {
                       <div className="text-white">{el.icon}</div>
                       <div>
                         <div className="text-xs font-bold text-white uppercase tracking-wider">{el.title}</div>
-                        <div className="text-[10px] text-[#D8CBB7]">{el.subtitle}</div>
+                        <div className="text-[10px] text-light-gray">{el.subtitle}</div>
                       </div>
                     </div>
                   </div>

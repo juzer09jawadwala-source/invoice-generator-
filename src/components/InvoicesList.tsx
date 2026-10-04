@@ -85,30 +85,30 @@ export function InvoicesList({
     switch (status) {
       case 'paid':
         return (
-          <Badge variant="outline" className="border-emerald-500/40 text-emerald-300 bg-emerald-500/15 font-semibold">
+          <Badge variant="outline" className="border-graphite/40 text-light-gray bg-graphite/15 font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse" />
             Paid
           </Badge>
         );
       case 'pending':
         return (
-          <Badge variant="outline" className="border-[#F3C352]/40 text-[#F3C352] bg-[#F3C352]/15 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#F3C352] mr-1.5" />
+          <Badge variant="outline" className="border-soft-gray/40 text-soft-gray bg-soft-gray/15 font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-soft-gray mr-1.5" />
             Pending
           </Badge>
         );
       case 'overdue':
         return (
-          <Badge variant="outline" className="border-red-500/40 text-red-300 bg-red-500/15 font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-400 mr-1.5" />
+          <Badge variant="outline" className="border-graphite/40 text-off-white bg-graphite/15 font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-light-gray mr-1.5" />
             Overdue
           </Badge>
         );
       case 'draft':
       default:
         return (
-          <Badge variant="outline" className="border-white/15 text-[#D8CBB7] bg-white/[0.06]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D8CBB7]/60 mr-1.5" />
+          <Badge variant="outline" className="border-white/15 text-light-gray bg-white/[0.06]">
+            <span className="w-1.5 h-1.5 rounded-full bg-light-gray/60 mr-1.5" />
             Draft
           </Badge>
         );
@@ -149,10 +149,10 @@ export function InvoicesList({
               setSelectedShowcaseId(row.original.id);
               onLoad(row.original.id);
             }}
-            className="font-mono font-bold text-[#F4E7C8] hover:text-[#E85D3F] transition-colors text-left flex items-center gap-1.5 group cursor-pointer"
+            className="font-mono font-bold text-off-white hover:text-off-white transition-colors text-left flex items-center gap-1.5 group cursor-pointer"
           >
             <span>{row.original.invoiceNumber}</span>
-            <span className="opacity-0 group-hover:opacity-100 text-[#E85D3F] text-[10px]">↗</span>
+            <span className="opacity-0 group-hover:opacity-100 text-off-white text-[10px]">↗</span>
           </button>
         ),
       },
@@ -168,11 +168,11 @@ export function InvoicesList({
             className="cursor-pointer"
             title="Click to view in showcase"
           >
-            <div className="font-heading font-bold text-[#F4E7C8] text-xs">
+            <div className="font-heading font-bold text-off-white text-xs">
               {row.original.client.companyName || row.original.client.name || 'Unnamed Client'}
             </div>
             {row.original.client.name && row.original.client.companyName && (
-              <div className="text-[11px] text-[#D8CBB7]">{row.original.client.name}</div>
+              <div className="text-[11px] text-light-gray">{row.original.client.name}</div>
             )}
           </div>
         ),
@@ -192,14 +192,14 @@ export function InvoicesList({
           const term = getDaysTerm(row.original.invoiceDate, row.original.dueDate);
 
           return (
-            <div className="flex items-center gap-1.5 text-xs text-[#D8CBB7]">
-              <span className="font-semibold text-[#F4E7C8]">{issued}</span>
-              <span aria-hidden="true" className="w-4 border-b border-dashed border-[#F4E7C8]/25" />
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.05] text-[#F4E7C8] border border-[#F4E7C8]/15">
+            <div className="flex items-center gap-1.5 text-xs text-light-gray">
+              <span className="font-semibold text-off-white">{issued}</span>
+              <span aria-hidden="true" className="w-4 border-b border-dashed border-off-white/25" />
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/[0.05] text-off-white border border-off-white/15">
                 {term}
               </span>
-              <span aria-hidden="true" className="w-4 border-b border-dashed border-[#F4E7C8]/25" />
-              <span className="font-semibold text-[#F4E7C8]">{due}</span>
+              <span aria-hidden="true" className="w-4 border-b border-dashed border-off-white/25" />
+              <span className="font-semibold text-off-white">{due}</span>
             </div>
           );
         },
@@ -220,7 +220,7 @@ export function InvoicesList({
           const totals = calculateInvoice(row.original);
           const invCurrency = row.original.currency || currency;
           return (
-            <div className="tabular-nums font-mono font-bold text-right text-[#F4E7C8] text-xs sm:text-sm">
+            <div className="tabular-nums font-mono font-bold text-right text-off-white text-xs sm:text-sm">
               {formatCurrency(totals.grandTotal, invCurrency)}
             </div>
           );
@@ -240,8 +240,8 @@ export function InvoicesList({
               }}
               className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                 selectedShowcaseId === row.original.id
-                  ? 'bg-[#E85D3F] border-[#E85D3F] text-white shadow-sm'
-                  : 'bg-white/[0.04] border-[#F4E7C8]/15 hover:bg-[#E85D3F]/20 text-[#D8CBB7] hover:text-[#F4E7C8]'
+                  ? 'bg-off-white border-off-white text-white shadow-sm'
+                  : 'bg-white/[0.04] border-off-white/15 hover:bg-off-white/20 text-light-gray hover:text-off-white'
               }`}
               title="Showcase in layered deck"
               aria-label={`View invoice ${row.original.invoiceNumber} in showcase`}
@@ -250,7 +250,7 @@ export function InvoicesList({
             </button>
             <button
               onClick={() => onLoad(row.original.id)}
-              className="p-1.5 rounded-lg bg-white/[0.04] border border-[#F4E7C8]/15 hover:bg-white/10 text-[#D8CBB7] hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg bg-white/[0.04] border border-off-white/15 hover:bg-white/10 text-light-gray hover:text-white transition-colors cursor-pointer"
               title="Edit Invoice"
               aria-label={`Edit invoice ${row.original.invoiceNumber}`}
             >
@@ -258,7 +258,7 @@ export function InvoicesList({
             </button>
             <button
               onClick={() => onDuplicate(row.original.id)}
-              className="p-1.5 rounded-lg bg-white/[0.04] border border-[#F4E7C8]/15 hover:bg-white/10 text-[#D8CBB7] hover:text-white transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg bg-white/[0.04] border border-off-white/15 hover:bg-white/10 text-light-gray hover:text-white transition-colors cursor-pointer"
               title="Duplicate"
               aria-label={`Duplicate invoice ${row.original.invoiceNumber}`}
             >
@@ -266,7 +266,7 @@ export function InvoicesList({
             </button>
             <button
               onClick={() => onDelete(row.original.id)}
-              className="p-1.5 rounded-lg bg-white/[0.04] border border-[#F4E7C8]/15 hover:bg-red-500/20 text-[#D8CBB7] hover:text-red-400 transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg bg-white/[0.04] border border-off-white/15 hover:bg-graphite/20 text-light-gray hover:text-light-gray transition-colors cursor-pointer"
               title="Delete"
               aria-label={`Delete invoice ${row.original.invoiceNumber}`}
             >
@@ -359,10 +359,10 @@ export function InvoicesList({
       {/* ========================================================== */}
       <div className="relative flex items-center justify-center py-2">
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-[#F4E7C8]/15" />
+          <div className="w-full border-t border-off-white/15" />
         </div>
-        <div className="relative flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#111111]/90 border border-[#F4E7C8]/20 backdrop-blur-md shadow-lg text-[10px] font-bold uppercase tracking-widest text-[#F4E7C8]">
-          <Layers className="w-3.5 h-3.5 text-[#E85D3F]" />
+        <div className="relative flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/90 border border-off-white/20 backdrop-blur-md shadow-lg text-[10px] font-bold uppercase tracking-widest text-off-white">
+          <Layers className="w-3.5 h-3.5 text-off-white" />
           <span>Ledger & Document Directory</span>
         </div>
       </div>
@@ -373,10 +373,10 @@ export function InvoicesList({
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-[#F4E7C8]">
+            <h3 className="text-xl sm:text-2xl font-heading font-extrabold text-off-white">
               All Billing Records
             </h3>
-            <p className="text-xs text-[#D8CBB7] mt-0.5">
+            <p className="text-xs text-light-gray mt-0.5">
               Live index of client statements, schedules, and settlement statuses.
             </p>
           </div>
@@ -392,10 +392,10 @@ export function InvoicesList({
         </div>
 
         {/* Toolbar & Filter Bar */}
-        <div className="glass-panel p-4 rounded-2xl border border-[#F4E7C8]/15 flex flex-col sm:flex-row gap-3 items-center justify-between shadow-xl">
+        <div className="glass-panel p-4 rounded-2xl border border-off-white/15 flex flex-col sm:flex-row gap-3 items-center justify-between shadow-xl">
           {/* Search input with warm styling */}
           <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-[#D8CBB7] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-light-gray absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search invoice no, client, project..."
@@ -417,8 +417,8 @@ export function InvoicesList({
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                   statusFilter === st
-                    ? 'bg-[#E85D3F] text-white font-bold shadow-md shadow-[#E85D3F]/30 border border-[#E85D3F]'
-                    : 'text-[#D8CBB7] hover:text-[#F4E7C8] hover:bg-white/[0.05]'
+                    ? 'bg-off-white text-white font-bold shadow-md shadow-off-white/30 border border-off-white'
+                    : 'text-light-gray hover:text-off-white hover:bg-white/[0.05]'
                 }`}
               >
                 <span>{st}</span>
@@ -437,17 +437,17 @@ export function InvoicesList({
               initial={{ opacity: 0, y: -10, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              className="p-3 px-4 sm:px-5 rounded-2xl bg-[#150E0C] border border-[#E85D3F]/40 shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+              className="p-3 px-4 sm:px-5 rounded-2xl bg-deep-graphite border border-off-white/40 shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3"
             >
-              <div className="flex items-center gap-2 text-xs text-[#F4E7C8]">
-                <span className="font-bold text-[#F3C352]">{selectedRows.length}</span> invoices selected
+              <div className="flex items-center gap-2 text-xs text-off-white">
+                <span className="font-bold text-soft-gray">{selectedRows.length}</span> invoices selected
               </div>
               <div className="flex items-center gap-2">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handleBulkMarkAsPaid}
-                  className="text-xs text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/15"
+                  className="text-xs text-light-gray border-graphite/30 hover:bg-graphite/15"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-400" /> Mark as Paid
                 </Button>
@@ -467,11 +467,11 @@ export function InvoicesList({
         {/* ========================================================== */}
         {/* 4. TANSTACK TABLE CARD (Redesigned with Editorial Warmth)   */}
         {/* ========================================================== */}
-        <Card className="border border-[#F4E7C8]/15 bg-[#140C0A]/85 backdrop-blur-xl overflow-hidden shadow-2xl">
+        <Card className="border border-off-white/15 bg-deep-graphite/85 backdrop-blur-xl overflow-hidden shadow-2xl">
           <Table className="table-fixed min-w-[860px]">
-            <TableHeader className="bg-[#111111]/95 border-b border-[#F4E7C8]/15">
+            <TableHeader className="bg-black/95 border-b border-off-white/15">
               {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id} className="border-[#F4E7C8]/15">
+                <TableRow key={headerGroup.id} className="border-off-white/15">
                   {headerGroup.headers.map((header) => {
                     const isSortable = header.column.getCanSort();
                     const sortDir = header.column.getIsSorted();
@@ -480,7 +480,7 @@ export function InvoicesList({
                       <TableHead
                         key={header.id}
                         style={{ width: `${header.column.getSize()}px` }}
-                        className="select-none text-[#F4E7C8] font-bold text-[11px] uppercase tracking-wider"
+                        className="select-none text-off-white font-bold text-[11px] uppercase tracking-wider"
                       >
                         {header.isPlaceholder ? null : isSortable ? (
                           <div
@@ -495,11 +495,11 @@ export function InvoicesList({
                             className="flex items-center gap-1.5 cursor-pointer hover:text-white transition-colors group"
                           >
                             <span>{flexRender(header.column.columnDef.header, header.getContext())}</span>
-                            <span className="text-[#D8CBB7]/60 group-hover:text-[#F4E7C8]">
+                            <span className="text-light-gray/60 group-hover:text-off-white">
                               {sortDir === 'asc' ? (
-                                <ChevronUp className="w-3.5 h-3.5 text-[#F3C352]" />
+                                <ChevronUp className="w-3.5 h-3.5 text-soft-gray" />
                               ) : sortDir === 'desc' ? (
-                                <ChevronDown className="w-3.5 h-3.5 text-[#E85D3F]" />
+                                <ChevronDown className="w-3.5 h-3.5 text-off-white" />
                               ) : (
                                 <ArrowUpDown className="w-3 h-3 opacity-30 group-hover:opacity-75" />
                               )}
@@ -515,7 +515,7 @@ export function InvoicesList({
               ))}
             </TableHeader>
 
-            <TableBody className="divide-y divide-[#F4E7C8]/10">
+            <TableBody className="divide-y divide-off-white/10">
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => {
                   const isShowcased = selectedShowcaseId === row.original.id;
@@ -525,12 +525,12 @@ export function InvoicesList({
                       data-state={row.getIsSelected() && 'selected'}
                       className={`group transition-colors ${
                         isShowcased
-                          ? 'bg-[#E85D3F]/10 border-l-2 border-l-[#E85D3F]'
+                          ? 'bg-off-white/10 border-l-2 border-l-off-white'
                           : 'hover:bg-white/[0.04]'
                       }`}
                     >
                       {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id} className="py-3 px-4 text-[#F4E7C8]">
+                        <TableCell key={cell.id} className="py-3 px-4 text-off-white">
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </TableCell>
                       ))}
@@ -539,11 +539,11 @@ export function InvoicesList({
                 })
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-32 text-center text-[#D8CBB7]">
+                  <TableCell colSpan={columns.length} className="h-32 text-center text-light-gray">
                     <div className="py-8 space-y-2">
-                      <FileText className="w-8 h-8 text-[#E85D3F] mx-auto opacity-70" />
-                      <p className="font-semibold text-[#F4E7C8] text-sm">No invoices found</p>
-                      <p className="text-xs text-[#D8CBB7]">
+                      <FileText className="w-8 h-8 text-off-white mx-auto opacity-70" />
+                      <p className="font-semibold text-off-white text-sm">No invoices found</p>
+                      <p className="text-xs text-light-gray">
                         Try adjusting your search query or status filter.
                       </p>
                     </div>
@@ -554,7 +554,7 @@ export function InvoicesList({
           </Table>
 
           {/* TanStack Table Pagination Footer */}
-          <div className="p-4 border-t border-[#F4E7C8]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D8CBB7] bg-[#111111]/70">
+          <div className="p-4 border-t border-off-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-light-gray bg-black/70">
             {/* Range Selector */}
             <div className="flex items-center gap-2">
               <span>Viewing</span>
@@ -568,21 +568,21 @@ export function InvoicesList({
                 aria-label="Select items per page"
               >
                 {[5, 10, 20, 50].map((s) => (
-                  <option key={s} value={s} className="bg-[#150E0C] text-[#F4E7C8]">
+                  <option key={s} value={s} className="bg-deep-graphite text-off-white">
                     {s}
                   </option>
                 ))}
               </Select>
               <span>
-                of <strong className="text-[#F4E7C8]">{data.length}</strong> results
+                of <strong className="text-off-white">{data.length}</strong> results
               </span>
             </div>
 
             {/* Previous / Next Buttons */}
             <div className="flex items-center gap-2">
               <span className="mr-2">
-                Page <strong className="text-[#F4E7C8]">{table.getState().pagination.pageIndex + 1}</strong> of{' '}
-                <strong className="text-[#F4E7C8]">{Math.max(1, table.getPageCount())}</strong>
+                Page <strong className="text-off-white">{table.getState().pagination.pageIndex + 1}</strong> of{' '}
+                <strong className="text-off-white">{Math.max(1, table.getPageCount())}</strong>
               </span>
               <PaginationPrevious
                 disabled={!table.getCanPreviousPage()}

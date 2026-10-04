@@ -45,13 +45,13 @@ export function LayeredInvoiceShowcase({
   // Safe fallback if list is empty
   if (!invoices || invoices.length === 0) {
     return (
-      <div className="w-full py-16 text-center rounded-3xl bg-[#111111]/60 border border-white/10 backdrop-blur-xl">
-        <FileText className="w-12 h-12 text-[#E85D3F] mx-auto mb-3 opacity-80" />
-        <h3 className="text-xl font-heading font-bold text-[#F4E7C8]">No Invoices Available</h3>
-        <p className="text-sm text-[#D8CBB7] mt-1 mb-6">Create your first invoice to view the editorial showcase.</p>
+      <div className="w-full py-16 text-center rounded-3xl bg-black/60 border border-white/10 backdrop-blur-xl">
+        <FileText className="w-12 h-12 text-off-white mx-auto mb-3 opacity-80" />
+        <h3 className="text-xl font-heading font-bold text-off-white">No Invoices Available</h3>
+        <p className="text-sm text-light-gray mt-1 mb-6">Create your first invoice to view the editorial showcase.</p>
         <button
           onClick={onCreateNew}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-semibold shadow-lg transition-all"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-off-white hover:bg-light-gray text-white text-xs font-semibold shadow-lg transition-all"
         >
           <Plus className="w-4 h-4" />
           <span>Create First Invoice</span>
@@ -108,18 +108,18 @@ export function LayeredInvoiceShowcase({
       {/* Editorial Section Top Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.08] border border-white/10 text-xs font-medium text-[#F4E7C8] mb-2 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5 text-[#E85D3F]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.08] border border-white/10 text-xs font-medium text-off-white mb-2 backdrop-blur-md">
+            <Sparkles className="w-3.5 h-3.5 text-off-white" />
             <span className="tracking-wide uppercase text-[10px] font-bold">Featured Editorial Showcase</span>
-            <span className="text-[#D8CBB7]/60">•</span>
-            <span className="text-[11px] text-[#D8CBB7]">
+            <span className="text-light-gray/60">•</span>
+            <span className="text-[11px] text-light-gray">
               {activeIndex + 1} of {invoices.length} invoices
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#F4E7C8] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-off-white tracking-tight">
             Layered Document Composition
           </h2>
-          <p className="text-xs sm:text-sm text-[#D8CBB7] mt-0.5">
+          <p className="text-xs sm:text-sm text-light-gray mt-0.5">
             Physical document presentation inspired by modern editorial studio publications.
           </p>
         </div>
@@ -127,22 +127,22 @@ export function LayeredInvoiceShowcase({
         {/* Carousel & Action Controls */}
         <div className="flex items-center gap-2.5 self-start sm:self-auto">
           {/* Previous / Next Flip Controls */}
-          <div className="flex items-center bg-[#111111]/70 backdrop-blur-md border border-white/10 rounded-2xl p-1 shadow-lg">
+          <div className="flex items-center bg-black/70 backdrop-blur-md border border-white/10 rounded-2xl p-1 shadow-lg">
             <button
               onClick={handlePrev}
               disabled={invoices.length <= 1}
-              className="p-2 rounded-xl text-[#F4E7C8] hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              className="p-2 rounded-xl text-off-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-colors"
               title="Previous invoice"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="px-2 font-mono text-xs font-semibold text-[#D8CBB7] select-none">
+            <span className="px-2 font-mono text-xs font-semibold text-light-gray select-none">
               {activeIndex + 1}/{invoices.length}
             </span>
             <button
               onClick={handleNext}
               disabled={invoices.length <= 1}
-              className="p-2 rounded-xl text-[#F4E7C8] hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-colors"
+              className="p-2 rounded-xl text-off-white hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-colors"
               title="Next invoice"
             >
               <ChevronRight className="w-4 h-4" />
@@ -152,27 +152,27 @@ export function LayeredInvoiceShowcase({
           {/* Quick Edit Button */}
           <button
             onClick={() => onEdit(activeInvoice.id)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-[#111111]/80 hover:bg-[#111111] text-[#F4E7C8] border border-white/15 text-xs font-semibold shadow-lg hover:shadow-xl transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-black/80 hover:bg-black text-off-white border border-white/15 text-xs font-semibold shadow-lg hover:shadow-xl transition-all"
             title="Open Editor"
           >
-            <Edit2 className="w-3.5 h-3.5 text-[#E85D3F]" />
+            <Edit2 className="w-3.5 h-3.5 text-off-white" />
             <span className="hidden sm:inline">Edit</span>
           </button>
 
           {/* Duplicate Button */}
           <button
             onClick={() => onDuplicate(activeInvoice.id)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white/[0.08] hover:bg-white/15 text-[#F4E7C8] border border-white/10 text-xs font-semibold shadow-lg transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white/[0.08] hover:bg-white/15 text-off-white border border-white/10 text-xs font-semibold shadow-lg transition-all"
             title="Duplicate Invoice"
           >
-            <Copy className="w-3.5 h-3.5 text-[#D8CBB7]" />
+            <Copy className="w-3.5 h-3.5 text-light-gray" />
             <span className="hidden sm:inline">Duplicate</span>
           </button>
 
           {/* Create New Button */}
           <button
             onClick={onCreateNew}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-bold shadow-lg shadow-[#E85D3F]/25 hover:shadow-xl transition-all"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-off-white hover:bg-light-gray text-white text-xs font-bold shadow-lg shadow-off-white/25 hover:shadow-xl transition-all"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>New</span>
@@ -189,7 +189,7 @@ export function LayeredInvoiceShowcase({
           {tertiaryInvoice && (
             <div
               aria-hidden="true"
-              className="hidden lg:block absolute -top-4 -left-6 w-full h-[88%] rounded-[36px] bg-[#0E0B08]/80 border border-white/[0.05] pointer-events-none -rotate-[4deg] shadow-2xl opacity-40 scale-[0.96] transition-transform"
+              className="hidden lg:block absolute -top-4 -left-6 w-full h-[88%] rounded-[36px] bg-black/80 border border-white/[0.05] pointer-events-none -rotate-[4deg] shadow-2xl opacity-40 scale-[0.96] transition-transform"
             />
           )}
 
@@ -216,53 +216,53 @@ export function LayeredInvoiceShowcase({
                 cursor: 'pointer',
               }}
               transition={{ type: 'spring', stiffness: 260, damping: 25 }}
-              className="hidden md:block absolute inset-0 rounded-[32px] sm:rounded-[38px] overflow-hidden shadow-2xl z-10 border border-white/10 select-none bg-[#F4E7C8]"
+              className="hidden md:block absolute inset-0 rounded-[32px] sm:rounded-[38px] overflow-hidden shadow-2xl z-10 border border-white/10 select-none bg-off-white"
               style={{
                 boxShadow: '0 25px 50px -12px rgba(35, 8, 5, 0.65), 0 0 0 1px rgba(255,255,255,0.06)',
               }}
               title={`Click to view invoice ${secondaryInvoice.invoiceNumber}`}
             >
               {/* Secondary Card Header Banner */}
-              <div className="bg-[#111111] p-6 pb-5 flex items-center justify-between">
+              <div className="bg-black p-6 pb-5 flex items-center justify-between">
                 <div>
-                  <h3 className="font-heading font-black text-2xl tracking-tight text-[#F4E7C8]">
+                  <h3 className="font-heading font-black text-2xl tracking-tight text-off-white">
                     Invoice
                   </h3>
-                  <p className="text-[10px] text-[#D8CBB7]/80 uppercase tracking-wider font-medium">
+                  <p className="text-[10px] text-light-gray/80 uppercase tracking-wider font-medium">
                     {secondaryInvoice.company.name || 'Noir Labs'}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="px-3 py-1 rounded-full border border-white/20 bg-white/5 text-[10px] font-semibold text-[#D8CBB7]">
+                  <div className="px-3 py-1 rounded-full border border-white/20 bg-white/5 text-[10px] font-semibold text-light-gray">
                     {secondaryInvoice.invoiceNumber}
                   </div>
-                  <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-[#F4E7C8]">
+                  <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-off-white">
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 </div>
               </div>
 
               {/* Secondary Card Coral Strip */}
-              <div className="bg-[#E85D3F] px-6 py-4 flex items-center justify-between text-white">
+              <div className="bg-off-white px-6 py-4 flex items-center justify-between text-white">
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-white/80">Invoice To</div>
                   <div className="font-heading font-bold text-sm text-white truncate max-w-[200px]">
                     {secondaryInvoice.client.companyName || secondaryInvoice.client.name || 'Client Name'}
                   </div>
                 </div>
-                <div className="px-3.5 py-1.5 rounded-full bg-[#F3C352] text-[#111111] font-mono font-black text-xs shadow-md">
+                <div className="px-3.5 py-1.5 rounded-full bg-soft-gray text-black font-mono font-black text-xs shadow-md">
                   {formatCurrency(secondaryTotals.grandTotal, secondaryCurrency)}
                 </div>
               </div>
 
               {/* Secondary Card Cream Body (peeking content) */}
-              <div className="p-6 bg-[#F4E7C8] space-y-3 opacity-75">
-                <div className="bg-[#111111] rounded-xl px-4 py-2 flex justify-between text-[10px] font-bold text-white uppercase tracking-wider">
+              <div className="p-6 bg-off-white space-y-3 opacity-75">
+                <div className="bg-black rounded-xl px-4 py-2 flex justify-between text-[10px] font-bold text-white uppercase tracking-wider">
                   <span>Item Description</span>
                   <span>Amount</span>
                 </div>
                 {(secondaryInvoice.items || []).slice(0, 3).map((item, idx) => (
-                  <div key={idx} className="flex justify-between text-xs text-[#222222] border-b border-[#E0D3B4] pb-2 font-medium">
+                  <div key={idx} className="flex justify-between text-xs text-black border-b border-light-gray pb-2 font-medium">
                     <span>{item.name}</span>
                     <span className="font-mono font-bold">
                       {formatCurrency(item.quantity * item.rate, secondaryCurrency)}
@@ -281,7 +281,7 @@ export function LayeredInvoiceShowcase({
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="relative z-20 w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-[#F4E7C8] text-[#111111] transition-all"
+            className="relative z-20 w-full rounded-[28px] sm:rounded-[36px] overflow-hidden bg-off-white text-black transition-all"
             style={{
               boxShadow: `
                 0 30px 60px -12px rgba(25, 4, 3, 0.75),
@@ -290,15 +290,15 @@ export function LayeredInvoiceShowcase({
               `,
             }}
           >
-            {/* 1. TOP HEADER SECTION (Obsidian Dark Surface #111111) */}
-            <div className="bg-[#111111] text-white p-4 sm:p-6 lg:p-8 sm:pb-7 transition-colors">
+            {/* 1. TOP HEADER SECTION (Obsidian Dark Surface var(--color-black)) */}
+            <div className="bg-black text-white p-4 sm:p-6 lg:p-8 sm:pb-7 transition-colors">
               <div className="flex items-start justify-between gap-4">
                 {/* Title & Editorial Tagline */}
                 <div>
-                  <h1 className="font-heading font-black text-2xl sm:text-4xl lg:text-5xl text-[#F4E7C8] tracking-tight leading-none">
+                  <h1 className="font-heading font-black text-2xl sm:text-4xl lg:text-5xl text-off-white tracking-tight leading-none">
                     Invoice
                   </h1>
-                  <p className="text-[11px] sm:text-xs text-[#D8CBB7] mt-2 font-medium max-w-sm tracking-wide">
+                  <p className="text-[11px] sm:text-xs text-light-gray mt-2 font-medium max-w-sm tracking-wide">
                     Elevate Your Style, Embrace Your Uniqueness: Where Studio Craft Meets Precision Billing.
                   </p>
                 </div>
@@ -306,16 +306,16 @@ export function LayeredInvoiceShowcase({
                 {/* Company Name Pill Badge + Interactive Arrow */}
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <div className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/20 bg-white/[0.06] backdrop-blur-md shadow-inner">
-                    <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase text-[#F4E7C8]">
+                    <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase text-off-white">
                       {activeInvoice.company.name || 'NOIR LABS'}
                     </span>
-                    <Sparkles className="w-3.5 h-3.5 text-[#E85D3F]" />
+                    <Sparkles className="w-3.5 h-3.5 text-off-white" />
                   </div>
 
                   {/* Quick Carousel Arrow Button (matching circular arrow button in Pinterest reference) */}
                   <button
                     onClick={handleNext}
-                    className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center text-[#F4E7C8] hover:bg-[#E85D3F] hover:text-white transition-all cursor-pointer"
+                    className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/15 flex items-center justify-center text-off-white hover:bg-off-white hover:text-white transition-all cursor-pointer"
                     title="Next invoice"
                     aria-label="Next invoice"
                   >
@@ -325,8 +325,8 @@ export function LayeredInvoiceShowcase({
               </div>
             </div>
 
-            {/* 2. CLIENT & METADATA BANNER (Warm Terracotta / Coral #E85D3F) */}
-            <div className="bg-[#E85D3F] text-white px-4 sm:px-6 lg:px-8 py-4 sm:py-6 relative overflow-hidden">
+            {/* 2. CLIENT & METADATA BANNER (Warm Terracotta / Coral var(--color-off-white)) */}
+            <div className="bg-off-white text-white px-4 sm:px-6 lg:px-8 py-4 sm:py-6 relative overflow-hidden">
               {/* Subtle decorative inner corner curve matching reference */}
               <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
                 {/* Left: Invoice To & Client Name */}
@@ -350,13 +350,13 @@ export function LayeredInvoiceShowcase({
                   <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] text-white/85">
                     {activeInvoice.client.phone && (
                       <span className="inline-flex items-center gap-1">
-                        <Phone className="w-3 h-3 text-[#F3C352]" />
+                        <Phone className="w-3 h-3 text-soft-gray" />
                         <span>{activeInvoice.client.phone}</span>
                       </span>
                     )}
                     {activeInvoice.client.email && (
                       <span className="inline-flex items-center gap-1">
-                        <Mail className="w-3 h-3 text-[#F3C352]" />
+                        <Mail className="w-3 h-3 text-soft-gray" />
                         <span className="truncate max-w-[170px]">{activeInvoice.client.email}</span>
                       </span>
                     )}
@@ -383,7 +383,7 @@ export function LayeredInvoiceShowcase({
                   </div>
 
                   {/* Distinctive Yellow/Amber Pill from Reference */}
-                  <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-[#F3C352] text-[#111111] shadow-lg shadow-black/15 self-start md:self-auto">
+                  <div className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full bg-soft-gray text-black shadow-lg shadow-black/15 self-start md:self-auto">
                     <span className="text-[11px] font-bold uppercase tracking-wider opacity-75">Total:</span>
                     <span className="font-mono font-black text-sm sm:text-lg tabular-nums">
                       {formatCurrency(activeTotals.grandTotal, activeCurrency)}
@@ -393,10 +393,10 @@ export function LayeredInvoiceShowcase({
               </div>
             </div>
 
-            {/* 3. ITEMS TABLE AREA (Warm Editorial Cream Surface #F4E7C8) */}
-            <div className="p-4 sm:p-6 lg:p-8 bg-[#F4E7C8]">
+            {/* 3. ITEMS TABLE AREA (Warm Editorial Cream Surface var(--color-off-white)) */}
+            <div className="p-4 sm:p-6 lg:p-8 bg-off-white">
               {/* Dark Rounded Pill Header for Columns (Exact Pinterest reference feature) */}
-              <div className="bg-[#111111] text-[#F4E7C8] rounded-xl sm:rounded-2xl px-3 sm:px-6 py-2.5 mb-4 grid grid-cols-12 text-[10px] sm:text-xs font-bold uppercase tracking-wider items-center shadow-md">
+              <div className="bg-black text-off-white rounded-xl sm:rounded-2xl px-3 sm:px-6 py-2.5 mb-4 grid grid-cols-12 text-[10px] sm:text-xs font-bold uppercase tracking-wider items-center shadow-md">
                 <span className="col-span-5 sm:col-span-5">Item Description</span>
                 <span className="col-span-3 sm:col-span-2 text-right">Price</span>
                 <span className="col-span-1 sm:col-span-2 text-center">Qty</span>
@@ -404,7 +404,7 @@ export function LayeredInvoiceShowcase({
               </div>
 
               {/* Items List Rows */}
-              <div className="divide-y divide-[#E2D4B6] space-y-1">
+              <div className="divide-y divide-light-gray space-y-1">
                 {(activeInvoice.items && activeInvoice.items.length > 0
                   ? activeInvoice.items
                   : [
@@ -421,23 +421,23 @@ export function LayeredInvoiceShowcase({
                   return (
                     <div
                       key={item.id || idx}
-                      className="grid grid-cols-12 items-start py-2.5 sm:py-3 px-1.5 sm:px-3 text-[11px] sm:text-sm font-medium hover:bg-[#EBE0C3]/50 rounded-xl transition-colors"
+                      className="grid grid-cols-12 items-start py-2.5 sm:py-3 px-1.5 sm:px-3 text-[11px] sm:text-sm font-medium hover:bg-light-gray/50 rounded-xl transition-colors"
                     >
                       <div className="col-span-5 sm:col-span-5 pr-1 sm:pr-2">
-                        <div className="font-heading font-bold text-[#111111] truncate">{item.name}</div>
+                        <div className="font-heading font-bold text-black truncate">{item.name}</div>
                         {item.description && (
-                          <div className="text-[10px] sm:text-[11px] text-[#6B5E4F] line-clamp-1 mt-0.5 font-normal">
+                          <div className="text-[10px] sm:text-[11px] text-gray line-clamp-1 mt-0.5 font-normal">
                             {item.description}
                           </div>
                         )}
                       </div>
-                      <div className="col-span-3 sm:col-span-2 text-right font-mono text-[#333333] pt-0.5 text-[10px] sm:text-xs">
+                      <div className="col-span-3 sm:col-span-2 text-right font-mono text-deep-graphite pt-0.5 text-[10px] sm:text-xs">
                         {formatCurrency(item.rate, activeCurrency)}
                       </div>
-                      <div className="col-span-1 sm:col-span-2 text-center font-mono text-[#333333] pt-0.5 text-[10px] sm:text-xs">
+                      <div className="col-span-1 sm:col-span-2 text-center font-mono text-deep-graphite pt-0.5 text-[10px] sm:text-xs">
                         {item.quantity}
                       </div>
-                      <div className="col-span-3 sm:col-span-3 text-right font-mono font-bold text-[#111111] pt-0.5 text-[11px] sm:text-xs">
+                      <div className="col-span-3 sm:col-span-3 text-right font-mono font-bold text-black pt-0.5 text-[11px] sm:text-xs">
                         {formatCurrency(lineTotal, activeCurrency)}
                       </div>
                     </div>
@@ -446,17 +446,17 @@ export function LayeredInvoiceShowcase({
               </div>
 
               {/* Editorial Divider: Asterisks ✦ ✦ ✦ & Subtotal Pill */}
-              <div className="flex items-center justify-between pt-5 pb-3 border-t border-[#DCCEB0] mt-3">
+              <div className="flex items-center justify-between pt-5 pb-3 border-t border-light-gray mt-3">
                 {/* Asterisk / Starburst Motif from Pinterest Reference */}
-                <div className="flex items-center gap-2 text-sm text-[#111111] tracking-widest font-black select-none opacity-80">
+                <div className="flex items-center gap-2 text-sm text-black tracking-widest font-black select-none opacity-80">
                   <span>✦</span>
                   <span>✦</span>
                   <span>✦</span>
                 </div>
 
                 {/* Sub Total Rounded Pill */}
-                <div className="px-4 py-1.5 rounded-full border border-[#111111]/30 bg-[#E8DCBF] text-[#111111] text-xs font-mono font-bold flex items-center gap-2">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#555555]">
+                <div className="px-4 py-1.5 rounded-full border border-black/30 bg-light-gray text-black text-xs font-mono font-bold flex items-center gap-2">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-gray">
                     Sub Total:
                   </span>
                   <span>{formatCurrency(activeTotals.subtotal, activeCurrency)}</span>
@@ -466,7 +466,7 @@ export function LayeredInvoiceShowcase({
               {/* 4. BOTTOM 3 MODULAR CLUSTERS (Matching Pinterest reference cards!) */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mt-5">
                 {/* Box 1: Terracotta Pill Container (TERM & CONDITIONS) */}
-                <div className="rounded-2xl p-4 bg-[#E85D3F] text-white shadow-md flex flex-col justify-between">
+                <div className="rounded-2xl p-4 bg-off-white text-white shadow-md flex flex-col justify-between">
                   <div>
                     <h4 className="font-heading font-black text-xs uppercase tracking-wider text-white mb-2.5">
                       Term & Conditions
@@ -481,7 +481,7 @@ export function LayeredInvoiceShowcase({
                           ]
                       ).map((term, i) => (
                         <div key={i} className="flex items-start gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#F3C352] mt-1 flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-soft-gray mt-1 flex-shrink-0" />
                           <span className="line-clamp-2">{term}</span>
                         </div>
                       ))}
@@ -493,46 +493,46 @@ export function LayeredInvoiceShowcase({
                 </div>
 
                 {/* Box 2: Warm Gold / Amber Container (FIND US FOR MORE INFORMATION) */}
-                <div className="rounded-2xl p-4 bg-[#F3C352] text-[#111111] shadow-md flex flex-col justify-between">
+                <div className="rounded-2xl p-4 bg-soft-gray text-black shadow-md flex flex-col justify-between">
                   <div>
-                    <h4 className="font-heading font-black text-xs uppercase tracking-wider text-[#111111] mb-2.5">
+                    <h4 className="font-heading font-black text-xs uppercase tracking-wider text-black mb-2.5">
                       Find Us For More Information
                     </h4>
-                    <div className="space-y-1.5 text-[10px] font-medium text-[#222222]">
+                    <div className="space-y-1.5 text-[10px] font-medium text-black">
                       {activeInvoice.company.phone && (
                         <div className="flex items-center gap-1.5">
-                          <Phone className="w-3 h-3 text-[#111111]" />
+                          <Phone className="w-3 h-3 text-black" />
                           <span>{activeInvoice.company.phone}</span>
                         </div>
                       )}
                       {activeInvoice.company.email && (
                         <div className="flex items-center gap-1.5">
-                          <Mail className="w-3 h-3 text-[#111111]" />
+                          <Mail className="w-3 h-3 text-black" />
                           <span className="truncate">{activeInvoice.company.email}</span>
                         </div>
                       )}
                       {activeInvoice.company.website && (
                         <div className="flex items-center gap-1.5">
-                          <Globe className="w-3 h-3 text-[#111111]" />
+                          <Globe className="w-3 h-3 text-black" />
                           <span className="truncate">{activeInvoice.company.website}</span>
                         </div>
                       )}
                       {activeInvoice.company.address && (
                         <div className="flex items-center gap-1.5">
-                          <MapPin className="w-3 h-3 text-[#111111]" />
+                          <MapPin className="w-3 h-3 text-black" />
                           <span className="truncate">{activeInvoice.company.address}</span>
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="mt-3 text-[9px] text-[#554010] font-semibold uppercase tracking-wider">
+                  <div className="mt-3 text-[9px] text-black font-semibold uppercase tracking-wider">
                     Official Studio Invoice
                   </div>
                 </div>
 
                 {/* Box 3: Cream Container with Stylized Script Signature & Manager Badge */}
-                <div className="rounded-2xl p-4 bg-[#EADBBE] border border-[#D5C4A0] shadow-md flex flex-col items-center justify-between text-center">
-                  <div className="w-full flex justify-between items-center text-[9px] font-bold uppercase tracking-wider text-[#7A6A50]">
+                <div className="rounded-2xl p-4 bg-light-gray border border-soft-gray shadow-md flex flex-col items-center justify-between text-center">
+                  <div className="w-full flex justify-between items-center text-[9px] font-bold uppercase tracking-wider text-graphite">
                     <span>Signatory</span>
                     <span>Verified</span>
                   </div>
@@ -541,17 +541,17 @@ export function LayeredInvoiceShowcase({
                   <div className="py-2">
                     <span
                       style={{ fontFamily: "'Caveat', 'Playwrite', 'Dancing Script', cursive" }}
-                      className="text-3xl font-bold text-[#111111] tracking-wide inline-block transform -rotate-3"
+                      className="text-3xl font-bold text-black tracking-wide inline-block transform -rotate-3"
                     >
                       {activeInvoice.company.name || 'Noir Labs'}
                     </span>
-                    <div className="text-[11px] font-bold text-[#333333] mt-0.5">
+                    <div className="text-[11px] font-bold text-deep-graphite mt-0.5">
                       Juzer Jawadwala
                     </div>
                   </div>
 
                   {/* Yellow/Gold "MANAGER" / "AUTHORIZED" Pill from Reference */}
-                  <div className="px-5 py-1 rounded-full bg-[#F3C352] text-[#111111] font-heading font-black text-[10px] tracking-wider uppercase shadow-sm">
+                  <div className="px-5 py-1 rounded-full bg-soft-gray text-black font-heading font-black text-[10px] tracking-wider uppercase shadow-sm">
                     Manager
                   </div>
                 </div>
@@ -559,9 +559,9 @@ export function LayeredInvoiceShowcase({
             </div>
 
             {/* Bottom Quick Action Strip directly on document */}
-            <div className="bg-[#111111] px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex flex-wrap items-center justify-between gap-2.5 text-xs border-t border-white/10">
-              <div className="flex items-center gap-2 text-[#D8CBB7]">
-                <span className="w-2 h-2 rounded-full bg-[#E85D3F] animate-pulse" />
+            <div className="bg-black px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 flex flex-wrap items-center justify-between gap-2.5 text-xs border-t border-white/10">
+              <div className="flex items-center gap-2 text-light-gray">
+                <span className="w-2 h-2 rounded-full bg-off-white animate-pulse" />
                 <span className="font-mono">{activeInvoice.invoiceNumber}</span>
                 <span>•</span>
                 <span className="font-semibold text-white truncate max-w-[140px] sm:max-w-none">
@@ -572,7 +572,7 @@ export function LayeredInvoiceShowcase({
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => onEdit(activeInvoice.id)}
-                  className="px-3 py-1.5 rounded-lg bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-semibold shadow transition-colors flex items-center gap-1.5 cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg bg-off-white hover:bg-light-gray text-white text-xs font-semibold shadow transition-colors flex items-center gap-1.5 cursor-pointer"
                   aria-label="Open Full Editor for this invoice"
                 >
                   <Edit2 className="w-3 h-3" />
@@ -580,7 +580,7 @@ export function LayeredInvoiceShowcase({
                 </button>
                 <button
                   onClick={() => onDuplicate(activeInvoice.id)}
-                  className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-[#F4E7C8] text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 text-off-white text-xs font-semibold transition-colors flex items-center gap-1.5 cursor-pointer"
                   aria-label="Duplicate this invoice"
                 >
                   <Copy className="w-3 h-3" />

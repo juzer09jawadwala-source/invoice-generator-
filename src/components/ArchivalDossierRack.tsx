@@ -171,7 +171,7 @@ export const DOSSIER_FOLDERS: DossierFolder[] = [
     subtitle: 'Client Communications & Invoice Distribution',
     category: 'Distribution Channel',
     securityLevel: 'PUBLIC SECURE',
-    accentColor: '#F4E7C8',
+    accentColor: 'var(--color-off-white)',
     accentBg: 'rgba(244, 231, 200, 0.15)',
     accentBorder: 'rgba(244, 231, 200, 0.35)',
     glowColor: 'rgba(244, 231, 200, 0.4)',
@@ -304,7 +304,7 @@ export const DOSSIER_FOLDERS: DossierFolder[] = [
     subtitle: 'High-Value Agency Clients & Retainer Contracts',
     category: 'Client Relationship',
     securityLevel: 'EXECUTIVE VIP',
-    accentColor: '#E85D3F',
+    accentColor: 'var(--color-off-white)',
     accentBg: 'rgba(232, 93, 63, 0.15)',
     accentBorder: 'rgba(232, 93, 63, 0.45)',
     glowColor: 'rgba(232, 93, 63, 0.5)',
@@ -370,7 +370,7 @@ export const DOSSIER_FOLDERS: DossierFolder[] = [
     subtitle: 'Google Gemini GenAI Synthesis & Smart Workflows',
     category: 'AI Autonomous',
     securityLevel: 'NEURAL AUGMENTED',
-    accentColor: '#10B981',
+    accentColor: 'var(--color-light-gray)',
     accentBg: 'rgba(16, 185, 129, 0.15)',
     accentBorder: 'rgba(16, 185, 129, 0.45)',
     glowColor: 'rgba(16, 185, 129, 0.5)',
@@ -546,26 +546,26 @@ export function ArchivalDossierRack({
   return (
     <section className="relative w-full space-y-6 pt-2">
       {/* Section Header with Architectural Coordinates */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-[#F4E7C8]/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-off-white/10">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-[#F4E7C8]/15 text-xs font-semibold text-[#F4E7C8] mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E85D3F] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-off-white/15 text-xs font-semibold text-off-white mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-off-white animate-pulse" />
             <span className="tracking-widest uppercase text-[10px] font-mono">
               SEC_02 // SYSTEM VAULT & DOSSIER REGISTRIES
             </span>
           </div>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold tracking-tight text-[#F4E7C8]">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-extrabold tracking-tight text-off-white">
             Active Financial Dossiers & Ledger Archives
           </h2>
-          <p className="text-xs sm:text-sm text-[#D8CBB7] mt-1 max-w-2xl font-light">
+          <p className="text-xs sm:text-sm text-light-gray mt-1 max-w-2xl font-light">
             Interactive physical filing index inspired by Noir architectural archives. Hover across folders to inspect designations; click any dossier to unseal its contents.
           </p>
         </div>
 
         {/* View Toggle & Count Pill */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/40 border border-[#F4E7C8]/15 text-[11px] font-mono text-[#D8CBB7]">
-            <Layers className="w-3.5 h-3.5 text-[#E85D3F]" />
+          <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/40 border border-off-white/15 text-[11px] font-mono text-light-gray">
+            <Layers className="w-3.5 h-3.5 text-off-white" />
             <span>10 Active Dockets</span>
           </div>
 
@@ -574,8 +574,8 @@ export function ArchivalDossierRack({
               onClick={() => setViewMode('rack')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 viewMode === 'rack'
-                  ? 'bg-[#E85D3F] text-white shadow-md'
-                  : 'text-[#D8CBB7] hover:text-white'
+                  ? 'bg-off-white text-white shadow-md'
+                  : 'text-light-gray hover:text-white'
               }`}
             >
               Panoramic Rack
@@ -584,8 +584,8 @@ export function ArchivalDossierRack({
               onClick={() => setViewMode('cards')}
               className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 viewMode === 'cards'
-                  ? 'bg-[#E85D3F] text-white shadow-md'
-                  : 'text-[#D8CBB7] hover:text-white'
+                  ? 'bg-off-white text-white shadow-md'
+                  : 'text-light-gray hover:text-white'
               }`}
             >
               Dossier Cards
@@ -596,19 +596,19 @@ export function ArchivalDossierRack({
 
       {/* VIEW 1: PANORAMIC RACK WITH INTERACTIVE HOVER COLUMNS */}
       {viewMode === 'rack' && (
-        <div className="relative w-full overflow-hidden bg-transparent group/rack border-y border-[#F4E7C8]/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div className="relative w-full overflow-hidden bg-transparent group/rack border-y border-off-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
           
           {/* Technical Top Coordinate Bar */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="flex items-center justify-between px-3 py-1.5 mt-4 mb-4 rounded-xl bg-black/60 border border-white/5 text-[10px] font-mono text-[#D8CBB7]/80 backdrop-blur-sm">
+            <div className="flex items-center justify-between px-3 py-1.5 mt-4 mb-4 rounded-xl bg-black/60 border border-white/5 text-[10px] font-mono text-light-gray/80 backdrop-blur-sm">
               <div className="flex items-center gap-3 truncate">
-                <span className="text-[#E85D3F] font-bold">[ARCHIVE_INDEX // IN_11-15]</span>
+                <span className="text-off-white font-bold">[ARCHIVE_INDEX // IN_11-15]</span>
                 <span className="hidden md:inline">LATENCY: 0.12ms</span>
                 <span className="hidden sm:inline">RESOLUTION: 2752x1536</span>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[#F4E7C8] font-bold uppercase">Hover Folders & Click To Unseal</span>
+                <span className="text-off-white font-bold uppercase">Hover Folders & Click To Unseal</span>
               </div>
             </div>
           </div>
@@ -671,7 +671,7 @@ export function ArchivalDossierRack({
                     <div
                       className={`absolute top-2 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded text-[8px] sm:text-[9px] font-mono font-bold tracking-tighter whitespace-nowrap transition-all duration-200 ${
                         isHovered
-                          ? 'opacity-100 scale-105 bg-black text-[#F4E7C8] border shadow-lg'
+                          ? 'opacity-100 scale-105 bg-black text-off-white border shadow-lg'
                           : 'opacity-0 sm:opacity-50 text-white/70 bg-black/60'
                       }`}
                       style={{ borderColor: folder.accentColor }}
@@ -694,10 +694,10 @@ export function ArchivalDossierRack({
                         >
                           {folder.code}
                         </div>
-                        <div className="text-[10px] sm:text-xs font-bold text-[#F4E7C8] truncate">
+                        <div className="text-[10px] sm:text-xs font-bold text-off-white truncate">
                           {folder.tabLabel}
                         </div>
-                        <div className="text-[8px] text-[#D8CBB7]/80 truncate mt-0.5">
+                        <div className="text-[8px] text-light-gray/80 truncate mt-0.5">
                           Click to Unseal ↗
                         </div>
                       </motion.div>
@@ -716,7 +716,7 @@ export function ArchivalDossierRack({
                 style={{
                   backgroundColor: hoveredFolder?.accentBg || 'rgba(232, 93, 63, 0.15)',
                   borderColor: hoveredFolder?.accentBorder || 'rgba(232, 93, 63, 0.3)',
-                  color: hoveredFolder?.accentColor || '#E85D3F',
+                  color: hoveredFolder?.accentColor || 'var(--color-off-white)',
                 }}
               >
                 {hoveredFolder ? (
@@ -727,16 +727,16 @@ export function ArchivalDossierRack({
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-[10px] font-bold text-[#E85D3F]">
+                  <span className="font-mono text-[10px] font-bold text-off-white">
                     {hoveredFolder
                       ? `[DOCKET ${hoveredFolder.index.toString().padStart(2, '0')}/10]`
                       : '[EXPLORE DOSSIERS]'}
                   </span>
-                  <span className="font-heading font-bold text-[#F4E7C8] truncate">
+                  <span className="font-heading font-bold text-off-white truncate">
                     {hoveredFolder ? hoveredFolder.title : 'Sweep cursor over folders to inspect'}
                   </span>
                 </div>
-                <p className="text-[11px] text-[#D8CBB7] truncate font-light">
+                <p className="text-[11px] text-light-gray truncate font-light">
                   {hoveredFolder
                     ? hoveredFolder.subtitle
                     : 'Each docket corresponds to active ledger functions, UPI routing, enterprise accounts & local cryptographic vaults.'}
@@ -755,7 +755,7 @@ export function ArchivalDossierRack({
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               ) : (
-                <span className="text-[11px] font-mono text-[#D8CBB7]/60">
+                <span className="text-[11px] font-mono text-light-gray/60">
                   Tap or click any folder to pop up
                 </span>
               )}
@@ -802,28 +802,28 @@ export function ArchivalDossierRack({
                   >
                     #{folder.index.toString().padStart(2, '0')}
                   </span>
-                  <span className="text-[9px] font-mono text-[#D8CBB7]/80 truncate">
+                  <span className="text-[9px] font-mono text-light-gray/80 truncate">
                     {folder.tabLabel}
                   </span>
                 </div>
 
                 {/* Card Center Info */}
                 <div className="relative z-10 space-y-1">
-                  <div className="text-[10px] font-mono uppercase tracking-wider text-[#E85D3F]">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-off-white">
                     {folder.category}
                   </div>
-                  <h3 className="font-heading font-extrabold text-sm text-[#F4E7C8] leading-snug line-clamp-2">
+                  <h3 className="font-heading font-extrabold text-sm text-off-white leading-snug line-clamp-2">
                     {folder.title}
                   </h3>
-                  <p className="text-[10px] text-[#D8CBB7] line-clamp-2 font-light">
+                  <p className="text-[10px] text-light-gray line-clamp-2 font-light">
                     {folder.subtitle}
                   </p>
                 </div>
 
                 {/* Card Bottom Action */}
-                <div className="relative z-10 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-semibold text-[#F4E7C8] group-hover:text-white">
+                <div className="relative z-10 pt-2 border-t border-white/5 flex items-center justify-between text-[10px] font-semibold text-off-white group-hover:text-white">
                   <span>Pop Up Docket</span>
-                  <ArrowRight className="w-3 h-3 text-[#E85D3F] group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3 h-3 text-off-white group-hover:translate-x-1 transition-transform" />
                 </div>
               </motion.div>
             );
@@ -876,7 +876,7 @@ export function ArchivalDossierRack({
               />
 
               {/* Top Modal Navigation & Close Header */}
-              <div className="flex items-start justify-between gap-4 border-b border-[#F4E7C8]/10 pb-4">
+              <div className="flex items-start justify-between gap-4 border-b border-off-white/10 pb-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span
@@ -885,26 +885,26 @@ export function ArchivalDossierRack({
                     >
                       DOCKET #{selectedFolder.index.toString().padStart(2, '0')} // 10
                     </span>
-                    <span className="px-2.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-[10px] font-mono text-[#D8CBB7]">
+                    <span className="px-2.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-[10px] font-mono text-light-gray">
                       {selectedFolder.securityLevel}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400">
+                    <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-graphite/10 border border-graphite/20 text-[10px] font-mono text-emerald-400">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                       SYNCHRONIZED
                     </span>
                   </div>
 
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-black text-[#F4E7C8] tracking-tight pt-1">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-heading font-black text-off-white tracking-tight pt-1">
                     {selectedFolder.title}
                   </h2>
-                  <p className="text-xs sm:text-sm text-[#D8CBB7] font-light">
+                  <p className="text-xs sm:text-sm text-light-gray font-light">
                     {selectedFolder.subtitle}
                   </p>
                 </div>
 
                 <button
                   onClick={() => setSelectedFolder(null)}
-                  className="p-2 rounded-xl bg-white/[0.05] border border-[#F4E7C8]/20 hover:bg-white/10 text-[#D8CBB7] hover:text-white transition-colors flex-shrink-0"
+                  className="p-2 rounded-xl bg-white/[0.05] border border-off-white/20 hover:bg-white/10 text-light-gray hover:text-white transition-colors flex-shrink-0"
                   aria-label="Close dialog"
                 >
                   <X className="w-5 h-5" />
@@ -927,12 +927,12 @@ export function ArchivalDossierRack({
                     />
 
                     {/* Specimen Badge Overlay */}
-                    <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/80 backdrop-blur-md border border-white/15 text-[9px] font-mono text-[#F4E7C8]">
+                    <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/80 backdrop-blur-md border border-white/15 text-[9px] font-mono text-off-white">
                       SPECIMEN CROP // {selectedFolder.code}
                     </div>
 
                     <div className="absolute bottom-3 inset-x-3 p-2 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 text-center">
-                      <span className="text-[10px] font-mono text-[#D8CBB7]">
+                      <span className="text-[10px] font-mono text-light-gray">
                         ORIGINAL HIGH-RES ARCHIVE REGISTER
                       </span>
                     </div>
@@ -940,25 +940,25 @@ export function ArchivalDossierRack({
 
                   {/* Technical Specifications Matrix */}
                   <div className="p-3 rounded-xl bg-black/40 border border-white/5 space-y-2 text-[11px] font-mono">
-                    <div className="flex justify-between text-[#D8CBB7]">
+                    <div className="flex justify-between text-light-gray">
                       <span>PROTOCOL ID:</span>
-                      <span className="text-[#F4E7C8] font-bold">
+                      <span className="text-off-white font-bold">
                         {selectedFolder.technicalSpecs.protocol}
                       </span>
                     </div>
-                    <div className="flex justify-between text-[#D8CBB7]">
+                    <div className="flex justify-between text-light-gray">
                       <span>ENCRYPTION:</span>
-                      <span className="text-[#F4E7C8]">
+                      <span className="text-off-white">
                         {selectedFolder.technicalSpecs.encryption}
                       </span>
                     </div>
-                    <div className="flex justify-between text-[#D8CBB7]">
+                    <div className="flex justify-between text-light-gray">
                       <span>RETENTION:</span>
-                      <span className="text-[#F4E7C8]">
+                      <span className="text-off-white">
                         {selectedFolder.technicalSpecs.retention}
                       </span>
                     </div>
-                    <div className="flex justify-between text-[#D8CBB7]">
+                    <div className="flex justify-between text-light-gray">
                       <span>LIFECYCLE:</span>
                       <span className="text-emerald-400 font-bold">
                         {selectedFolder.technicalSpecs.lifecycle}
@@ -971,24 +971,24 @@ export function ArchivalDossierRack({
                 <div className="lg:col-span-7 space-y-5">
                   {/* Detailed Description */}
                   <div className="space-y-2">
-                    <h3 className="text-xs font-mono uppercase tracking-wider text-[#E85D3F]">
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-off-white">
                       // ARCHIVAL MANDATE & OPERATIONAL SCOPE
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#F4E7C8]/90 leading-relaxed font-light">
+                    <p className="text-xs sm:text-sm text-off-white/90 leading-relaxed font-light">
                       {selectedFolder.description}
                     </p>
                   </div>
 
                   {/* Key Capabilities Bullet Points */}
                   <div className="space-y-2">
-                    <h3 className="text-xs font-mono uppercase tracking-wider text-[#D8CBB7]">
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-light-gray">
                       Key System Capabilities:
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {selectedFolder.keyFeatures.map((feat, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-2 p-2 rounded-lg bg-white/[0.02] border border-white/5 text-xs text-[#D8CBB7]"
+                          className="flex items-start gap-2 p-2 rounded-lg bg-white/[0.02] border border-white/5 text-xs text-light-gray"
                         >
                           <CheckCircle2
                             className="w-3.5 h-3.5 mt-0.5 flex-shrink-0"
@@ -1001,12 +1001,12 @@ export function ArchivalDossierRack({
                   </div>
 
                   {/* Live Connected App Data Cards */}
-                  <div className="p-3.5 rounded-2xl bg-black/60 border border-[#F4E7C8]/15 space-y-2">
+                  <div className="p-3.5 rounded-2xl bg-black/60 border border-off-white/15 space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#E85D3F]">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-off-white">
                         Live System Telemetry
                       </span>
-                      <span className="text-[10px] font-mono text-[#D8CBB7]">
+                      <span className="text-[10px] font-mono text-light-gray">
                         SYNCED WITH CURRENT STATE
                       </span>
                     </div>
@@ -1016,26 +1016,26 @@ export function ArchivalDossierRack({
                       return (
                         <div className="grid grid-cols-3 gap-2 pt-1 text-center">
                           <div className="p-2 rounded-xl bg-white/[0.03] border border-white/5">
-                            <div className="text-[10px] text-[#D8CBB7] truncate">
+                            <div className="text-[10px] text-light-gray truncate">
                               {data.stat1.label}
                             </div>
-                            <div className="text-xs sm:text-sm font-heading font-black text-[#F4E7C8] truncate mt-0.5">
+                            <div className="text-xs sm:text-sm font-heading font-black text-off-white truncate mt-0.5">
                               {data.stat1.val}
                             </div>
                           </div>
                           <div className="p-2 rounded-xl bg-white/[0.03] border border-white/5">
-                            <div className="text-[10px] text-[#D8CBB7] truncate">
+                            <div className="text-[10px] text-light-gray truncate">
                               {data.stat2.label}
                             </div>
-                            <div className="text-xs sm:text-sm font-heading font-black text-[#E85D3F] truncate mt-0.5">
+                            <div className="text-xs sm:text-sm font-heading font-black text-off-white truncate mt-0.5">
                               {data.stat2.val}
                             </div>
                           </div>
                           <div className="p-2 rounded-xl bg-white/[0.03] border border-white/5">
-                            <div className="text-[10px] text-[#D8CBB7] truncate">
+                            <div className="text-[10px] text-light-gray truncate">
                               {data.stat3.label}
                             </div>
-                            <div className="text-xs sm:text-sm font-heading font-black text-emerald-300 truncate mt-0.5">
+                            <div className="text-xs sm:text-sm font-heading font-black text-light-gray truncate mt-0.5">
                               {data.stat3.val}
                             </div>
                           </div>
@@ -1052,7 +1052,7 @@ export function ArchivalDossierRack({
                       className="w-full sm:w-auto font-heading font-bold shadow-xl"
                       style={{
                         backgroundColor: selectedFolder.accentColor,
-                        color: selectedFolder.accentColor === '#F5F5F7' ? '#000000' : '#FFFFFF',
+                        color: selectedFolder.accentColor === '#F5F5F7' ? 'var(--color-black)' : '#FFFFFF',
                       }}
                     >
                       <Sparkles className="w-4 h-4" />
@@ -1072,14 +1072,14 @@ export function ArchivalDossierRack({
               </div>
 
               {/* Bottom Pagination & Sequential Navigation */}
-              <div className="pt-4 border-t border-[#F4E7C8]/10 flex items-center justify-between gap-3 text-xs">
+              <div className="pt-4 border-t border-off-white/10 flex items-center justify-between gap-3 text-xs">
                 <button
                   onClick={() => {
                     const prevIndex =
                       (selectedFolder.index - 2 + DOSSIER_FOLDERS.length) % DOSSIER_FOLDERS.length;
                     setSelectedFolder(DOSSIER_FOLDERS[prevIndex]);
                   }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-[#D8CBB7] hover:text-white transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-light-gray hover:text-white transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span className="hidden sm:inline">Previous Docket</span>
@@ -1108,7 +1108,7 @@ export function ArchivalDossierRack({
                     const nextIndex = selectedFolder.index % DOSSIER_FOLDERS.length;
                     setSelectedFolder(DOSSIER_FOLDERS[nextIndex]);
                   }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-[#D8CBB7] hover:text-white transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-light-gray hover:text-white transition-colors"
                 >
                   <span className="hidden sm:inline">Next Docket</span>
                   <ChevronRight className="w-4 h-4" />

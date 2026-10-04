@@ -55,7 +55,7 @@ export function KresnaFooter() {
           padding: 32px;
           overflow: hidden;
           box-shadow: 0 12px 40px rgba(21, 76, 189, 0.25);
-          background: #1e4fc0;
+          background: var(--color-deep-graphite);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -92,7 +92,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 16px;
           font-weight: 700;
-          color: #ffffff;
+          color: var(--color-off-white);
           letter-spacing: -0.02em;
           line-height: 1;
         }
@@ -101,7 +101,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 22px;
           font-weight: 700;
-          color: #ffffff;
+          color: var(--color-off-white);
           letter-spacing: -0.02em;
         }
 
@@ -116,7 +116,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 19px;
           font-weight: 400;
-          color: #ffffff;
+          color: var(--color-off-white);
           line-height: 1.45;
         }
 
@@ -152,7 +152,7 @@ export function KresnaFooter() {
           width: 36px;
           height: 36px;
           border-radius: 9px;
-          background: #0e1014;
+          background: var(--color-black);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -165,19 +165,19 @@ export function KresnaFooter() {
         .kresna-social-icon svg {
           width: 15px;
           height: 15px;
-          fill: #ffffff;
+          fill: var(--color-off-white);
           display: block;
         }
 
         .kresna-social-icon:hover {
-          background: #000000;
+          background: var(--color-black);
           transform: translateY(-2px);
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Right Card — Light Gray */
         .kresna-footer-right {
-          background: #f0f1f5;
+          background: var(--color-deep-graphite);
           border-radius: 28px;
           padding: 40px;
           overflow: visible;
@@ -206,7 +206,7 @@ export function KresnaFooter() {
           height: 96px;
           border-radius: 22px;
           transform: rotate(-10deg);
-          background: linear-gradient(135deg, #5b9ffb 0%, #1e5dd7 55%, #1448be 100%);
+          background: linear-gradient(135deg, var(--color-graphite) 0%, var(--color-deep-graphite) 55%, var(--color-black) 100%);
           box-shadow:
             inset 3px 3px 8px rgba(255, 255, 255, 0.35),
             inset -3px -3px 12px rgba(0, 0, 0, 0.18),
@@ -227,7 +227,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 42px;
           font-weight: 700;
-          color: #ffffff;
+          color: var(--color-off-white);
           letter-spacing: -0.04em;
           transform: rotate(10deg);
           text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
@@ -246,7 +246,7 @@ export function KresnaFooter() {
         .kresna-lucky-arrow {
           width: 22px;
           height: 22px;
-          color: #9ca3af;
+          color: var(--color-soft-gray);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -267,7 +267,7 @@ export function KresnaFooter() {
           font-family: 'Caveat', cursive;
           font-size: 20px;
           font-weight: 600;
-          color: #9ca3af;
+          color: var(--color-soft-gray);
           white-space: nowrap;
         }
 
@@ -293,7 +293,7 @@ export function KresnaFooter() {
           font-size: 24px;
           font-weight: 600;
           font-style: italic;
-          color: #9ca3af;
+          color: var(--color-soft-gray);
           margin-bottom: 18px;
           line-height: 1;
         }
@@ -303,7 +303,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 14px;
           font-weight: 600;
-          color: #111827;
+          color: var(--color-off-white);
           margin-bottom: 14px;
           text-decoration: none;
           transition: color 0.2s ease;
@@ -314,7 +314,7 @@ export function KresnaFooter() {
         }
 
         .kresna-footer-col a:hover {
-          color: #1f65d6;
+          color: var(--color-light-gray);
         }
 
         /* Right Card Bottom */
@@ -331,7 +331,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 12.5px;
           font-weight: 500;
-          color: #9ca3af;
+          color: var(--color-soft-gray);
           line-height: 1.4;
         }
 
@@ -345,7 +345,7 @@ export function KresnaFooter() {
           font-family: 'DM Sans', sans-serif;
           font-size: 15px;
           font-weight: 400;
-          color: #6b7280;
+          color: var(--color-gray);
           line-height: 1.45;
         }
 
@@ -353,7 +353,7 @@ export function KresnaFooter() {
           display: block;
           font-size: 19px;
           font-weight: 700;
-          color: #111827;
+          color: var(--color-off-white);
           margin-top: 2px;
         }
 
@@ -362,8 +362,8 @@ export function KresnaFooter() {
           flex-direction: row;
           align-items: center;
           width: 310px;
-          background: #ffffff;
-          border: 1px solid #e5e7eb;
+          background: var(--color-off-white);
+          border: 1px solid var(--color-graphite);
           border-radius: 12px;
           padding: 5px;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
@@ -377,18 +377,18 @@ export function KresnaFooter() {
           outline: none;
           font-family: 'DM Sans', sans-serif;
           font-size: 13.5px;
-          color: #111827;
+          color: var(--color-off-white);
           min-width: 0;
         }
 
         .kresna-footer-subscribe-row input::placeholder {
-          color: #9ca3af;
+          color: var(--color-soft-gray);
         }
 
         .kresna-footer-subscribe-row button {
           padding: 11px 22px;
-          background: #111214;
-          color: #ffffff;
+          background: var(--color-black);
+          color: var(--color-off-white);
           font-family: 'DM Sans', sans-serif;
           font-size: 13.5px;
           font-weight: 600;
@@ -401,7 +401,7 @@ export function KresnaFooter() {
         }
 
         .kresna-footer-subscribe-row button:hover {
-          background: #000000;
+          background: var(--color-black);
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38), 0 3px 10px rgba(0, 0, 0, 0.2);
           transform: translateY(-1px);
         }

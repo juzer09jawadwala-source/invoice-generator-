@@ -78,17 +78,17 @@ export const CreepyButton = forwardRef<HTMLButtonElement, CreepyButtonProps>(
 
     const variantCoverStyles: Record<string, string> = {
       default:
-        "bg-gradient-to-r from-[#E85D3F] via-[#F07A5E] to-[#E85D3F] text-white border border-[#F4E7C8]/25 shadow-md shadow-[#E85D3F]/30",
+        "bg-gradient-to-r from-off-white via-light-gray to-off-white text-white border border-off-white/25 shadow-md shadow-off-white/30",
       destructive:
-        "bg-gradient-to-r from-red-600 via-rose-600 to-red-600 text-white border border-red-400/40 shadow-md shadow-red-600/30",
+        "bg-gradient-to-r from-red-600 via-rose-600 to-red-600 text-white border border-light-gray/40 shadow-md shadow-red-600/30",
       outline:
-        "bg-[#140C0A] text-[#F4E7C8] border border-[#F4E7C8]/25 hover:border-[#E85D3F]/60",
+        "bg-deep-graphite text-off-white border border-off-white/25 hover:border-off-white/60",
       secondary:
-        "bg-[#22120E] text-[#F4E7C8] border border-[#E85D3F]/35 hover:border-[#E85D3F]/70",
+        "bg-deep-graphite text-off-white border border-off-white/35 hover:border-off-white/70",
       ghost:
-        "bg-[#140C0A]/60 text-[#D8CBB7] hover:text-white border border-transparent",
+        "bg-deep-graphite/60 text-light-gray hover:text-white border border-transparent",
       link:
-        "bg-transparent text-[#E85D3F] underline",
+        "bg-transparent text-off-white underline",
     };
 
     const sizeStyles: Record<string, { container: string; cover: string; placeholder: string }> = {
@@ -121,9 +121,9 @@ export const CreepyButton = forwardRef<HTMLButtonElement, CreepyButtonProps>(
         ref={ref}
         disabled={disabled}
         className={cn(
-          "relative inline-flex items-center justify-center bg-[#090403] border border-[#F4E7C8]/15 outline-none select-none group tap-highlight-transparent overflow-visible transition-opacity",
+          "relative inline-flex items-center justify-center bg-black border border-off-white/15 outline-none select-none group tap-highlight-transparent overflow-visible transition-opacity",
           disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
-          "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E85D3F]",
+          "focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-off-white",
           currentSize.container,
           className
         )}
@@ -157,7 +157,7 @@ export const CreepyButton = forwardRef<HTMLButtonElement, CreepyButtonProps>(
             }}
           >
             <span
-              className="absolute top-1/2 left-1/2 w-[0.36em] h-[0.36em] bg-[#0E0604] rounded-full transition-transform duration-75 ease-out shadow-sm"
+              className="absolute top-1/2 left-1/2 w-[0.36em] h-[0.36em] bg-black rounded-full transition-transform duration-75 ease-out shadow-sm"
               style={pupilStyle}
             />
           </motion.span>
@@ -174,7 +174,7 @@ export const CreepyButton = forwardRef<HTMLButtonElement, CreepyButtonProps>(
             }}
           >
             <span
-              className="absolute top-1/2 left-1/2 w-[0.36em] h-[0.36em] bg-[#0E0604] rounded-full transition-transform duration-75 ease-out shadow-sm"
+              className="absolute top-1/2 left-1/2 w-[0.36em] h-[0.36em] bg-black rounded-full transition-transform duration-75 ease-out shadow-sm"
               style={pupilStyle}
             />
           </motion.span>

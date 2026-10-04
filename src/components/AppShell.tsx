@@ -22,7 +22,7 @@ export function AppShell({
   children,
 }: AppShellProps) {
   return (
-    <div className="min-h-screen text-[#F4E7C8] font-sans selection:bg-[#E85D3F]/40 selection:text-white relative flex flex-col justify-between">
+    <div className="min-h-screen text-off-white font-sans selection:bg-off-white/40 selection:text-white relative flex flex-col justify-between">
       {/* Editorial Atmosphere Background */}
       <EditorialBackground />
 

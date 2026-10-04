@@ -53,29 +53,29 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="pointer-events-auto flex items-center justify-between gap-3 p-3.5 rounded-xl shadow-2xl border border-[#F4E7C8]/20 bg-[#150E0C]/95 backdrop-blur-xl text-[#F4E7C8] text-sm"
+              className="pointer-events-auto flex items-center justify-between gap-3 p-3.5 rounded-xl shadow-2xl border border-off-white/20 bg-deep-graphite/95 backdrop-blur-xl text-off-white text-sm"
             >
               <div className="flex items-center gap-2.5">
                 {toast.type === 'success' && (
-                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-graphite/20 text-light-gray flex items-center justify-center flex-shrink-0">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
                 )}
                 {toast.type === 'error' && (
-                  <div className="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-graphite/20 text-rose-400 flex items-center justify-center flex-shrink-0">
                     <AlertCircle className="w-4 h-4" />
                   </div>
                 )}
                 {toast.type === 'info' && (
-                  <div className="w-6 h-6 rounded-full bg-[#E85D3F]/20 text-[#E85D3F] flex items-center justify-center flex-shrink-0">
+                  <div className="w-6 h-6 rounded-full bg-off-white/20 text-off-white flex items-center justify-center flex-shrink-0">
                     <Info className="w-4 h-4" />
                   </div>
                 )}
-                <span className="font-semibold text-[#F4E7C8] text-xs sm:text-sm">{toast.message}</span>
+                <span className="font-semibold text-off-white text-xs sm:text-sm">{toast.message}</span>
               </div>
               <button
                 onClick={() => removeToast(toast.id)}
-                className="text-[#D8CBB7] hover:text-[#F4E7C8] p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="text-light-gray hover:text-off-white p-1 rounded-lg hover:bg-white/10 transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
               </button>

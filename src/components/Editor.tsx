@@ -150,36 +150,36 @@ export function Editor({
   };
 
   return (
-    <div className="min-h-screen text-[#F4E7C8] flex flex-col font-sans relative selection:bg-[#E85D3F]/40 selection:text-white">
+    <div className="min-h-screen text-off-white flex flex-col font-sans relative selection:bg-off-white/40 selection:text-white">
       {/* Editorial Terracotta Background */}
       <EditorialBackground />
 
       {/* Editor Top Bar */}
-      <header className="sticky top-0 z-30 bg-[#111111]/90 backdrop-blur-xl border-b border-[#F4E7C8]/15 h-16 flex items-center justify-between px-4 sm:px-8">
+      <header className="sticky top-0 z-30 bg-black/90 backdrop-blur-xl border-b border-off-white/15 h-16 flex items-center justify-between px-4 sm:px-8">
         <div className="flex items-center gap-3">
           <button
             onClick={handleBack}
-            className="p-2 rounded-xl text-[#D8CBB7] hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-light-gray hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
             title="Back to Dashboard"
             aria-label="Back to Dashboard"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
-          <div className="h-5 w-px bg-[#F4E7C8]/15 hidden sm:block" />
+          <div className="h-5 w-px bg-off-white/15 hidden sm:block" />
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-heading font-black text-sm sm:text-base text-[#F4E7C8]">
+              <h1 className="font-heading font-black text-sm sm:text-base text-off-white">
                 {invoice.invoiceNumber || 'New Invoice'}
               </h1>
               <span
                 className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${
                   invoice.status === 'paid'
-                    ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                    ? 'bg-graphite/15 text-light-gray border-graphite/30'
                     : invoice.status === 'pending'
-                    ? 'bg-[#F3C352]/15 text-[#F3C352] border-[#F3C352]/30'
+                    ? 'bg-soft-gray/15 text-soft-gray border-soft-gray/30'
                     : invoice.status === 'overdue'
-                    ? 'bg-red-500/15 text-red-300 border-red-500/30'
-                    : 'bg-white/5 text-[#D8CBB7] border-white/10'
+                    ? 'bg-graphite/15 text-off-white border-graphite/30'
+                    : 'bg-white/5 text-light-gray border-white/10'
                 }`}
               >
                 {invoice.status}
@@ -207,7 +207,7 @@ export function Editor({
             size="sm"
             onClick={() => setShowPreviewModal(true)}
           >
-            <Eye className="w-3.5 h-3.5 text-[#F3C352]" />
+            <Eye className="w-3.5 h-3.5 text-soft-gray" />
             <span className="hidden md:inline">Live Preview</span>
           </Button>
 
@@ -252,25 +252,25 @@ export function Editor({
           {/* Right Column: Prominent Live Summary (4 Cols, Sticky) */}
           <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
             {/* Live Summary Card */}
-            <div className="glass-panel p-6 rounded-3xl border border-[#F4E7C8]/15 bg-gradient-to-b from-[#150E0C] to-[#1E110E] shadow-2xl relative overflow-hidden">
+            <div className="glass-panel p-6 rounded-3xl border border-off-white/15 bg-gradient-to-b from-deep-graphite to-[#1E110E] shadow-2xl relative overflow-hidden">
               {/* Card Accent Glow */}
-              <div className="absolute -top-12 -right-12 w-40 h-40 bg-[#E85D3F]/20 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#F3C352]/15 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-off-white/20 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-soft-gray/15 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="flex items-center justify-between pb-4 border-b border-[#F4E7C8]/10">
-                <span className="font-heading font-bold text-sm tracking-wider uppercase text-[#F4E7C8]">
+              <div className="flex items-center justify-between pb-4 border-b border-off-white/10">
+                <span className="font-heading font-bold text-sm tracking-wider uppercase text-off-white">
                   Invoice Summary
                 </span>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/[0.06] text-[#F3C352]">
+                <span className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/[0.06] text-soft-gray">
                   {invoice.items?.length || 0} items
                 </span>
               </div>
 
               {/* Summary Rows */}
               <div className="py-4 space-y-3 text-sm">
-                <div className="flex items-center justify-between text-[#D8CBB7]">
+                <div className="flex items-center justify-between text-light-gray">
                   <span>Subtotal</span>
-                  <span className="font-mono text-[#F4E7C8]">
+                  <span className="font-mono text-off-white">
                     {formatCurrency(totals.subtotal, currency)}
                   </span>
                 </div>
@@ -284,21 +284,21 @@ export function Editor({
                   </div>
                 )}
 
-                <div className="flex items-center justify-between text-[#D8CBB7]">
+                <div className="flex items-center justify-between text-light-gray">
                   <span>GST ({totals.effectiveTaxRate.toFixed(0)}%)</span>
-                  <span className="font-mono text-[#F4E7C8]">
+                  <span className="font-mono text-off-white">
                     {formatCurrency(totals.taxTotal, currency)}
                   </span>
                 </div>
 
                 {/* Grand Total */}
-                <div className="pt-4 mt-2 border-t border-[#F4E7C8]/10 flex items-baseline justify-between">
+                <div className="pt-4 mt-2 border-t border-off-white/10 flex items-baseline justify-between">
                   <div>
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-[#D8CBB7]">
+                    <span className="block text-xs font-semibold uppercase tracking-wider text-light-gray">
                       Grand Total
                     </span>
                     {totals.advancePaid > 0 && (
-                      <span className="text-[11px] text-[#D8CBB7]">
+                      <span className="text-[11px] text-light-gray">
                         Advance: {formatCurrency(totals.advancePaid, currency)}
                       </span>
                     )}
@@ -308,7 +308,7 @@ export function Editor({
                       key={totals.grandTotal}
                       initial={{ scale: 0.95, opacity: 0.8 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      className="font-heading font-extrabold text-2xl sm:text-3xl bg-gradient-to-r from-[#F4E7C8] via-[#F3C352] to-[#E85D3F] bg-clip-text text-transparent"
+                      className="font-heading font-extrabold text-2xl sm:text-3xl bg-gradient-to-r from-off-white via-soft-gray to-off-white bg-clip-text text-transparent"
                     >
                       {formatCurrency(totals.grandTotal, currency)}
                     </motion.span>
@@ -317,8 +317,8 @@ export function Editor({
 
                 {totals.advancePaid > 0 && (
                   <div className="pt-2 flex items-center justify-between text-xs">
-                    <span className="text-[#D8CBB7]">Balance Due</span>
-                    <span className="font-mono font-bold text-[#F3C352]">
+                    <span className="text-light-gray">Balance Due</span>
+                    <span className="font-mono font-bold text-soft-gray">
                       {formatCurrency(totals.balanceDue, currency)}
                     </span>
                   </div>
@@ -331,7 +331,7 @@ export function Editor({
                   type="button"
                   disabled={isGenerating}
                   onClick={handleGenerateInvoice}
-                  className="w-full py-3.5 rounded-2xl bg-[#E85D3F] hover:bg-[#B84427] text-white font-heading font-bold text-sm tracking-wide shadow-lg shadow-[#E85D3F]/25 transition-all flex items-center justify-center gap-2 disabled:opacity-75 cursor-pointer"
+                  className="w-full py-3.5 rounded-2xl bg-off-white hover:bg-light-gray text-white font-heading font-bold text-sm tracking-wide shadow-lg shadow-off-white/25 transition-all flex items-center justify-center gap-2 disabled:opacity-75 cursor-pointer"
                 >
                   {isGenerating ? (
                     <>
@@ -357,7 +357,7 @@ export function Editor({
                   <button
                     type="button"
                     onClick={() => setShowPreviewModal(true)}
-                    className="py-2.5 px-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-xs font-semibold text-[#2DD4BF] hover:bg-[#2DD4BF]/10 transition-colors flex items-center justify-center gap-1.5"
+                    className="py-2.5 px-3 rounded-xl bg-white/[0.04] border border-white/10 hover:bg-white/[0.08] text-xs font-semibold text-light-gray hover:bg-light-gray/10 transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     Preview
@@ -369,11 +369,11 @@ export function Editor({
             {/* Quick Preview Thumbnail Card */}
             <div
               onClick={() => setShowPreviewModal(true)}
-              className="glass-panel p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-purple-500/40 transition-all group"
+              className="glass-panel p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-graphite/40 transition-all group"
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-semibold text-zinc-300 flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-[#A855F7]" /> Document Canvas
+                  <Layers className="w-3.5 h-3.5 text-light-gray" /> Document Canvas
                 </span>
                 <span className="text-[10px] text-zinc-400 group-hover:text-white transition-colors">
                   Click to Expand &rarr;
@@ -412,37 +412,37 @@ export function Editor({
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-[#150E0C] border border-white/15 rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden my-auto"
+              className="bg-deep-graphite border border-white/15 rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden my-auto"
             >
               {/* Modal Header */}
-              <div className="p-4 sm:px-6 bg-[#111111] border-b border-[#F4E7C8]/15 flex items-center justify-between">
+              <div className="p-4 sm:px-6 bg-black border-b border-off-white/15 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-[#E85D3F]/20 text-[#E85D3F] flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-xl bg-off-white/20 text-off-white flex items-center justify-center">
                     <Eye className="w-4 h-4" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-black text-base text-[#F4E7C8]">Invoice Document Preview</h3>
-                    <p className="text-xs text-[#D8CBB7]">High-resolution print and PDF output</p>
+                    <h3 className="font-heading font-black text-base text-off-white">Invoice Document Preview</h3>
+                    <p className="text-xs text-light-gray">High-resolution print and PDF output</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handlePrint()}
-                    className="p-2 rounded-xl bg-white/[0.05] hover:bg-white/10 text-[#D8CBB7] hover:text-[#F4E7C8] transition-colors cursor-pointer"
+                    className="p-2 rounded-xl bg-white/[0.05] hover:bg-white/10 text-light-gray hover:text-off-white transition-colors cursor-pointer"
                     title="Print"
                   >
                     <Printer className="w-4 h-4" />
                   </button>
                   <button
                     onClick={handleDownloadPDF}
-                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-white text-xs font-bold shadow-md shadow-[#E85D3F]/25 cursor-pointer transition-all"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-off-white hover:bg-light-gray text-white text-xs font-bold shadow-md shadow-off-white/25 cursor-pointer transition-all"
                   >
                     <Download className="w-3.5 h-3.5" /> Download PDF
                   </button>
                   <button
                     onClick={() => setShowPreviewModal(false)}
-                    className="p-2 rounded-xl text-[#D8CBB7] hover:text-white hover:bg-white/10 transition-colors ml-2 cursor-pointer"
+                    className="p-2 rounded-xl text-light-gray hover:text-white hover:bg-white/10 transition-colors ml-2 cursor-pointer"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -468,7 +468,7 @@ export function Editor({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="glass-panel bg-[#150E0C] border border-white/15 rounded-3xl max-w-md w-full p-6 shadow-2xl"
+              className="glass-panel bg-deep-graphite border border-white/15 rounded-3xl max-w-md w-full p-6 shadow-2xl"
             >
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
                 <h3 className="font-heading font-bold text-base text-white">Add New Client</h3>
@@ -545,7 +545,7 @@ export function Editor({
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 rounded-xl bg-[#E85D3F] hover:bg-[#B84427] text-white font-bold transition-all shadow-md shadow-[#E85D3F]/25 cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-off-white hover:bg-light-gray text-white font-bold transition-all shadow-md shadow-off-white/25 cursor-pointer"
                   >
                     Save & Select Client
                   </button>

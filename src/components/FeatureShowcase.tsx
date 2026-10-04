@@ -22,7 +22,7 @@ const FEATURES: FeatureSection[] = [
     description: 'Transform mundane billing into striking editorial pieces. Our engine uses dynamic geometric grids and Noir-inspired aesthetics to instantly structure your line items into beautifully legible, high-contrast documents.',
     imageSrc: '/new-sec/1.jpg',
     icon: <Box className="w-5 h-5" />,
-    accentColor: '#E85D3F', // Orange
+    accentColor: 'var(--color-off-white)', // Orange
   },
   {
     id: 'sec-02',
@@ -32,7 +32,7 @@ const FEATURES: FeatureSection[] = [
     description: 'Bypass traditional gateways with direct cryptographic payment pipelines. Generate instant UPI QR codes mapped specifically to each invoice, resulting in zero-fee, instant bank-to-bank settlements.',
     imageSrc: '/new-sec/2.jpg',
     icon: <Lock className="w-5 h-5" />,
-    accentColor: '#3B82F6', // Blue
+    accentColor: 'var(--color-light-gray)', // Blue
   },
   {
     id: 'sec-03',
@@ -42,7 +42,7 @@ const FEATURES: FeatureSection[] = [
     description: 'Stay ahead of international currency changes and tax variances. The system automatically recalculates cross-border rates and tax jurisdictions in real-time, displaying drift metrics on your dashboard.',
     imageSrc: '/new-sec/3.jpg',
     icon: <Zap className="w-5 h-5" />,
-    accentColor: '#10B981', // Green
+    accentColor: 'var(--color-light-gray)', // Green
   },
   {
     id: 'sec-04',
@@ -52,7 +52,7 @@ const FEATURES: FeatureSection[] = [
     description: 'Every generated docket is cryptographically sealed and archived in our immutable ledger. Access past invoices, track revisions, and maintain complete tax compliance with our robust archival system.',
     imageSrc: '/new-sec/4.jpg',
     icon: <Shield className="w-5 h-5" />,
-    accentColor: '#F59E0B', // Amber
+    accentColor: 'var(--color-light-gray)', // Amber
   },
 ];
 
@@ -65,11 +65,11 @@ export function FeatureShowcase() {
       {/* Introduction Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 text-xs font-semibold text-white/70 mb-4">
-          <Sparkles className="w-3.5 h-3.5 text-[#E85D3F]" />
+          <Sparkles className="w-3.5 h-3.5 text-off-white" />
           <span className="tracking-widest uppercase font-mono">SEC_04 // CORE ARCHITECTURE</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-[#F4E7C8]">
-          System <span className="text-[#E85D3F]">Capabilities</span>
+        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight text-off-white">
+          System <span className="text-off-white">Capabilities</span>
         </h2>
       </div>
 
@@ -125,7 +125,7 @@ export function FeatureShowcase() {
                       </p>
                     </div>
 
-                    <p className="text-[#D8CBB7]/80 text-lg leading-relaxed max-w-xl">
+                    <p className="text-light-gray/80 text-lg leading-relaxed max-w-xl">
                       {feature.description}
                     </p>
 

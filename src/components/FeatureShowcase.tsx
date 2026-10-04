@@ -155,7 +155,11 @@ export function FeatureShowcase() {
                       <img 
                         src={feature.imageSrc} 
                         alt={feature.title}
-                        className="w-full h-full object-cover rounded-2xl mix-blend-screen filter brightness-[0.85] contrast-125 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                        className="w-full h-full object-cover rounded-2xl filter brightness-[0.85] contrast-125 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                        style={{
+                          WebkitMaskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)',
+                          maskImage: 'radial-gradient(ellipse at center, black 60%, transparent 100%)'
+                        }}
                       />
                       
                       {/* Click overlay hint */}
@@ -210,7 +214,11 @@ export function FeatureShowcase() {
                 <img 
                   src={selectedImage.imageSrc} 
                   alt={selectedImage.title}
-                  className="max-w-full max-h-full object-contain rounded-xl drop-shadow-[0_20px_50px_rgba(255,255,255,0.05)] mix-blend-screen"
+                  className="max-w-full max-h-full object-contain rounded-xl drop-shadow-[0_20px_50px_rgba(255,255,255,0.05)]"
+                  style={{
+                    WebkitMaskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)',
+                    maskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)'
+                  }}
                 />
               </div>
             </motion.div>

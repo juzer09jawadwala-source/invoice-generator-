@@ -13,17 +13,7 @@ export function EditorialBackground() {
   return (
     <div
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none"
-      style={{
-        backgroundColor: '#742317',
-        backgroundImage: `
-          radial-gradient(circle at 18% 12%, rgba(232, 93, 63, 0.42) 0%, transparent 45%),
-          radial-gradient(circle at 85% 25%, rgba(184, 68, 39, 0.5) 0%, transparent 50%),
-          radial-gradient(circle at 50% 65%, rgba(159, 50, 31, 0.4) 0%, transparent 55%),
-          radial-gradient(circle at 82% 85%, rgba(116, 35, 23, 0.8) 0%, transparent 60%),
-          linear-gradient(145deg, #8E2B1A 0%, #9F321F 40%, #742317 100%)
-        `,
-      }}
+      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none bg-black"
     >
       {/* Subtle Noise / Paper Grain Texture */}
       <svg className="absolute inset-0 w-full h-full opacity-[0.035] mix-blend-overlay">

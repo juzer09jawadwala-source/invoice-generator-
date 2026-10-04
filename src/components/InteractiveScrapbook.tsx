@@ -212,7 +212,11 @@ export function InteractiveScrapbook() {
           <img 
             src="/fl.jpg" 
             alt="Multimedia Portfolio Scrapbook" 
-            className="w-full h-full object-cover mix-blend-screen rounded-xl sm:rounded-3xl"
+            className="w-full h-full object-cover rounded-xl sm:rounded-3xl"
+            style={{
+              WebkitMaskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)',
+              maskImage: 'radial-gradient(ellipse at center, black 70%, transparent 100%)'
+            }}
           />
 
           {/* Interactive Hotspots Overlay */}

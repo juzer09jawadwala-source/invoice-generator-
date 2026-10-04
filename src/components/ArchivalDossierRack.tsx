@@ -619,7 +619,11 @@ export function ArchivalDossierRack({
             <img
               src="/in.jpg"
               alt="Noir Archival Folders Dossier"
-              className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[0.98] transition-all duration-300 mix-blend-screen animate-float drop-shadow-2xl"
+              className="w-full h-full object-cover object-center filter contrast-[1.03] brightness-[0.98] transition-all duration-300 animate-float drop-shadow-2xl"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+              }}
             />
 
             {/* Subtle Vignette & Grain */}

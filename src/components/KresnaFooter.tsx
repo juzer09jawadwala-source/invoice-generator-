@@ -496,8 +496,8 @@ export function KresnaFooter() {
 
             {/* Brand Logo */}
             <div className="kresna-footer-logo">
-              <div className="kresna-footer-logo-mark">K</div>
-              <span className="kresna-footer-logo-name">Kresna</span>
+              <div className="kresna-footer-logo-mark">N</div>
+              <span className="kresna-footer-logo-name">NOIR LABS STUDIO</span>
             </div>
 
             {/* Tagline */}
@@ -548,7 +548,7 @@ export function KresnaFooter() {
             {/* Floating "Feeling lucky?" badge */}
             <div className="kresna-footer-lucky-graphic">
               <div className="kresna-lucky-cube">
-                <span className="kresna-lucky-cube-mark">K</span>
+                <span className="kresna-lucky-cube-mark">N</span>
               </div>
               <div className="kresna-lucky-text-row">
                 <div className="kresna-lucky-arrow">
@@ -589,13 +589,13 @@ export function KresnaFooter() {
             {/* Bottom Row */}
             <div className="kresna-footer-bottom">
               <div className="kresna-footer-copyright">
-                &copy; 2025 Kresna. All rights reserved.
+                &copy; 2025 NOIR LABS STUDIO. All rights reserved.
               </div>
 
               <div className="kresna-footer-cta-mini">
                 <h4>
                   AI moves fast.<br />
-                  <strong>Stay ahead with Kresna.</strong>
+                  <strong>Stay ahead with NOIR LABS STUDIO.</strong>
                 </h4>
 
                 <div className="kresna-footer-subscribe-row">
@@ -622,13 +622,12 @@ export function KresnaFooter() {
               x="500"
               y="240"
               textAnchor="middle"
-              fontSize="320"
-            >
-              Kresna
-            </text>
+              fontSize="320">NOIR LABS STUDIO</text>
           </svg>
         </div>
       </section>
     </footer>
   );
 }
+
+

@@ -20,6 +20,7 @@ import { AppView } from './AppShell';
 import Testimonial1 from '@/components/ui/testimonial-1';
 import { Button } from '@/components/ui/button';
 import { ArchivalDossierRack } from './ArchivalDossierRack';
+import { InteractiveScrapbook } from './InteractiveScrapbook';
 
 interface DashboardProps {
   invoices: Invoice[];
@@ -198,6 +199,11 @@ export function Dashboard({
           onCreateNew={onCreateNew}
           onNavigate={onNavigate}
         />
+      </div>
+
+      {/* Section 3: Interactive Multimedia Portfolio Scrapbook (fl.jpg) - FULL WIDTH */}
+      <div className="w-full bg-[#0B0B0C]">
+        <InteractiveScrapbook />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-6 sm:space-y-10">

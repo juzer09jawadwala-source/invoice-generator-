@@ -544,9 +544,9 @@ export function ArchivalDossierRack({
   };
 
   return (
-    <section className="relative w-full space-y-4 pt-2">
+    <section className="relative w-full space-y-6 pt-2">
       {/* Section Header with Architectural Coordinates */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-[#F4E7C8]/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-[#F4E7C8]/10">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.05] border border-[#F4E7C8]/15 text-xs font-semibold text-[#F4E7C8] mb-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E85D3F] animate-pulse" />
@@ -596,28 +596,25 @@ export function ArchivalDossierRack({
 
       {/* VIEW 1: PANORAMIC RACK WITH INTERACTIVE HOVER COLUMNS */}
       {viewMode === 'rack' && (
-        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#F4E7C8]/20 bg-[#0B0B0C] shadow-2xl p-2 sm:p-4 group/rack">
-          {/* Architectural Drafting Corner Ticks */}
-          <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-[#E85D3F]/70 pointer-events-none z-20" />
-          <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-[#E85D3F]/70 pointer-events-none z-20" />
-          <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-[#E85D3F]/70 pointer-events-none z-20" />
-          <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-[#E85D3F]/70 pointer-events-none z-20" />
-
+        <div className="relative w-full overflow-hidden bg-transparent group/rack border-y border-[#F4E7C8]/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+          
           {/* Technical Top Coordinate Bar */}
-          <div className="flex items-center justify-between px-3 py-1.5 mb-2 rounded-xl bg-black/60 border border-white/5 text-[10px] font-mono text-[#D8CBB7]/80">
-            <div className="flex items-center gap-3 truncate">
-              <span className="text-[#E85D3F] font-bold">[ARCHIVE_INDEX // IN_11-15]</span>
-              <span className="hidden md:inline">LATENCY: 0.12ms</span>
-              <span className="hidden sm:inline">RESOLUTION: 2752×1536</span>
-            </div>
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[#F4E7C8] font-bold uppercase">Click Any Folder To Pop Up</span>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="flex items-center justify-between px-3 py-1.5 mt-4 mb-4 rounded-xl bg-black/60 border border-white/5 text-[10px] font-mono text-[#D8CBB7]/80 backdrop-blur-sm">
+              <div className="flex items-center gap-3 truncate">
+                <span className="text-[#E85D3F] font-bold">[ARCHIVE_INDEX // IN_11-15]</span>
+                <span className="hidden md:inline">LATENCY: 0.12ms</span>
+                <span className="hidden sm:inline">RESOLUTION: 2752x1536</span>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[#F4E7C8] font-bold uppercase">Hover Folders & Click To Unseal</span>
+              </div>
             </div>
           </div>
 
-          {/* Main Visual Frame with Overlay Interactive Columns */}
-          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2752/1200] max-h-[460px] rounded-xl sm:rounded-2xl overflow-hidden bg-black select-none">
+          {/* Main Visual Frame with Overlay Interactive Columns - Full Width Edge to Edge */}
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2752/1200] overflow-hidden bg-black select-none">
             {/* Base Image */}
             <img
               src="/in.jpg"
@@ -765,11 +762,12 @@ export function ArchivalDossierRack({
 
       {/* VIEW 2: TACTILE DOSSIER CARDS GRID */}
       {viewMode === 'cards' && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-          {DOSSIER_FOLDERS.map((folder) => {
-            const isHovered = hoveredFolder?.id === folder.id;
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {DOSSIER_FOLDERS.map((folder) => {
+              const isHovered = hoveredFolder?.id === folder.id;
 
-            return (
+              return (
               <motion.div
                 key={folder.id}
                 whileHover={{ y: -4, scale: 1.02 }}
@@ -826,6 +824,7 @@ export function ArchivalDossierRack({
               </motion.div>
             );
           })}
+          </div>
         </div>
       )}
 

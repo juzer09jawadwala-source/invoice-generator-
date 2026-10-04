@@ -2,6 +2,7 @@ import React from 'react';
 import { CurrencyCode } from '../types';
 import { EditorialBackground } from './EditorialBackground';
 import { InkFrameHeader, AppView } from './InkFrameHeader';
+import { KresnaFooter } from './KresnaFooter';
 
 export type { AppView };
 
@@ -21,7 +22,7 @@ export function AppShell({
   children,
 }: AppShellProps) {
   return (
-    <div className="min-h-screen text-[#F4E7C8] font-sans selection:bg-[#E85D3F]/40 selection:text-white relative">
+    <div className="min-h-screen text-[#F4E7C8] font-sans selection:bg-[#E85D3F]/40 selection:text-white relative flex flex-col justify-between">
       {/* Editorial Terracotta & Geometric Atmosphere Background */}
       <EditorialBackground />
 
@@ -34,7 +35,10 @@ export function AppShell({
       />
 
       {/* Main Content Area */}
-      <main className="relative z-10">{children}</main>
+      <main className="relative z-10 flex-grow">{children}</main>
+
+      {/* Kresna Footer for all pages */}
+      <KresnaFooter />
     </div>
   );
 }

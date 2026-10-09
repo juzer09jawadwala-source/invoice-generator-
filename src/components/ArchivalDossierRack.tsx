@@ -543,6 +543,25 @@ export function ArchivalDossierRack({
     }
   };
 
+  const displayFolders = DOSSIER_FOLDERS.map((folder, i) => {
+    const safeInvoices = invoices || [];
+    const invoice = safeInvoices[i];
+    if (invoice) {
+      return {
+        ...folder,
+        code: `INV // ${(invoice?.id || '').slice(0, 8).toUpperCase()}`,
+        tabLabel: invoice?.client?.name ? invoice.client.name.substring(0, 15).toUpperCase() : `INVOICE ${i+1}`,
+        title: `${invoice?.client?.name || 'Unknown Client'} // ${invoice?.client?.contactName || invoice?.invoiceNumber || ''}`,
+        subtitle: `Amount: ${formatCurrency(calculateInvoice(invoice).grandTotal, currency)} | Status: ${(invoice?.status || 'draft').toUpperCase()}`,
+        description: `Direct access to financial dossier for ${invoice?.client?.name || 'this client'}, registered under identifier ${invoice?.id || ''}. Select to unseal and inspect the active ledger contents immediately.`,
+        suggestedActionLabel: `Open Invoice ${invoice?.invoiceNumber || ''}`,
+        actionType: 'load_invoice' as any,
+        actionTarget: invoice?.id || '',
+      };
+    }
+    return folder;
+  });
+
   return (
     <section className="relative w-full space-y-6 pt-2">
       {/* Section Header with Architectural Coordinates */}

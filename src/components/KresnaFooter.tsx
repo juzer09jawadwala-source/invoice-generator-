@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { ModelLogo } from './ModelLogo';
 
 export function KresnaFooter() {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -496,7 +497,7 @@ export function KresnaFooter() {
 
             {/* Brand Logo */}
             <div className="kresna-footer-logo">
-              <div className="kresna-footer-logo-mark">N</div>
+              <ModelLogo className="kresna-footer-logo-mark" style={{ backgroundColor: 'transparent', border: 'none' }} />
               <span className="kresna-footer-logo-name">NOIR LABS STUDIO</span>
             </div>
 

@@ -3,6 +3,7 @@ import { Invoice } from '../types';
 import { formatCurrency } from '../lib/utils';
 import { calculateInvoice } from '../lib/calc';
 import { QRCodeCanvas } from 'qrcode.react';
+import { ModelLogo } from './ModelLogo';
 
 interface Props {
   invoice: Invoice;
@@ -37,32 +38,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         {/* Top Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '36px' }}>
           <div>
-            {invoice.company.logoUrl ? (
-              <img
-                src={invoice.company.logoUrl}
-                alt="Company Logo"
-                style={{ maxHeight: '56px', maxWidth: '160px', objectFit: 'contain', marginBottom: '16px' }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: '52px',
-                  height: '52px',
-                  backgroundColor: 'var(--color-black)',
-                  borderRadius: '12px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '16px',
-                  color: 'var(--color-off-white)',
-                  fontWeight: 700,
-                  fontSize: '20px',
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                NL
-              </div>
-            )}
+            <ModelLogo style={{ width: '80px', height: '80px', marginBottom: '12px' }} />
             <h1 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--color-black)', margin: '0 0 4px 0', letterSpacing: '-0.02em' }}>
               {invoice.company.name || 'Noir Labs'}
             </h1>

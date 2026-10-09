@@ -63,29 +63,39 @@ export function Editor({
     documentTitle: `Invoice_${invoice.invoiceNumber}`,
   });
 
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+
   const handleDownloadPDF = () => {
     if (!componentRef.current) return;
 
-    const element = componentRef.current;
-    const opt = {
-      margin: 0,
-      filename: `Invoice_${invoice.invoiceNumber}.pdf`,
-      image: { type: 'jpeg' as const, quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true, logging: false },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
-    };
+    setIsGeneratingPdf(true);
+    showToast('Generating high-resolution PDF...');
 
-    html2pdf()
-      .set(opt)
-      .from(element)
-      .save()
-      .then(() => {
-        showToast(`Invoice ${invoice.invoiceNumber} PDF downloaded`);
-      })
-      .catch((err: any) => {
-        console.error('PDF error', err);
-        showToast('Failed to export PDF', 'error');
-      });
+    // Small delay to allow React to render the loading state before the main thread blocks
+    setTimeout(() => {
+      const element = componentRef.current;
+      const opt = {
+        margin: 0,
+        filename: `Invoice_${invoice.invoiceNumber}.pdf`,
+        image: { type: 'jpeg' as const, quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
+      };
+
+      html2pdf()
+        .set(opt)
+        .from(element)
+        .save()
+        .then(() => {
+          setIsGeneratingPdf(false);
+          showToast(`Invoice ${invoice.invoiceNumber} PDF downloaded`);
+        })
+        .catch((err: any) => {
+          setIsGeneratingPdf(false);
+          console.error('PDF error', err);
+          showToast('Failed to export PDF', 'error');
+        });
+    }, 100);
   };
 
   const handleGenerateInvoice = () => {
@@ -153,6 +163,27 @@ export function Editor({
     <div className="min-h-screen text-off-white flex flex-col font-sans relative selection:bg-off-white/40 selection:text-white">
       {/* Editorial Terracotta Background */}
       <EditorialBackground />
+
+      <AnimatePresence>
+        {isGeneratingPdf && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md"
+          >
+            <div className="flex flex-col items-center gap-4 bg-deep-graphite p-8 rounded-2xl border border-graphite shadow-2xl">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-8 h-8 border-4 border-light-gray border-t-off-white rounded-full"
+              />
+              <p className="font-bold text-off-white">Generating high-res PDF...</p>
+              <p className="text-xs text-soft-gray">Optimizing layout and 3D models</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Editor Top Bar */}
       <header className="sticky top-0 z-30 bg-black/90 backdrop-blur-xl border-b border-off-white/15 h-16 flex items-center justify-between px-4 sm:px-8">

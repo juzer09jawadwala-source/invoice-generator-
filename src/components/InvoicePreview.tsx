@@ -352,6 +352,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
           </div>
         </div>
       </div>
+    </div>
       
       {/* Expanded QR Code Modal */}
       {isQrExpanded && (

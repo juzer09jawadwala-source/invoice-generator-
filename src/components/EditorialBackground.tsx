@@ -21,10 +21,11 @@ export function EditorialBackground() {
         <rect width="100%" height="100%" filter="url(#editorial-noise)" />
       </svg>
 
-      {/* Ripple Effect Background */}
-      <div className="absolute inset-0 z-0">
-        <BackgroundRippleEffect />
-      </div>
+      {/* Monochrome Dotted Wave Field Background */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-screen"
+        style={{ backgroundImage: 'url(/bg-wave.png)' }}
+      />
     </div>
   );
 }

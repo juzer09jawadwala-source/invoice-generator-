@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Invoice } from '../types';
 import { formatCurrency } from '../lib/utils';
 import { calculateInvoice } from '../lib/calc';
@@ -11,8 +11,10 @@ interface Props {
 export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, ref) => {
   const totals = calculateInvoice(invoice);
   const currency = invoice.currency || 'INR';
+  const [isQrExpanded, setIsQrExpanded] = useState(false);
 
   return (
+    <>
     <div
       ref={ref}
       style={{
@@ -222,7 +224,14 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
             <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600 }}>
               Scan to Pay
             </div>
-            <img src="/qr-code.jpeg" alt="Payment QR Code" style={{ width: '120px', height: '120px', borderRadius: '8px', objectFit: 'cover', border: '1px solid var(--color-light-gray)' }} />
+            <img 
+              src="/qr-code.jpeg" 
+              alt="Payment QR Code" 
+              onClick={() => setIsQrExpanded(true)}
+              style={{ width: '120px', height: '120px', borderRadius: '8px', objectFit: 'cover', border: '1px solid var(--color-light-gray)', cursor: 'zoom-in', transition: 'transform 0.2s ease', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} 
+              onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            />
           </div>
           <div style={{ width: '260px', fontSize: '13px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: 'var(--color-gray)' }}>
@@ -334,32 +343,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         </div>
 
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: '20px' }}>
-          <div style={{ textAlign: 'center' }}>
-            <QRCodeCanvas
-              value={
-                invoice.company.upiId
-                  ? `upi://pay?pa=${encodeURIComponent(invoice.company.upiId)}&pn=${encodeURIComponent(
-                      invoice.company.name || 'Noir Labs'
-                    )}&am=${totals.balanceDue}&cu=INR&tn=${encodeURIComponent('Invoice ' + invoice.invoiceNumber)}`
-                  : invoice.company.website
-                  ? `https://${invoice.company.website}`
-                  : `mailto:${invoice.company.email}`
-              }
-              size={68}
-              bgColor="var(--color-off-white)"
-              fgColor="var(--color-black)"
-              level="M"
-              includeMargin={false}
-            />
-            <div style={{ fontSize: '9px', color: 'var(--color-graphite)', marginTop: '4px', fontWeight: 600 }}>
-              {invoice.company.upiId ? 'Scan to Pay via UPI' : 'Scan to Verify'}
-            </div>
-            {invoice.company.upiId && (
-              <div style={{ fontSize: '8px', color: 'var(--color-gray)', fontFamily: 'monospace' }}>
-                {invoice.company.upiId}
-              </div>
-            )}
-          </div>
+
 
           <div style={{ textAlign: 'right' }}>
             <div style={{ width: '120px', borderBottom: '1px solid var(--color-light-gray)', marginBottom: '6px' }} />
@@ -368,6 +352,36 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
           </div>
         </div>
       </div>
-    </div>
+      
+      {/* Expanded QR Code Modal */}
+      {isQrExpanded && (
+        <div 
+          onClick={() => setIsQrExpanded(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(16px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'zoom-out'
+          }}
+        >
+          <div style={{ 
+            padding: '24px', 
+            backgroundColor: 'var(--color-off-white)', 
+            borderRadius: '24px',
+            boxShadow: '0 24px 60px rgba(0,0,0,0.4)'
+          }}>
+            <div style={{ fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-graphite)', fontWeight: 700, marginBottom: '16px', textAlign: 'center' }}>
+              Scan to Pay
+            </div>
+            <img src="/qr-code.jpeg" alt="Payment QR Code" style={{ width: '300px', height: '300px', borderRadius: '12px', objectFit: 'cover' }} />
+          </div>
+        </div>
+      )}
+    </>
   );
 });

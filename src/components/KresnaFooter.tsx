@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ModelLogo } from './ModelLogo';
+import { ContentModal } from './ContentModal';
+import { StaticPageContent } from '../lib/staticPages';
 
 export function KresnaFooter() {
+  const [activePage, setActivePage] = useState<string | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const textRef = useRef<SVGTextElement>(null);
 
@@ -299,7 +302,8 @@ export function KresnaFooter() {
           line-height: 1;
         }
 
-        .kresna-footer-col a {
+        .kresna-footer-col a,
+        .kresna-footer-col button {
           display: block;
           font-family: 'DM Sans', sans-serif;
           font-size: 14px;
@@ -308,13 +312,20 @@ export function KresnaFooter() {
           margin-bottom: 14px;
           text-decoration: none;
           transition: color 0.2s ease;
+          background: transparent;
+          border: none;
+          padding: 0;
+          text-align: left;
+          cursor: pointer;
         }
 
-        .kresna-footer-col a:last-child {
+        .kresna-footer-col a:last-child,
+        .kresna-footer-col button:last-child {
           margin-bottom: 0;
         }
 
-        .kresna-footer-col a:hover {
+        .kresna-footer-col a:hover,
+        .kresna-footer-col button:hover {
           color: var(--color-light-gray);
         }
 
@@ -569,20 +580,20 @@ export function KresnaFooter() {
                 {/* Navigation Column */}
                 <div className="kresna-footer-col">
                   <h3 className="kresna-footer-col-title">Navigation</h3>
-                  <a href="#">How it works</a>
-                  <a href="#">Features</a>
-                  <a href="#">Pricing</a>
-                  <a href="#">Testimonials</a>
-                  <a href="#">FAQ</a>
+                  <button type="button" onClick={() => setActivePage('how-it-works')}>How it works</button>
+                  <button type="button" onClick={() => setActivePage('features')}>Features</button>
+                  <button type="button" onClick={() => setActivePage('pricing')}>Pricing</button>
+                  <button type="button" onClick={() => setActivePage('testimonials')}>Testimonials</button>
+                  <button type="button" onClick={() => setActivePage('faq')}>FAQ</button>
                 </div>
 
                 {/* Company Column */}
                 <div className="kresna-footer-col">
                   <h3 className="kresna-footer-col-title">Company</h3>
-                  <a href="#">Blog</a>
-                  <a href="#">About</a>
-                  <a href="#">Terms and Condition</a>
-                  <a href="#">Privacy Policy</a>
+                  <button type="button" onClick={() => setActivePage('blog')}>Blog</button>
+                  <button type="button" onClick={() => setActivePage('about')}>About</button>
+                  <button type="button" onClick={() => setActivePage('terms')}>Terms and Condition</button>
+                  <button type="button" onClick={() => setActivePage('privacy')}>Privacy Policy</button>
                 </div>
               </div>
             </div>
@@ -627,6 +638,14 @@ export function KresnaFooter() {
           </svg>
         </div>
       </section>
+
+      <ContentModal 
+        isOpen={activePage !== null} 
+        onClose={() => setActivePage(null)}
+        title={activePage ? StaticPageContent[activePage]?.title || '' : ''}
+      >
+        {activePage && StaticPageContent[activePage]?.content}
+      </ContentModal>
     </footer>
   );
 }

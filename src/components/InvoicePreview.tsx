@@ -217,7 +217,13 @@ export const InvoicePreview = forwardRef<HTMLDivElement, Props>(({ invoice }, re
         </table>
 
         {/* Totals Summary */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '32px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-soft-gray)', fontWeight: 600 }}>
+              Scan to Pay
+            </div>
+            <img src="/qr-code.jpeg" alt="Payment QR Code" style={{ width: '120px', height: '120px', borderRadius: '8px', objectFit: 'cover', border: '1px solid var(--color-light-gray)' }} />
+          </div>
           <div style={{ width: '260px', fontSize: '13px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', color: 'var(--color-gray)' }}>
               <span>Subtotal</span>

@@ -52,7 +52,7 @@ export interface DossierFolder {
   description: string;
   keyFeatures: string[];
   suggestedActionLabel: string;
-  actionType: 'create_invoice' | 'view_invoices' | 'view_clients' | 'view_settings' | 'export_backup' | 'filter_status';
+  actionType: 'create_invoice' | 'view_invoices' | 'view_clients' | 'view_settings' | 'export_backup' | 'filter_status' | 'load_invoice';
   actionTarget?: string;
   technicalSpecs: {
     protocol: string;
@@ -420,11 +420,11 @@ export function ArchivalDossierRack({
       if (e.key === 'Escape') {
         setSelectedFolder(null);
       } else if (e.key === 'ArrowLeft') {
-        const prevIndex = (selectedFolder.index - 2 + DOSSIER_FOLDERS.length) % DOSSIER_FOLDERS.length;
-        setSelectedFolder(DOSSIER_FOLDERS[prevIndex]);
+        const prevIndex = (selectedFolder.index - 2 + displayFolders.length) % displayFolders.length;
+        setSelectedFolder(displayFolders[prevIndex]);
       } else if (e.key === 'ArrowRight') {
-        const nextIndex = selectedFolder.index % DOSSIER_FOLDERS.length;
-        setSelectedFolder(DOSSIER_FOLDERS[nextIndex]);
+        const nextIndex = selectedFolder.index % displayFolders.length;
+        setSelectedFolder(displayFolders[nextIndex]);
       }
     },
     [selectedFolder]
@@ -631,7 +631,7 @@ export function ArchivalDossierRack({
 
             {/* Interactive Folder Columns mapped across percentage widths */}
             <div className="absolute inset-0 flex w-full h-full z-10">
-              {DOSSIER_FOLDERS.map((folder) => {
+              {displayFolders.map((folder) => {
                 const widthPct = folder.rangeEndPct - folder.rangeStartPct;
                 const isHovered = hoveredFolder?.id === folder.id;
 
@@ -768,7 +768,7 @@ export function ArchivalDossierRack({
       {viewMode === 'cards' && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {DOSSIER_FOLDERS.map((folder) => {
+            {displayFolders.map((folder) => {
               const isHovered = hoveredFolder?.id === folder.id;
 
               return (
@@ -1076,8 +1076,8 @@ export function ArchivalDossierRack({
                 <button
                   onClick={() => {
                     const prevIndex =
-                      (selectedFolder.index - 2 + DOSSIER_FOLDERS.length) % DOSSIER_FOLDERS.length;
-                    setSelectedFolder(DOSSIER_FOLDERS[prevIndex]);
+                      (selectedFolder.index - 2 + displayFolders.length) % displayFolders.length;
+                    setSelectedFolder(displayFolders[prevIndex]);
                   }}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-light-gray hover:text-white transition-colors"
                 >
@@ -1087,7 +1087,7 @@ export function ArchivalDossierRack({
 
                 {/* 10 Folder Quick Dots */}
                 <div className="flex items-center gap-1.5">
-                  {DOSSIER_FOLDERS.map((f) => (
+                  {displayFolders.map((f) => (
                     <button
                       key={f.id}
                       onClick={() => setSelectedFolder(f)}
@@ -1105,8 +1105,8 @@ export function ArchivalDossierRack({
 
                 <button
                   onClick={() => {
-                    const nextIndex = selectedFolder.index % DOSSIER_FOLDERS.length;
-                    setSelectedFolder(DOSSIER_FOLDERS[nextIndex]);
+                    const nextIndex = selectedFolder.index % displayFolders.length;
+                    setSelectedFolder(displayFolders[nextIndex]);
                   }}
                   className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:bg-white/10 text-light-gray hover:text-white transition-colors"
                 >

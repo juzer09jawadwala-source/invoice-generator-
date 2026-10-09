@@ -222,6 +222,7 @@ export function Dashboard({
           currency={currency}
           onCreateNew={onCreateNew}
           onNavigate={onNavigate}
+          onLoad={onLoad}
         />
         </div>
       </StackedSection>
